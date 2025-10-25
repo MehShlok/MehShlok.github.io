@@ -1,343 +1,239 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-9T1G40T7HF"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-  
-    gtag('config', 'G-9T1G40T7HF');
-  </script>
-  
-
-  <title>Portfolio</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
-  <!-- Vendor CSS Files -->
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-
-  <!-- Template Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
-
-  <!-- =======================================================
-  * Template Name: iPortfolio
-  * Updated: Nov 17 2023 with Bootstrap v5.3.2
-  * Template URL: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - Home</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+        }
+        
+        h1, h2, h3, .logo {
+            font-family: 'Times New Roman', Times, serif;
+        }
+        
+        nav {
+            border-bottom: 1px solid #eee;
+            padding: 20px 0;
+            margin-bottom: 60px;
+        }
+        
+        nav .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-weight: 600;
+            font-size: 1.1em;
+            color: #1a1a1a;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            color: #666;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #1a1a1a;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px 60px;
+        }
+        
+        .hero {
+            margin-bottom: 60px;
+        }
+        
+        h1 {
+            font-size: 2.8em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #1a1a1a;
+            line-height: 1.2;
+        }
+        
+        .subtitle {
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+        
+        .social-links a {
+            color: #333;
+            text-decoration: none;
+            border-bottom: 1px solid #333;
+            transition: opacity 0.2s;
+        }
+        
+        .social-links a:hover {
+            opacity: 0.6;
+        }
+        
+        section {
+            margin-bottom: 50px;
+        }
+        
+        h2 {
+            font-size: 1.5em;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #1a1a1a;
+        }
+        
+        .about-text {
+            font-size: 1.05em;
+            line-height: 1.8;
+            color: #444;
+        }
+        
+        .about-text p {
+            margin-bottom: 15px;
+        }
+        
+        .experience-item {
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .experience-item:last-child {
+            border-bottom: none;
+        }
+        
+        .experience-item h3 {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 5px;
+        }
+        
+        .experience-meta {
+            font-size: 0.95em;
+            color: #666;
+            margin-bottom: 8px;
+        }
+        
+        .experience-item p {
+            color: #555;
+        }
+        
+        footer {
+            margin-top: 80px;
+            padding-top: 30px;
+            border-top: 1px solid #eee;
+            text-align: center;
+            color: #999;
+            font-size: 0.9em;
+        }
+        
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2em;
+            }
+            
+            nav .container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .nav-links {
+                gap: 20px;
+            }
+        }
+    </style>
 </head>
-
 <body>
-
-  <!-- ======= Mobile nav toggle button ======= -->
-  <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
-
-  <!-- ======= Header ======= -->
-  <header id="header">
-    <div class="d-flex flex-column">
-
-      <div class="profile">
-        <img src="Pic-1.jpg" alt="" class="img-fluid rounded-circle">
-        <h1 class="text-light"><a href="index.html">Shlok Mehendale</a></h1>
-        <div class="social-links mt-3 text-center">
-          <a href="https://github.com/MehShlok" class="github"><i class="bx bxl-github"></i></a>
-          <a href="https://www.linkedin.com/in/shlok-mehendale-j18" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+    <nav>
+        <div class="container">
+            <a href="index.html" class="logo">Your Name</a>
+            <div class="nav-links">
+                <a href="index.html" class="active">Home</a>
+                <a href="projects.html">Projects</a>
+                <a href="blogs.html">Blogs</a>
+            </div>
         </div>
-      </div>
+    </nav>
 
-      <nav id="navbar" class="nav-menu navbar">
-        <ul>
-          <li><a href="#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a></li>
-          <li><a href="#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>About Me</span></a></li>
-          <li><a href="#updates" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Updates</span></a></li>
-          <li><a href="#projects" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Projects</span></a></li>
-          <li><a href="#Experience" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Experience</span></a></li>
-          <li><a rel="noopener" href="Curriculum Vitae.pdf" target="_blank"><i class="bx bx-book-content"></i>
-            Download CV</a>
-          </li>
-        </ul>
-      </nav><!-- .nav-menu -->
+    <div class="container">
+        <div class="hero">
+            <h1>Hi, I'm Your Name</h1>
+            <p class="subtitle">I'm a software developer passionate about building elegant solutions to complex problems. Currently working on web applications and exploring new technologies.</p>
+            
+            <div class="social-links">
+                <a href="mailto:your.email@example.com">Email</a>
+                <a href="https://github.com/yourusername" target="_blank">GitHub</a>
+                <a href="https://linkedin.com/in/yourprofile" target="_blank">LinkedIn</a>
+                <a href="https://twitter.com/yourusername" target="_blank">Twitter</a>
+            </div>
+        </div>
+        
+        <section>
+            <h2>About</h2>
+            <div class="about-text">
+                <p>I'm a developer with a focus on creating clean, efficient, and user-friendly applications. My work spans across web development, with particular interest in frontend technologies and modern JavaScript frameworks.</p>
+                <p>When I'm not coding, you can find me writing technical articles, contributing to open-source projects, or learning about new tools and methodologies in software development.</p>
+            </div>
+        </section>
+        
+        <section>
+            <h2>Experience</h2>
+            
+            <div class="experience-item">
+                <h3>Software Developer</h3>
+                <p class="experience-meta">Company Name • 2023 - Present</p>
+                <p>Building and maintaining web applications, collaborating with cross-functional teams, and implementing new features that improve user experience.</p>
+            </div>
+            
+            <div class="experience-item">
+                <h3>Junior Developer</h3>
+                <p class="experience-meta">Previous Company • 2021 - 2023</p>
+                <p>Developed responsive web interfaces, worked on API integrations, and contributed to the improvement of existing codebases.</p>
+            </div>
+            
+            <div class="experience-item">
+                <h3>Intern</h3>
+                <p class="experience-meta">Tech Startup • 2020 - 2021</p>
+                <p>Assisted in frontend development, participated in code reviews, and learned industry best practices.</p>
+            </div>
+        </section>
+        
+        <footer>
+            <p>© 2025 Your Name</p>
+        </footer>
     </div>
-  </header><!-- End Header -->
-
-  <!-- ======= Hero Section ======= -->
-  <section id="hero" class="d-flex flex-column justify-content-center align-items-center">
-    <div class="hero-container" data-aos="fade-in">
-      <h1>Shlok Mehendale</h1>
-      <p>I'm <span class="typed" data-typed-items="a Mathematician, a CS Undergrad, a Researcher, an AI/ML Enthusiast, a Neuro-geek"></span></p>
-    </div>
-  </section><!-- End Hero -->
-
-  <main id="main">
-
-    <!-- ======= About Section ======= -->
-    <section id="about" class="about">
-      <div class="container">
-
-        <div class="section-title">
-          <h2>About Me</h2>
-          <p> Hi there! I'm Shlok Mehendale, a dual-degree student at BITS Pilani, KK Birla Goa Campus, pursuing BE in Computer Science and MSc in Mathematics.</p> 
-          <br>    
-          <p> Passionate about the convergence of tech and math, I'm particularly drawn to machine learning and artificial intelligence. I have recently also developed an interest in Neuroscience, NeuroAI and consciousness studies particularly.
-              Outside the classroom, I'm deeply involved in hands-on Machine Learning projects, exploring both theory and practical applications. I'm also a part of Project Kratos through which I enjoy venturing into applying Deep Learning in Robotics, as showcased in the Projects section.
-              Apart from that, I'm also excited about the continuous advancements in Theoretical Mathematics.</p>
-          <br>
-          <p> Apart from this, I love Music (feeling of a deeper connection with mathematics) and in my free time you'll find me on the badminton court, chessboard or playing Guitar!</p>
-        </div>
-
-      </div>
-    </section><!-- End About Section -->
-
-    <!-- ======= Updates Section ======= -->
-    <section id="updates" class="updates">
-      <div class="container">
-
-        <div class="section-title">
-          <h2>Updates</h2>
-          <ul>
-            <li>06/24 => Core Member @AI/ML Devsoc, BITS Goa now!</li>
-            <li>06/24 => Selected for the 8th CVIT Summer School on AI with focus on Computer Vision and Machine Learning!</li>
-            <li>06/24 => Summer Internship @STEM4ALL, California as a part of Practice School - 1, BITS Pilani.</li>
-            <li>05/24 => Undergraduate Research Project in Network Anomaly Detection; Supervised by <a href="https://karanmitra.me/">Dr. Karan Mitra</a>, <a href="https://www.ltu.se/en/staff/c/christer-ahlund">Dr. Christer Ahlund</a>, LTU Sweden and Dr. Neena Goveas, CSIS.</li>
-            <li>05/24 => Applying and Analysing Deep Learning SOTA algorithms in Epidemiological Compartmental Modeling; under <a href="https://medicine.yale.edu/yigh/profile/abhishek-pandey/"> Dr. Abhishek Pandey</a>, Yale University.</li>
-            <li>05/24 => Selected as a part of a Research Group on Autonomous Vehicles @Robotics Lab, BITS Goa; Supervised by <a href="https://www.bits-pilani.ac.in/goa/neena-goveas/">Dr. Neena Goveas</a>, CSIS, BITS Goa.</li>
-            <li>04/24 => Undergraduate Research Project in Foundational Machine Learning for the year 24-25; Supervised by <a href="https://scholar.google.com/citations?user=C-Qm2LcAAAAJ&hl=en">Dr. Snehanshu Saha</a>, Head <a href="https://appcair.com/">APPCAIR</a>, CSIS, BITS Goa and <a>Dr. Rahul Yedida</a>, NC State University.</li>
-            <li>04/24 => Selected for a Summer Research Internship @IISc, Bangalore under <a href="https://cds.iisc.ac.in/faculty/ratikanta/">Dr. Ratikanta Behera</a>, CDS IISc and Dr. JK Sahoo.</li>
-            <li>04/24 => Promoted to Core Member @Autonomous Subsystem, Project Kratos; Focused on Applications of ML in the Rover.</li>
-            <li>03/24 => Set up a Research Collaboration with AGH Space Systems, AGH University of Krakow, Poland in the areas of Computer Vision and Robotics, including different ML model compression techniques like Pruning, Knowledge Distillation! </li>
-            <li>03/24 => Working on a project, EPI-DNNs for modeling covid-19 in India under <a href="https://universe.bits-pilani.ac.in/goa/anushayam/profile"> Dr. Anushaya Mohapatra</a>, as a part of Mathematical Modeling Course.</li>
-            <li>02/24 => Selected to be a Teaching Assistant for the course Mathematics - 2 (Linear Algebra and Complex Numbers), one of the 8 students out of a pool of 200 students.</li>
-            <li>01/24 => Represented India at the International Rover Challenge(IRC) in Coimbatore, won 2nd prize in the Autonomous Task and placed 6th overall out of 40+ teams from all over the world.</li>
-            <li>12/23 => Undergraduate Research Project on Twin Support Vector Machines and their Applications under <a href="https://universe.bits-pilani.ac.in/goa/jksahoo/Profile"> Dr. JK Sahoo</a>, Former HOD Mathematics, BITS Goa.</li>
-            <li>11/23 => Interacted with Division Chief for the Space Biosciences Division, NASA , Dr. Parag Vaishampayan as a part of Project Kratos and David Cuartielles, The co-founder of Arduino!</li>
-            <li>09/23 => Created a Hand Gesture Recognition Model based on OpenCV and MediaPipe, for the Mars Rover</li>
-            <li>07/23 => Received a project on Sendov's Conjecture under <a href ="https://www.bits-pilani.ac.in/goa/prasanna-kumar-nekkare">Dr. Prasanna Kr.</a>, HOD Mathematics(as of 2024).</li>
-          </ul>
-        </div>
-
-      </div>
-    </section><!-- End Updates Section -->
-
-    <!-- ======= Projects Section ======= -->
-    <section id="projects" class="projects section-bg">
-      <div class="container">
-
-        <div class="section-title">
-          <h2>Projects</h2>
-        </div>
-        <div>
-          <h4 class="project-title">Network Anomaly Detection</h4>
-          <h5>Jun,24 - Nov,24</h5>
-          <ul>
-            <li>Supervised by Dr. Karan Mitra, Dr. Saguna, Dr. Christer Ahlund, LTU Sweden and Dr. Neena Goveas, CSIS, BITS Goa.</li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="project-title">Foundational Machine Learning</h4>
-          <h5>May,24 - Present</h5>
-          <ul>
-            <li>Supervised by Dr. Snehanshu Saha, Head APPCAIR, BITS Goa and Dr. Rahul Yedida, North Carolina State University.</li>
-            <li>Preprint out soon!</li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="project-title">Autonomous Vehicles</h4>
-          <h5>Apr,24 - Present</h5>
-          <ul>
-            <li>Part of a Research Group at Robotics Lab, BITS Goa and Moon Lab, IISER Bhopal.</li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="project-title">Implementation of EPI-DNNs to model COVID-19 in India</h4>
-          <h5>May,24 - Jun,24</h5>
-          <ul>
-            <li> Check out my project <a href="https://github.com/MehShlok/Implementation-of-Epi-DNNs">here.</a></li>
-            <li>As a part of Course Mathematical Modeling, lectured by Dr. Anushaya Mohapatra, BITS Goa.</li>
-            <li>Extended Project with Dr. Abhishek Pandey, YALE University.</li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="project-title">Support Vector Machines and its Applications</h4>
-          <h5>Dec,23 - Jun,24</h5>
-          <ul>
-            <li>Supervised by Dr. JK Sahoo and Dr. Rajendra Roul.</li>
-            <li>Publication out soon!</li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="project-title">Model on Hand Gesture Recognition for Mars Rover</h4>
-          <h5>Oct,23 - Dec,23</h5>
-          <ul>
-            <li>Created using OpenCV and Media Pipe for hand gesture recognition, check <a href="https://github.com/MehShlok/Kratos_OpenCV">here</a></li>
-            <li>Tried and tested on Project Kratos, The Mars Rover of BITS Goa, and works perfectly</li>
-            <li>Work on an LSTM model and paper implementation of hand gesture recognition in progress</li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="project-title">Project Kratos Induction Assignments</h4>
-          <h5>May,23 - Aug,23</h5>
-          <ul>
-            <li>Went through a tough induction process and was among the 11 selected candidates for the flagship project of BITS Goa in the Autonomous Subsystem</li>
-            <li>All the assignments and my attempts to solve them are given <a href="https://github.com/MehShlok/PROJECT-KRATOS">here</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="project-title">Electronics and Robotics Club Hackathon</h4>
-          <h5>May,23 - Aug,23</h5>
-          <ul>
-            <li>Worked on the Automation part in the project along with batchmates, use of rigorous Path planning algorithms to find the shortest path.</li>
-            <li>Runners Up overall , and Best Automation Team</li>
-            <li>All the assignments and my attempts to solve them are given <a href="https://github.com/MehShlok/erc-hackathon-2023">here</a></li>
-          </ul>
-        </div>
-      </div>
-    </section><!-- End Projects Section -->
-
-    <!-- ======= Experience Section ======= -->
-    <section id="Experience" class="Experience">
-      <div class="container">
-
-        <div class="section-title">
-          <h2>Experience</h2>
-        </div>
-
-        <div class="row">
-          <div class="col-lg-6" data-aos="fade-up">
-            <h3 class="resume-title">Education</h3>
-            <p><img src="BITSPilani_logo.png" alt="Clg logo" width="50"> BITS PILANI, KK BIRLA GOA CAMPUS</p>
-            <div class="resume-item">
-              <h4>MSc Mathematics</h4>
-              <h5>2022-Present</h5>
-              <p></p>
-            </div>
-            <div class="resume-item">
-              <h4>BE Computer Science</h4>
-              <h5>2022-Present</h5>
-              <p></p>
-            </div>
-          </div>
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-            <h3 class="resume-title">Organizations</h3>
-            <div class="resume-item">
-              <img src="DevSoc img.jpeg" alt="logo" width="80">
-              <h4>Developers Society</h4>
-              <h5>Jun, 2024 - Present</h5>
-              <ul>
-                <li><em>Core Member in the AI/ML Vertical @DevSoc</em></li>
-              </ul>
-            </div>
-            <div class="resume-item">
-              <img src="STEM4ALL.png" alt="logo" width="80">
-              <h4>STEM4ALL</h4>
-              <h5>May,24 - July,24</h5>
-              <ul>
-                <li><em>Summer Research Intern</em></li>
-                <li>Designing and Lecturing a Course on Neural Networks</li>
-              </ul>
-            </div>
-            <div class="resume-item">
-              <img src="Project Kratos logo.png" alt="logo" width="200">
-              <h4>Project Kratos</h4>
-              <h5>2023 - Present</h5>
-              <ul>
-                <li><em>Core Member of the Autonomous Division of the Mars Rover</em></li>
-                <li>Created Elevation Maps using Point Cloud data obtained through ZED-2i</li>
-                <li>Implemented different Path Planning Algorithms</li>
-                <li>Computer Vision, Real Time Kinematic positioning, ROS, ROS-2.</li>
-              </ul>
-            </div>
-            <div class="resume-item">
-              <h4>AAP MENTOR for Probability and Statistics</h4>
-              <h5>Sept,23 - Dec,23</h5>
-              <ul>
-                <li>Mentored first year students, solved doubts and taught certain difficut topics</li>
-              </ul>
-            </div>
-            <div class="resume-item">
-              <h4>PATHFINDERS</h4>
-              <h5>Feb,23 - July,23</h5>
-              <p>Click <a href="https://www.linkedin.com/company/pathfinders-bits">here</a> to go through our linkedin page</p>
-              <ul>
-                <li><em>Executive Head</em></li>
-                <li>A non-profit organization, formed by students of BITS Goa, for mentoring Engineering Aspirants</li>
-                <li>Helped aspirants in the last phase of their preparation to get into prestigious Institutions like IITs, BITS, etc</li>
-                <li>Acquired Leadership and Marketing skills</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section><!-- End Experience Section -->
-
-    <!-- ======= Contact Section ======= -->
-    <section id="contact" class="contact">
-      <div class="container">
-
-        <div class="section-title">
-          <h2>Contact</h2>
-          <p>I'm happy to connect with people and collaborate on exciting projects!</p>
-        </div>
-
-        <div class="row" data-aos="fade-in">
-
-              <div class="email">
-                <h4>Email:</h4>
-                <p>shlokmehendale@gmail.com</p>
-              </div>
-
-        </div>
-
-      </div>
-    </section><!-- End Contact Section -->
-
-  </main><!-- End #main -->
-
- <!-- ======= Footer ======= -->
- <footer id="footer">
-  <div class="container">
-    <div class="credits">
-      <!-- All the links in the footer should remain intact. -->
-      <!-- You can delete the links only if you purchased the pro version. -->
-      <!-- Licensing information: https://bootstrapmade.com/license/ -->
-      <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/ -->
-      Modified version of iPortfolio <a href="https://bootstrapmade.com/">BootstrapMade</a>
-    </div>
-  </div>
- </footer><!-- End  Footer -->
-
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/typed.js/typed.umd.js"></script>
-  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
-
 </body>
-
 </html>
