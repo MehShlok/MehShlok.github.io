@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - Projects</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+        }
+        
+        h1, h2, h3, .logo {
+            font-family: 'Times New Roman', Times, serif;
+        }
+        
+        nav {
+            border-bottom: 1px solid #eee;
+            padding: 20px 0;
+            margin-bottom: 60px;
+        }
+        
+        nav .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-weight: 600;
+            font-size: 1.1em;
+            color: #1a1a1a;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            color: #666;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #1a1a1a;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px 60px;
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #1a1a1a;
+        }
+        
+        .page-intro {
+            font-size: 1.1em;
+            color: #666;
+            margin-bottom: 50px;
+        }
+        
+        .project {
+            margin-bottom: 40px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .project:last-child {
+            border-bottom: none;
+        }
+        
+        .project h2 {
+            font-size: 1.4em;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #1a1a1a;
+        }
+        
+        .project-meta {
+            font-size: 0.9em;
+            color: #999;
+            margin-bottom: 15px;
+        }
+        
+        .project p {
+            color: #555;
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+        
+        .project-links {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .project-links a {
+            color: #333;
+            text-decoration: none;
+            border-bottom: 1px solid #ddd;
+            font-size: 0.95em;
+            transition: border-color 0.2s;
+        }
+        
+        .project-links a:hover {
+            border-color: #333;
+        }
+        
+        footer {
+            margin-top: 80px;
+            padding-top: 30px;
+            border-top: 1px solid #eee;
+            text-align: center;
+            color: #999;
+            font-size: 0.9em;
+        }
+        
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2em;
+            }
+            
+            nav .container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .nav-links {
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="index.html" class="logo">Your Name</a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="projects.html" class="active">Projects</a>
+                <a href="blogs.html">Blogs</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Projects</h1>
+        <p class="page-intro">A collection of things I've built and worked on.</p>
+        
+        <div class="project">
+            <h2>Project Title One</h2>
+            <p class="project-meta">2024 • React, Node.js, MongoDB</p>
+            <p>A detailed description of your project. Explain what problem it solves, what technologies you used, and what you learned from building it. This is your chance to showcase your technical skills and problem-solving abilities.</p>
+            <div class="project-links">
+                <a href="https://github.com/yourusername/project" target="_blank">View Code →</a>
+                <a href="https://project-demo.com" target="_blank">Live Demo →</a>
+            </div>
+        </div>
+        
+        <div class="project">
+            <h2>Project Title Two</h2>
+            <p class="project-meta">2023 • Python, Flask, PostgreSQL</p>
+            <p>Another project description highlighting the challenges you faced and how you overcame them. Mention any interesting features, optimizations, or design decisions you made during development.</p>
+            <div class="project-links">
+                <a href="https://github.com/yourusername/project" target="_blank">View Code →</a>
+                <a href="https://project-demo.com" target="_blank">Live Demo →</a>
+            </div>
+        </div>
+        
+        <div class="project">
+            <h2>Project Title Three</h2>
+            <p class="project-meta">2023 • JavaScript, HTML, CSS</p>
+            <p>Description of a third project. You can add as many projects as you want by copying the project div structure. Focus on your most impressive or recent work.</p>
+            <div class="project-links">
+                <a href="https://github.com/yourusername/project" target="_blank">View Code →</a>
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 2025 Your Name</p>
+        </footer>
+    </div>
+</body>
+</html>
