@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shlok Mehendale</title>
+    <title>Projects - Shlok Mehendale</title>
     <style>
         * {
             margin: 0;
@@ -66,10 +66,6 @@
             padding: 0 20px 60px;
         }
         
-        .hero {
-            margin-bottom: 60px;
-        }
-        
         h1 {
             font-size: 2.8em;
             font-weight: 600;
@@ -78,86 +74,85 @@
             line-height: 1.2;
         }
         
-        .subtitle {
-            font-size: 1.2em;
+        .page-intro {
+            font-size: 1.1em;
             color: #666;
-            margin-bottom: 30px;
+            margin-bottom: 50px;
             line-height: 1.6;
         }
         
-        .social-links {
-            display: flex;
-            font-family: 'Courier New', Courier, monospace;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin-top: 30px;
+        .project {
+            margin-bottom: 50px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid #eee;
         }
         
-        .social-links a {
+        .project:last-of-type {
+            border-bottom: none;
+        }
+        
+        .project h2 {
+            font-size: 1.4em;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #1a1a1a;
+            line-height: 1.3;
+        }
+        
+        .project-meta {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 15px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .project-meta span {
+            display: inline-block;
+        }
+        
+        .project-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+        
+        .tag {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.85em;
+            background: #f5f5f5;
+            color: #666;
+            padding: 4px 10px;
+            border-radius: 3px;
+        }
+        
+        .project p {
+            color: #444;
+            margin-bottom: 12px;
+            line-height: 1.7;
+        }
+        
+        .project-links {
+            margin-top: 15px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .project-links a {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9em;
             color: #333;
             text-decoration: none;
             border-bottom: 1px solid #333;
             transition: opacity 0.2s;
         }
         
-        .social-links a:hover {
+        .project-links a:hover {
             opacity: 0.6;
-        }
-        
-        .intro-text {
-            font-family: 'Georgia', serif;
-        }
-
-        .details-text {
-            font-family: 'Courier New', Courier, monospace;
-        }
-        
-        section {
-            margin-bottom: 50px;
-        }
-        
-        h2 {
-            font-size: 1.5em;
-            font-weight: 600;
-            margin-bottom: 20px;
-            color: #1a1a1a;
-        }
-        
-        .about-text {
-            font-size: 1.05em;
-            line-height: 1.8;
-            color: #444;
-        }
-        
-        .about-text p {
-            margin-bottom: 15px;
-        }
-        
-        .experience-item {
-            margin-bottom: 25px;
-            padding-bottom: 25px;
-            border-bottom: 1px solid #f0f0f0;
-        }
-        
-        .experience-item:last-child {
-            border-bottom: none;
-        }
-        
-        .experience-item h3 {
-            font-size: 1.1em;
-            font-weight: 600;
-            color: #1a1a1a;
-            margin-bottom: 5px;
-        }
-        
-        .experience-meta {
-            font-size: 0.95em;
-            color: #666;
-            margin-bottom: 8px;
-        }
-        
-        .experience-item p {
-            color: #555;
         }
         
         footer {
@@ -182,6 +177,11 @@
             .nav-links {
                 gap: 20px;
             }
+            
+            .project-meta {
+                flex-direction: column;
+                gap: 5px;
+            }
         }
     </style>
 </head>
@@ -190,8 +190,8 @@
         <div class="container">
             <a href="index.html" class="logo">Shlok Mehendale</a>
             <div class="nav-links">
-                <a href="index.html" class="active">Home</a>
-                <a href="projects.html">Projects</a>
+                <a href="index.html">Home</a>
+                <a href="projects.html" class="active">Projects</a>
                 <a href="experiences.html">Experience</a>
                 <a href="blogs.html">Blogs</a>
                 <a href="hobby.html">Hobbies</a>
@@ -201,15 +201,156 @@
 
     <div class="container">
         <h1>Projects</h1>
-        <p class="page-intro">A collection of things I've built, worked on and published. To be added soon...</p>
+        <p class="page-intro">A collection of things I've built, explored, and published—from research in machine learning to practical applications.</p>
 
+        <!-- PROJECT 1 -->
         <div class="project">
-            <h2>Long-tailed/Out-of-Distribution classification and Anomaly detection</h2>
-           
-            <p>Proposed a unified PAC-learnable anomaly detection framework grounded in measure theory (specifically the Radon–Nikodým derivative), outperforming State-Of-The-Art on 96 real-world datasets.</p>
-            <p>Conducted a large-scale benchmark of 20+ ML and DL-based anomaly detection methods across various datasets (uni-variate and multivariate, temporal and time-independent, with varying number of anomalies from less than 5% to more than 30%), revealing tree-based methods often outperform deep models in low-data, low-anomaly regimes.</p>
+            <h2>Weighted Attention Bottleneck Transformer</h2>
+            <div class="project-meta">
+                <span>2025 - Present</span>
+            </div>
+            <div class="project-tags">
+                <span class="tag">Multimodal Representation Learning</span>
+                <span class="tag">Generative AI</span>
+            </div>
+            <p>Cross-Modal reconstruction, building on Google Research's work on Multimodal Bottleneck Transformer.</p>
+            <p>Published and presented at University of Toronto ConferenceX'25 (Currently under preparation for submission at CVPR).</p>
         </div>
+        
+        <!-- PROJECT 2 -->
+        <div class="project">
+            <h2>A measure theoretic perspective on OOD classification and long-tailed learning</h2>
+            <div class="project-meta">
+                <span>2024 - Present</span>
+                <span>Supervised by Dr. Snehanshu Saha</span
+            </div>
+            <div class="project-tags">
+                <span class="tag">Machine Learning</span>
+                <span class="tag">Long-Tailed learning</span>
+                <span class="tag">Measure Theory</span>
+            </div>
+            <p>Proposed a unified PAC-learnable anomaly detection framework grounded in measure theory (specifically the Radon–Nikodým derivative), outperforming state-of-the-art methods on 96 real-world datasets.</p>
+            <p>Submitted to ACM/IMS Journal of Data Science, 2025</p>
+            <div class="project-links">
+                <a href="https://arxiv.org/abs/2502.18002">Paper</a>
+            </div>
+        </div>
+
+        <!-- PROJECT 3 -->
+        <div class="project">
+            <h2>Anomaly Detection: Deep Learning and Beyond</h2>
+            <div class="project-meta">
+                <span>2024 - 2025</span>
+                <span>Supervised by Dr. Snehanshu Saha</span>
+            </div>
+            <div class="project-tags">
+                <span class="tag">Deep Learning</span>
+                <span class="tag">Anomaly Detection</span>
+            </div>
+            <p>Conducted a large-scale benchmark of 20+ ML and DL-based anomaly detection methods across 104 datasets, revealing tree-based methods often outperform deep models in low-data, low-anomaly regimes.</p>
+            <p>Submitted to IEEE TAI, cited by IBM Research.</p>
+            <div class="project-links">
+                <a href="https://arxiv.org/abs/2402.07281">Paper</a>
+            </div>
+        </div>
+
+        <!-- PROJECT 4 -->
+        <div class="project">
+            <h2>Driver behaviour modeling using imitation learning and deep RL</h2>
+            <div class="project-meta">
+                <span>2025 - Present</span>
+                <span>Supervised by Dr. Santonu Sarkar</span>
+            </div>
+            <div class="project-tags">
+                <span class="tag">Reinforcement Learning</span>
+                <span class="tag">Autonomous Driving</span>
+            </div>
+            <p>ADAPT (Adaptive Driver Anomaly Perception Technology) is a research project focused on quantifying driver behavior unruliness by leveraging human-like traffic data generated through advanced simulation techniques.</p>
+            <p>Ongoing Industry funded project</p>
+        </div>
+
+        <!-- PROJECT 5 -->
+        <div class="project">
+            <h2>High Dimensional Quantile Distribution Shift</h2>
+            <div class="project-meta">
+                <span>2025 - Present</span>
+                <span>Supervised by Dr. Sravan Danda</span>
+            </div>
+            <div class="project-tags">
+                <span class="tag">Statistical Learning Theory</span>
                 
+            </div>
+            <p>Developing robust statistical tools/DL algorithms that are resilient to quantile-based distribution changes.</p>
+            <p>Submitted to Transactions on Machine Learning Research (TMLR)</p>
+        </div>
+        
+        <!-- PROJECT 6 -->
+        <div class="project">
+            <h2>Implicit dehazing pipeline for precise image classification</h2>
+            <div class="project-meta">
+                <span>2023 - 2024</span>
+                <span>Supervised by Dr. JK Sahoo</span>
+            </div>
+            <div class="project-tags">
+                <span class="tag">Computer Vision</span>
+                <span class="tag">Hybrid Deep Learning models</span>
+            </div>
+            <p>Designed a dehazing-free classification system using pre-trained CNN features and Pinball Twin SVM, achieving 98% accuracy under severe atmospheric noise.</p>
+            <div class="project-links">
+                <a href="https://arxiv.org/abs/2501.13422">Paper</a>
+            </div>
+        </div>
+
+        <!-- PROJECT 7 -->
+        <div class="project">
+            <h2>IoT sensor fault detection for smart buildings in Sweden</h2>
+            <div class="project-meta">
+                <span>2024</span>
+                <span>Supervised by Dr. Christer Ahlund, Dr. Karan Mitra, Dr. Saguna (LTU Sweden), Dr. Neena Goveas</span>
+            </div>
+            <div class="project-tags">
+                <span class="tag">Internet of Things</span>
+                <span class="tag">Brickschema</span>
+            </div>
+            <p>Worked with BrickSchema-modeled IoT sensor data to detect and classify faults using ML techniques. Integrated semantic modeling and real-time data streams for fault monitoring.</p>
+            <p>Project in collaboration with Ace-cybersafe(Sweden).</p>
+        </div>
+
+        <!-- PROJECT 8 -->
+        <div class="project">
+            <h2>BITSAuto: An autonomous vehicle</h2>
+            <div class="project-meta">
+                <span>2023 - 2024</span>
+                <span>Supervised by Dr. Neena Goveas (Robotics Lab)</span>
+            </div>
+            <div class="project-tags">
+                <span class="tag">Autonomous Driving</span>
+                <span class="tag">Robotics</span>
+            </div>
+            <p>A funded project for developing an autonomous (self-driving) vehicle.</p>
+            <p>Led a team of 28 Computer Science undergraduate students and made immense progress on the fronts of: Image Segmentation , Point Cloud Mapping , GNSS Localisation , Path Planning and Controls</p>
+            <div class="project-links">
+                <a href="https://github.com/MehShlok/Image_Segmentation_BITSAuto">Image Segmentation</a>
+                <a href="https://github.com/Devarsh2607/Point-Cloud-Localization">Mapping (Point Cloud and Elevation)</a>
+                <a href="https://github.com/AashishKanted/GNSS-Localization">GNSS Localisation</a>
+                <a href="https://github.com/Vishesh-Ag-BITSG/BITSAuto-Assignments/tree/main">Path planning and Controls</a>
+            </div>
+        </div>
+
+        <!-- PROJECT 9 -->
+        <div class="project">
+            <h2>Confluence of Epidemiological Modeling and Deep Learning</h2>
+            <div class="project-meta">
+                <span>2023</span>
+            </div>
+            <div class="project-tags">
+                <span class="tag">Epidemiological Modeling</span>
+                <span class="tag">Artificial Neural Networks</span>
+            </div>
+            <p>Presented to Dr. Abhishek Pandey, Associate Director (CIDMA), Yale University and selected for a summer course on Epidemiological Modeling</p>
+            <p>Altered Epi-DNNs paper on Indian Covid-19 data and a novel SEIRD model; also presented at a course offered under Dr. Anushaya Mohapatra, BITS Goa</p>
+        </div>
+        
         <footer>
             <p>© 2025 Shlok Mehendale</p>
         </footer>
