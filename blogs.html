@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shlok Mehendale</title>
+    <title>Blogs - Shlok Mehendale</title>
     <style>
         * {
             margin: 0;
@@ -66,98 +66,65 @@
             padding: 0 20px 60px;
         }
         
-        .hero {
-            margin-bottom: 60px;
-        }
-        
-        h1 {
-            font-size: 2.8em;
-            font-weight: 600;
-            margin-bottom: 15px;
-            color: #1a1a1a;
-            line-height: 1.2;
-        }
-        
-        .subtitle {
-            font-size: 1.2em;
-            color: #666;
-            margin-bottom: 30px;
-            line-height: 1.6;
-        }
-        
-        .social-links {
-            display: flex;
-            font-family: 'Courier New', Courier, monospace;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin-top: 30px;
-        }
-        
-        .social-links a {
-            color: #333;
-            text-decoration: none;
-            border-bottom: 1px solid #333;
-            transition: opacity 0.2s;
-        }
-        
-        .social-links a:hover {
-            opacity: 0.6;
-        }
-        
-        .intro-text {
-            font-family: 'Georgia', serif;
-        }
-
-        .details-text {
-            font-family: 'Courier New', Courier, monospace;
-        }
-        
-        section {
-            margin-bottom: 50px;
-        }
-        
         h2 {
-            font-size: 1.5em;
+            font-size: 1.8em;
             font-weight: 600;
-            margin-bottom: 20px;
+            margin-bottom: 40px;
             color: #1a1a1a;
         }
         
-        .about-text {
-            font-size: 1.05em;
-            line-height: 1.8;
-            color: #444;
+        .blog-list {
+            list-style: none;
         }
         
-        .about-text p {
-            margin-bottom: 15px;
-        }
-        
-        .experience-item {
-            margin-bottom: 25px;
-            padding-bottom: 25px;
+        .blog-item {
+            margin-bottom: 40px;
+            padding-bottom: 40px;
             border-bottom: 1px solid #f0f0f0;
         }
         
-        .experience-item:last-child {
+        .blog-item:last-child {
             border-bottom: none;
         }
         
-        .experience-item h3 {
-            font-size: 1.1em;
-            font-weight: 600;
-            color: #1a1a1a;
-            margin-bottom: 5px;
-        }
-        
-        .experience-meta {
-            font-size: 0.95em;
-            color: #666;
+        .blog-item h3 {
+            font-size: 1.3em;
             margin-bottom: 8px;
         }
         
-        .experience-item p {
+        .blog-item h3 a {
+            color: #1a1a1a;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .blog-item h3 a:hover {
+            color: #666;
+        }
+        
+        .blog-date {
+            font-size: 0.9em;
+            color: #999;
+            font-family: 'Courier New', Courier, monospace;
+            margin-bottom: 12px;
+        }
+        
+        .blog-excerpt {
             color: #555;
+            line-height: 1.7;
+            margin-bottom: 12px;
+        }
+        
+        .read-more {
+            color: #333;
+            text-decoration: none;
+            border-bottom: 1px solid #333;
+            font-size: 0.95em;
+            transition: opacity 0.2s;
+        }
+        
+        .read-more:hover {
+            opacity: 0.6;
         }
         
         footer {
@@ -170,10 +137,6 @@
         }
         
         @media (max-width: 600px) {
-            h1 {
-                font-size: 2em;
-            }
-            
             nav .container {
                 flex-direction: column;
                 gap: 15px;
@@ -200,10 +163,39 @@
     </nav>
 
     <div class="container">
-        <div class="hero">
-            <p class="subtitle">Thanks for taking interest in me. This section will be populated soon..</p>
-        </div>
+        <h2>Writing</h2>
         
+        <ul class="blog-list">
+            <li class="blog-item">
+                <h3><a href="blog/test.html">Understanding Neural Networks Through Statistical Physics</a></h3>
+                <div class="blog-date">March 15, 2025</div>
+                <p class="blog-excerpt">
+                    Exploring the fascinating connections between statistical mechanics and deep learning, 
+                    and how concepts from physics can help us understand why neural networks work so well.
+                </p>
+                <a href="blog/test.html" class="read-more">Read more →</a>
+            </li>
+            
+            <li class="blog-item">
+                <h3><a href="blog/mars-rover-vision.html">Computer Vision Challenges in Mars Rover Navigation</a></h3>
+                <div class="blog-date">February 8, 2025</div>
+                <p class="blog-excerpt">
+                    Lessons learned from building vision systems for autonomous rovers, including real-world 
+                    challenges with terrain detection and obstacle avoidance in unstructured environments.
+                </p>
+                <a href="blog/mars-rover-vision.html" class="read-more">Read more →</a>
+            </li>
+            
+            <li class="blog-item">
+                <h3><a href="blog/learning-dynamics.html">The Mathematics of How We Learn</a></h3>
+                <div class="blog-date">January 20, 2025</div>
+                <p class="blog-excerpt">
+                    A deep dive into learning theory, exploring the mathematical foundations that govern 
+                    both biological and artificial learning systems.
+                </p>
+                <a href="blog/learning-dynamics.html" class="read-more">Read more →</a>
+            </li>
+        </ul>
         
         <footer>
             <p>© 2025 Shlok Mehendale</p>
