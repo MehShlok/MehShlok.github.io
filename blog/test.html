@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test - Shlok Mehendale</title>
+    
+    <!-- MathJax for LaTeX equations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            }
+        };
+    </script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+        }
+        
+        h1, h2, h3, .logo {
+            font-family: 'Times New Roman', Times, serif;
+        }
+        
+        nav {
+            border-bottom: 1px solid #eee;
+            padding: 20px 0;
+            margin-bottom: 60px;
+        }
+        
+        nav .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-weight: 600;
+            font-size: 1.1em;
+            color: #1a1a1a;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            color: #666;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .nav-links a:hover {
+            color: #1a1a1a;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px 60px;
+        }
+        
+        .back-link {
+            display: inline-block;
+            color: #666;
+            text-decoration: none;
+            margin-bottom: 30px;
+            transition: color 0.2s;
+        }
+        
+        .back-link:hover {
+            color: #1a1a1a;
+        }
+        
+        article h1 {
+            font-size: 2.5em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #1a1a1a;
+            line-height: 1.2;
+        }
+        
+        .blog-meta {
+            font-size: 0.95em;
+            color: #999;
+            font-family: 'Courier New', Courier, monospace;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        article h2 {
+            font-size: 1.6em;
+            font-weight: 600;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            color: #1a1a1a;
+        }
+        
+        article h3 {
+            font-size: 1.3em;
+            font-weight: 600;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            color: #1a1a1a;
+        }
+        
+        article p {
+            font-size: 1.05em;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            color: #444;
+        }
+        
+        article a {
+            color: #333;
+            border-bottom: 1px solid #333;
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+        
+        article a:hover {
+            opacity: 0.6;
+        }
+        
+        /* Image Styles */
+        article img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 30px auto;
+            border-radius: 5px;
+        }
+        
+        .img-caption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #666;
+            font-style: italic;
+            margin-top: -20px;
+            margin-bottom: 30px;
+        }
+        
+        .img-container {
+            margin: 35px 0;
+        }
+        
+        .img-container.small img {
+            max-width: 400px;
+        }
+        
+        .img-container.medium img {
+            max-width: 600px;
+        }
+        
+        .img-container.full img {
+            max-width: 100%;
+        }
+        
+        /* Equation Styles */
+        .equation-block {
+            margin: 30px 0;
+            padding: 20px;
+            background: #f9f9f9;
+            border-left: 3px solid #ddd;
+            overflow-x: auto;
+        }
+        
+        mjx-container {
+            overflow-x: auto;
+            overflow-y: hidden;
+        }
+        
+        /* Code Styles */
+        article code {
+            font-family: 'Courier New', Courier, monospace;
+            background: #f5f5f5;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 0.9em;
+        }
+        
+        article pre {
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 25px 0;
+        }
+        
+        article pre code {
+            background: none;
+            padding: 0;
+        }
+        
+        article blockquote {
+            border-left: 3px solid #ddd;
+            padding-left: 20px;
+            margin: 25px 0;
+            color: #666;
+            font-style: italic;
+        }
+        
+        article ul, article ol {
+            margin-left: 30px;
+            margin-bottom: 20px;
+        }
+        
+        article li {
+            margin-bottom: 8px;
+            line-height: 1.7;
+        }
+        
+        footer {
+            margin-top: 80px;
+            padding-top: 30px;
+            border-top: 1px solid #eee;
+            text-align: center;
+            color: #999;
+            font-size: 0.9em;
+        }
+        
+        @media (max-width: 600px) {
+            nav .container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .nav-links {
+                gap: 20px;
+            }
+            
+            article h1 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="../index.html" class="logo">Shlok Mehendale</a>
+            <div class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="../projects.html">Projects</a>
+                <a href="../experiences.html">Experience</a>
+                <a href="../blogs.html">Blogs</a>
+                <a href="../hobby.html">Hobbies</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <a href="../blogs.html" class="back-link">← Back to all posts</a>
+        
+        <article>
+            <h1>An intuitive mathematician's perspective on Deep Learning</h1>
+            <div class="blog-meta">Nov 25, 2025 • 8 min read</div>
+            
+            <p>
+                Neural networks have revolutionized machine learning, but understanding why they work 
+                so well remains an active area of research. One powerful lens through which we can 
+                understand these systems is statistical physics.
+            </p>
+            
+            <h2>The Energy Landscape</h2>
+            
+            <p>
+                We can think of a neural network's loss function as defining an energy landscape. 
+                The network's parameters evolve to minimize this "energy," much like particles in 
+                a physical system seek lower energy states.
+            </p>
+            
+            <!-- Example: Inline equation -->
+            <p>
+                The loss function can be written as $\mathcal{L}(\theta) = \frac{1}{N}\sum_{i=1}^{N} \ell(f_\theta(x_i), y_i)$, 
+                where $\theta$ represents the network parameters.
+            </p>
+            
+            <!-- Example: Display equation (centered) -->
+            <div class="equation-block">
+                $$
+                \frac{\partial \mathcal{L}}{\partial \theta} = \frac{1}{N}\sum_{i=1}^{N} \frac{\partial \ell}{\partial f} \cdot \frac{\partial f_\theta}{\partial \theta}
+                $$
+            </div>
+            
+            <p>
+                This gradient descent process is analogous to a particle moving through a potential 
+                energy landscape, following the path of steepest descent.
+            </p>
+            
+            <!-- Example: Image with caption -->
+            <!--<div class="img-container medium">
+                <img src="../images/loss-landscape.png" alt="Neural network loss landscape visualization">
+                <p class="img-caption">Figure 1: Visualization of a neural network's loss landscape showing local minima and saddle points</p>
+            #</div>-->
+            
+            <h2>The Role of Temperature</h2>
+            
+            <p>
+                In statistical mechanics, temperature controls the probability of a system occupying 
+                different energy states according to the Boltzmann distribution:
+            </p>
+            
+            <div class="equation-block">
+                $$
+                P(E) \propto e^{-E/k_BT}
+                $$
+            </div>
+            
+            <p>
+                Similarly, in neural networks, the learning rate acts as an effective "temperature" 
+                that determines how readily the network can escape local minima.
+            </p>
+            
+            <h3>Connection to Stochastic Gradient Descent</h3>
+            
+            <p>
+                Stochastic gradient descent (SGD) introduces noise into the optimization process. 
+                This noise can be modeled as thermal fluctuations, with the batch size and learning 
+                rate controlling the effective temperature:
+            </p>
+            
+            <!-- Example: Multiple equations -->
+            <div class="equation-block">
+                $$
+                \begin{align}
+                \theta_{t+1} &= \theta_t - \eta \nabla \mathcal{L}_{\text{batch}}(\theta_t) \\
+                &= \theta_t - \eta \nabla \mathcal{L}(\theta_t) + \eta \xi_t
+                \end{align}
+                $$
+            </div>
+            
+            <p>
+                where $\xi_t$ represents the noise from mini-batch sampling, and $\eta$ is the learning rate.
+            </p>
+            
+            <!-- Example: Full-width image -->
+            <!--<div class="img-container full">
+                <img src="../images/sgd-dynamics.png" alt="SGD trajectory through parameter space">
+                <p class="img-caption">Figure 2: Trajectory of SGD through parameter space, showing how noise helps escape shallow local minima</p>
+            </div>-->
+            
+            <h2>Phase Transitions in Learning</h2>
+            
+            <p>
+                One of the most fascinating insights from this physics perspective is that neural 
+                networks can undergo phase transitions during training. At certain critical points, 
+                the network's behavior changes qualitatively.
+            </p>
+            
+            <!-- Example: Small image (diagram/illustration) -->
+            <!-- <div class="img-container small">
+                <img src="../images/phase-diagram.png" alt="Phase diagram of neural network training">
+                <p class="img-caption">Figure 3: Schematic phase diagram showing different regimes of neural network training</p>
+            </div> -->
+            
+            <p>
+                The order parameter describing this transition might be related to quantities like 
+                the network's effective dimensionality or the alignment of gradients across layers.
+            </p>
+            
+            <h2>Implications for Architecture Design</h2>
+            
+            <p>
+                Understanding neural networks through statistical physics suggests several design principles:
+            </p>
+            
+            <ul>
+                <li>Architecture choices affect the geometry of the loss landscape</li>
+                <li>Residual connections can smooth the energy landscape, making optimization easier</li>
+                <li>Batch normalization acts like a temperature control mechanism</li>
+                <li>Width and depth trade-offs relate to ensemble averaging in statistical systems</li>
+            </ul>
+            
+            <h2>Conclusion</h2>
+            
+            <p>
+                The statistical physics perspective provides powerful intuitions for understanding 
+                neural networks. By viewing training as a thermodynamic process, we can better 
+                understand phenomena like generalization, the effectiveness of different optimizers, 
+                and the role of architecture choices.
+            </p>
+            
+            <p>
+                This is just the beginning—the intersection of physics and deep learning continues 
+                to be a rich source of insights that advance both fields.
+            </p>
+        </article>
+        
+        <footer>
+            <p>© 2025 Shlok Mehendale</p>
+        </footer>
+    </div>
+</body>
+</html>
