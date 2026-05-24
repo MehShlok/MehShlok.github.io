@@ -4,218 +4,379 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shlok Mehendale</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inconsolata:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Georgia', serif;
-            line-height: 1.6;
-            color: #333;
-            background: #fff;
-        }
-        
-        h1, h2, h3, .logo {
-            font-family: 'Times New Roman', Times, serif;
-        }
-        
-        nav {
-            border-bottom: 1px solid #eee;
-            padding: 20px 0;
-            margin-bottom: 60px;
-        }
-        
-        nav .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            font-weight: 600;
-            font-size: 1.1em;
-            color: #1a1a1a;
-            text-decoration: none;
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 30px;
-        }
-        
-        .nav-links a {
-            color: #666;
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-        
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: #1a1a1a;
-        }
-        
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 20px 60px;
-        }
-        
-        .hero {
-            margin-bottom: 60px;
-        }
-        
-        h1 {
-            font-size: 2.8em;
-            font-weight: 600;
-            margin-bottom: 15px;
-            color: #1a1a1a;
-            line-height: 1.2;
-        }
-        
-        .subtitle {
-            font-size: 1.2em;
-            color: #666;
-            margin-bottom: 30px;
-            line-height: 1.6;
-        }
-        
-        .social-links {
-            display: flex;
-            font-family: 'Courier New', Courier, monospace;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin-top: 30px;
-        }
-        
-        .social-links a {
-            color: #333;
-            text-decoration: none;
-            border-bottom: 1px solid #333;
-            transition: opacity 0.2s;
-        }
-        
-        .social-links a:hover {
-            opacity: 0.6;
-        }
-        
-        .intro-text {
-            font-family: 'Georgia', serif;
+        :root {
+            --ink: #1c1c1c;
+            --muted: #6b6b6b;
+            --faint: #e8e4df;
+            --bg: #faf8f5;
+            --accent: #b85c2a;
         }
 
-        .details-text {
-            font-family: 'Courier New', Courier, monospace;
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'EB Garamond', Georgia, serif;
+            background: var(--bg);
+            color: var(--ink);
+            font-size: 18px;
+            line-height: 1.7;
         }
-        
-        section {
-            margin-bottom: 50px;
+
+        a { color: inherit; text-decoration: none; }
+
+        /* ── NAV ── */
+        nav {
+            padding: 28px 0 24px;
+            border-bottom: 1px solid var(--faint);
+            margin-bottom: 72px;
         }
-        
-        h2 {
-            font-size: 1.5em;
-            font-weight: 600;
-            margin-bottom: 20px;
-            color: #1a1a1a;
+
+        nav .wrap {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
         }
-        
-        .about-text {
+
+        .logo {
             font-size: 1.05em;
-            line-height: 1.8;
+            font-weight: 500;
+            letter-spacing: 0.01em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            font-family: 'Inconsolata', monospace;
+            font-size: 0.8em;
+            letter-spacing: 0.04em;
+        }
+
+        .nav-links a {
+            color: var(--muted);
+            transition: color 0.15s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--ink);
+        }
+
+        /* ── MAIN ── */
+        .wrap {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+        }
+
+        /* ── HERO ── */
+        .hero { margin-bottom: 64px; }
+
+        .greeting {
+            font-family: 'Inconsolata', monospace;
+            font-size: 0.78em;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+            text-transform: uppercase;
+            margin-bottom: 14px;
+        }
+
+        .greeting-text::after {
+            content: '|';
+            animation: blink 0.75s step-end infinite;
+            margin-left: 1px;
+            opacity: 1;
+        }
+
+        .greeting-text.done::after {
+            animation: blink 1.2s step-end infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .hero p {
+            font-size: 1.08em;
             color: #444;
+            margin-bottom: 14px;
         }
-        
-        .about-text p {
-            margin-bottom: 15px;
+
+        .hero p a {
+            color: var(--ink);
+            border-bottom: 1px solid var(--faint);
+            transition: border-color 0.2s;
         }
-        
-        .experience-item {
-            margin-bottom: 25px;
-            padding-bottom: 25px;
-            border-bottom: 1px solid #f0f0f0;
+
+        .hero p a:hover { border-color: var(--accent); }
+
+        .social-row {
+            margin-top: 28px;
+            display: flex;
+            gap: 22px;
+            flex-wrap: wrap;
+            font-family: 'Inconsolata', monospace;
+            font-size: 0.82em;
+            letter-spacing: 0.04em;
         }
-        
-        .experience-item:last-child {
-            border-bottom: none;
+
+        .social-row a {
+            color: var(--muted);
+            border-bottom: 1px solid transparent;
+            transition: color 0.15s, border-color 0.15s;
         }
-        
-        .experience-item h3 {
-            font-size: 1.1em;
-            font-weight: 600;
-            color: #1a1a1a;
+
+        .social-row a:hover {
+            color: var(--ink);
+            border-bottom-color: var(--ink);
+        }
+
+        /* ── SECTION ── */
+        section { margin-bottom: 52px; }
+
+        .section-label {
+            font-family: 'Inconsolata', monospace;
+            font-size: 0.72em;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 20px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--faint);
+        }
+
+        /* ── ENTRIES ── */
+        .entry {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 4px 20px;
+            margin-bottom: 22px;
+            padding-bottom: 22px;
+            border-bottom: 1px solid var(--faint);
+        }
+
+        .entry:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+        .entry-title {
+            font-size: 1em;
+            font-weight: 500;
+            grid-column: 1;
+        }
+
+        .entry-sub {
+            font-size: 0.9em;
+            color: var(--muted);
+            grid-column: 1;
+            font-style: italic;
+        }
+
+        .entry-desc {
+            font-size: 0.92em;
+            color: #555;
+            grid-column: 1 / -1;
+            margin-top: 4px;
+            line-height: 1.65;
+        }
+
+        .entry-date {
+            font-family: 'Inconsolata', monospace;
+            font-size: 0.75em;
+            color: var(--muted);
+            white-space: nowrap;
+            grid-row: 1;
+            grid-column: 2;
+            padding-top: 4px;
+        }
+
+        /* ── PAPER ENTRY (for papers page preview) ── */
+        .paper-entry {
+            margin-bottom: 22px;
+            padding-bottom: 22px;
+            border-bottom: 1px solid var(--faint);
+        }
+
+        .paper-entry:last-child { border-bottom: none; }
+
+        .paper-title {
+            font-size: 1em;
+            font-weight: 500;
+            margin-bottom: 3px;
+        }
+
+        .paper-meta {
+            font-family: 'Inconsolata', monospace;
+            font-size: 0.74em;
+            color: var(--muted);
+            letter-spacing: 0.03em;
             margin-bottom: 5px;
         }
-        
-        .experience-meta {
-            font-size: 0.95em;
-            color: #666;
-            margin-bottom: 8px;
-        }
-        
-        .experience-item p {
+
+        .paper-desc {
+            font-size: 0.92em;
             color: #555;
+            line-height: 1.65;
         }
-        
+
+        /* ── TAG ── */
+        .tag {
+            display: inline-block;
+            font-family: 'Inconsolata', monospace;
+            font-size: 0.68em;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--accent);
+            border: 1px solid #e0c4b4;
+            border-radius: 2px;
+            padding: 1px 6px;
+            margin-right: 6px;
+            vertical-align: middle;
+        }
+
+        /* ── FOOTER ── */
         footer {
-            margin-top: 80px;
-            padding-top: 30px;
-            border-top: 1px solid #eee;
+            border-top: 1px solid var(--faint);
+            margin-top: 72px;
+            padding-top: 28px;
             text-align: center;
-            color: #999;
-            font-size: 0.9em;
+            font-family: 'Inconsolata', monospace;
+            font-size: 0.76em;
+            color: var(--muted);
+            letter-spacing: 0.04em;
         }
-        
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 2em;
-            }
-            
-            nav .container {
-                flex-direction: column;
-                gap: 15px;
-            }
-            
-            .nav-links {
-                gap: 20px;
-            }
+
+        @media (max-width: 580px) {
+            nav .wrap { flex-direction: column; gap: 14px; }
+            .entry { grid-template-columns: 1fr; }
+            .entry-date { grid-row: auto; grid-column: 1; }
         }
     </style>
 </head>
 <body>
-    <nav>
-        <div class="container">
-            <a href="index.html" class="logo">Shlok Mehendale</a>
-            <div class="nav-links">
-                <a href="index.html" class="active">Home</a>
-                <a href="projects.html">Projects</a>
-                <a href="experiences.html">Experience</a>
-                <a href="blogs.html">Blogs</a>
-                <a href="hobby.html">Hobbies</a>
-            </div>
-        </div>
-    </nav>
 
-    <div class="container">
-        <div class="hero">
-            <h2>Hi, I'm Shlok.</h2>
-            <p class="subtitle">I grew up moving across India (originally from <a href="https://en.wikipedia.org/wiki/Ambarnath">Ambernath</a>) and currently I'm a pre-final year student at <a href="https://www.bits-pilani.ac.in/goa/">BITS Pilani(Goa)</a>, doing a dual major in Mathematics and Computer Science.</p>
-            <p class="subtitle">My current interests center around understanding Intelligence (<a href="http://jmc.stanford.edu/articles/dartmouth/dartmouth.pdf">Artificial</a> and Biological) and Learning dynamics (Statistical, Deep). This has led me into rabbit holes in theoretical neuroscience, statistical physics and psychology. Earlier, I've spent some time building a Mars rover and other cool robotics stuff, primarily in computer vision.</p>
-            <div class="social-links">
-                <a href="mailto: shlokmehendale@gmail.com">Email</a>
-                <a href="https://github.com/MehShlok" target="_blank">GitHub</a>
-                <a href="https://www.linkedin.com/in/shlok-mehendale-j18/" target="_blank">LinkedIn</a>
-                <a href="https://scholar.google.com/citations?user=K5tJyXMAAAAJ&hl=en&oi=ao" target="_blank">Google Scholar</a>
-            </div>
+<nav>
+    <div class="wrap">
+        <a href="index.html" class="logo">Shlok Mehendale</a>
+        <div class="nav-links">
+            <a href="index.html" class="active">home</a>
+            <a href="projects.html">projects</a>
+            <a href="experiences.html">experience</a>
+            <a href="papers.html">papers</a>
+            <a href="hobby.html">hobbies</a>
         </div>
-        
-        
-        <footer>
-            <p>© 2025 Shlok Mehendale</p>
-        </footer>
     </div>
+</nav>
+
+<div class="wrap">
+
+    <div class="hero">
+        <p class="greeting"><span class="greeting-text" id="greeting"></span></p>
+        <p>
+            I'm a pre-final year student at <a href="https://www.bits-pilani.ac.in/goa/">BITS Pilani (Goa)</a>, doing a dual major in Mathematics and Computer Science. I'm very fortunate to pursue a year of my undergraduate thesis under <a href="https://www.cs.jhu.edu/~ayuille1/">Dr. Alan Yuille</a> (Bloomberg Distinguished Professor of Computer Science and Cognitive Science) at Johns Hopkins University. I hail from <a href="https://en.wikipedia.org/wiki/Ambarnath">Ambernath</a>, however I grew up moving across India.
+        </p>
+        <p>
+            My current interests centre around understanding Intelligence (<a href="http://jmc.stanford.edu/articles/dartmouth/dartmouth.pdf">Artificial</a> and Biological) and <a href="https://arxiv.org/abs/2604.21691">learning mechanics</a>. As Popper said, we are students of problems rather than subject matter, I like to frequently dabble in theoretical neuroscience, statistical physics and pure mathematics. Earlier, I built a Mars rover and spent considerable time on computer vision.
+        </p>
+        <p>
+            I am currently obsessed with understanding learning dynamics and looking at domain-adaptive continual learning through a lens of mechanistic interpretability for my undergraduate thesis.
+        </p>
+
+        <div class="social-row">
+            <a href="mailto:shlokmehendale@gmail.com">email</a>
+            <a href="https://github.com/MehShlok" target="_blank">github</a>
+            <a href="https://www.linkedin.com/in/shlok-mehendale-j18/" target="_blank">linkedin</a>
+            <a href="https://scholar.google.com/citations?user=K5tJyXMAAAAJ&hl=en&oi=ao" target="_blank">google scholar</a>
+            <a href="Shlok_Mehendale_Resume.pdf" target="_blank">cv</a>
+        </div>
+    </div>
+
+    <!-- WHERE -->
+    <section>
+        <p class="section-label">currently</p>
+
+        <div class="entry">
+            <div class="entry-title">Visiting Research Scholar — CCVL, Johns Hopkins University</div>
+            <div class="entry-date">Feb 2026–</div>
+            <div class="entry-sub">Supervised by Prof. Alan L. Yuille</div>
+            <div class="entry-desc">Continual learning through the lens of mechanistic interpretability, for my undergraduate research thesis.</div>
+        </div>
+
+        <div class="entry">
+            <div class="entry-title">Research Intern — Lossfunk, Bangalore</div>
+            <div class="entry-date">Dec 2025–</div>
+            <div class="entry-sub">Supervised by Paras Chopra</div>
+            <div class="entry-desc">Mechanistic interpretability and representation learning in deep neural networks.</div>
+        </div>
+    </section>
+    
+    <!-- RECENT RESEARCH -->
+    <section>
+        <p class="section-label">recent research (submissions)</p>
+
+        <div class="entry">
+            <div class="entry-title">Subspace Crystallization: Grokking in Modular Arithmetic Networks</div>
+            <div class="entry-date">NeurIPS'26, ICML Mech Interp Workshop'26</div>
+            <div class="entry-sub">Shlok Mehendale, Paras Chopra &middot; Lossfunk</div>
+            <div class="entry-desc">Geometric and causal signatures of grokking. Does representation geometry causally mediate generalisation, or do geometric changes merely accompany optimisation dynamics?</div>
+        </div>
+
+        <div class="entry">
+            <div class="entry-title">Matching High-Dimensional Geometric Quantiles for Test-Time Adaptation</div>
+            <div class="entry-date">ECCV'26</div>
+            <div class="entry-sub"> Sravan Danda, Aditya Challa, Shlok Mehendale, Snehanshu Saha &middot; APPCAIR, BITS Pilani</div>
+            <div class="entry-desc">A novel TTA method that estimates distribution shift by matching geometric quantiles of classifier features, without requiring labeled corrupted data.</div>
+        </div>
+
+        <div class="entry">
+            <div class="entry-title">A Radon-Nikodým Perspective on Anomaly Detection</div>
+            <div class="entry-date">TMLR</div>
+            <div class="entry-sub">Shlok Mehendale, Aditya Challa, Rahul Yedida, Sravan Danda, Santonu Sarkar, Snehanshu Saha &middot; APPCAIR</div>
+            <div class="entry-desc">Establishes PAC learnability for anomaly detection and proposes RN-Loss, a measure-theoretic loss function bridging supervised and unsupervised approaches.</div>
+        </div>
+    </section>
+
+
+    <!-- RECENT WRITING PREVIEW -->
+    <section>
+        <p class="section-label">papers &amp; notes <span style="font-style:italic;font-family:'EB Garamond',serif;letter-spacing:0;text-transform:none;font-size:1.2em;">— analyses &amp; implementations</span></p>
+
+        <div class="paper-entry">
+            <p class="paper-title">Grokking — what does it mean to generalise?</p>
+            <p class="paper-meta"><span class="tag">mechanistic interp</span> Power et al., 2022 &middot; reading notes + PyTorch implementation</p>
+            <p class="paper-desc">My attempt to reproduce the grokking phenomenon on modular arithmetic and trace which circuits light up before vs. after the generalisation phase transition.</p>
+        </div>
+
+        <p style="margin-top:16px;font-family:'Inconsolata',monospace;font-size:0.8em;color:var(--muted);">
+            <a href="papers.html" style="border-bottom:1px solid var(--faint);color:var(--ink);transition:border-color 0.2s;"
+               onmouseover="this.style.borderColor='var(--accent)'"
+               onmouseout="this.style.borderColor='var(--faint)'">all notes →</a>
+        </p>
+    </section>
+
+</div>
+
+<footer>
+    <p>© 2025 Shlok Mehendale</p>
+</footer>
+
+<script>
+    const el = document.getElementById('greeting');
+    const text = 'hi there';
+    let i = 0;
+    function type() {
+        if (i < text.length) {
+            el.textContent += text[i++];
+            setTimeout(type, 90 + Math.random() * 60);
+        } else {
+            el.classList.add('done');
+        }
+    }
+    setTimeout(type, 300);
+</script>
 </body>
 </html>
