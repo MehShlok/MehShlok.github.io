@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reading — Shlok Mehendale</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inconsolata:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --ink: #dedad2;
+            --muted: #8a8886;
+            --faint: #3a3835;
+            --faint-text: #6a6866;
+            --bg: #0e0d0b;
+            --accent: #cc6e3a;
+            --rule: #1f1e1b;
+            --mono: 'Inconsolata', monospace;
+        }
+
+        body.inverted {
+            --ink: #141412;
+            --muted: #6a6866;
+            --faint: #d6d2cb;
+            --faint-text: #9a9894;
+            --bg: #f7f5f1;
+            --accent: #b05428;
+            --rule: #e0dcd5;
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.032'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        body {
+            font-family: 'EB Garamond', Georgia, serif;
+            background: var(--bg);
+            color: var(--ink);
+            font-size: 18px;
+            line-height: 1.8;
+            transition: background 0.35s, color 0.35s;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* ───────── NAV ───────── */
+
+        nav {
+            padding: 28px 0 24px;
+            border-bottom: 1px solid var(--rule);
+            margin-bottom: 96px;
+        }
+
+        .nav-wrap {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+
+        .logo {
+            font-family: var(--mono);
+            font-size: 0.7em;
+            font-weight: 400;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--muted);
+            transition: color 0.2s;
+        }
+
+        .logo:hover {
+            color: var(--ink);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: baseline;
+            gap: 28px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 18px;
+            font-family: var(--mono);
+            font-size: 0.68em;
+            letter-spacing: 0.05em;
+        }
+
+        .nav-links a {
+            color: var(--muted);
+            position: relative;
+            transition: color 0.15s;
+            padding-bottom: 2px;
+        }
+
+        .nav-links a::before {
+            content: '[';
+            margin-right: 1px;
+            color: var(--faint-text);
+            transition: color 0.15s;
+        }
+
+        .nav-links a::after {
+            content: ']';
+            margin-left: 1px;
+            color: var(--faint-text);
+            transition: color 0.15s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--ink);
+        }
+
+        .nav-links a:hover::before,
+        .nav-links a:hover::after,
+        .nav-links a.active::before,
+        .nav-links a.active::after {
+            color: var(--accent);
+        }
+
+        .nav-controls {
+            display: flex;
+            gap: 8px;
+        }
+
+        .ctrl-btn {
+            background: none;
+            border: none;
+            color: var(--faint-text);
+            font-family: var(--mono);
+            font-size: 0.62em;
+            letter-spacing: 0.1em;
+            padding: 0;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: color 0.15s;
+            position: relative;
+        }
+
+        .ctrl-btn::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent);
+            transition: width 0.2s ease;
+        }
+
+        .ctrl-btn:hover {
+            color: var(--muted);
+        }
+
+        .ctrl-btn:hover::after {
+            width: 100%;
+        }
+
+        .ctrl-btn.on {
+            color: var(--accent);
+        }
+
+        .ctrl-btn.on::after {
+            width: 100%;
+        }
+
+        /* ───────── LAYOUT ───────── */
+
+        .wrap {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 0 40px 140px;
+        }
+
+        /* ───────── PAGE HEADER ───────── */
+
+        .sec-head {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            margin-bottom: 28px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--rule);
+        }
+
+        .sec-idx {
+            font-family: var(--mono);
+            font-size: 0.52em;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            color: var(--accent);
+            position: relative;
+            top: -3px;
+            opacity: 0.7;
+        }
+
+        .sec-title {
+            font-family: var(--mono);
+            font-size: 0.64em;
+            font-weight: 500;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        .page-intro {
+            font-size: 0.95em;
+            color: var(--muted);
+            max-width: 540px;
+            line-height: 1.9;
+            margin-bottom: 48px;
+        }
+
+        /* ───────── FILTERS ───────── */
+
+        .filter-row {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .filter-btn {
+            font-family: var(--mono);
+            font-size: 0.6em;
+            letter-spacing: 0.09em;
+            text-transform: uppercase;
+            border: 1px solid var(--rule);
+            padding: 3px 10px;
+            cursor: pointer;
+            background: transparent;
+            color: var(--faint-text);
+            transition: all 0.15s;
+        }
+
+        .filter-btn:hover {
+            border-color: var(--muted);
+            color: var(--ink);
+        }
+
+        .filter-btn.active {
+            background: var(--accent);
+            color: var(--bg);
+            border-color: var(--accent);
+        }
+
+        /* ───────── PAPER ENTRIES ───────── */
+
+        .paper {
+            padding: 22px 0;
+            border-bottom: 1px solid var(--rule);
+            transition: opacity 0.2s;
+        }
+
+        .paper.hidden {
+            display: none;
+        }
+
+        .paper-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 16px;
+            margin-bottom: 5px;
+        }
+
+        .paper-title {
+            font-size: 0.97em;
+            font-weight: 500;
+            line-height: 1.4;
+        }
+
+        .paper-date {
+            font-family: var(--mono);
+            font-size: 0.6em;
+            color: var(--faint-text);
+            white-space: nowrap;
+            flex-shrink: 0;
+            letter-spacing: 0.04em;
+        }
+
+        .paper-source {
+            font-size: 0.82em;
+            color: var(--faint-text);
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+
+        .paper-body {
+            font-size: 0.93em;
+            color: var(--muted);
+            line-height: 1.85;
+            margin-bottom: 14px;
+            max-width: 560px;
+        }
+
+        .paper-footer {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            font-family: var(--mono);
+            font-size: 0.58em;
+            letter-spacing: 0.07em;
+            text-transform: uppercase;
+            color: var(--accent);
+            border: 1px solid var(--faint);
+            padding: 1px 7px;
+            transition: border-color 0.15s;
+        }
+
+        .type-pill {
+            font-family: var(--mono);
+            font-size: 0.58em;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding: 1px 7px;
+            color: var(--faint-text);
+            border: 1px solid var(--rule);
+        }
+
+        .type-pill.impl {
+            color: #5a9e6e;
+            border-color: #1e3d28;
+        }
+
+        .type-pill.analysis {
+            color: #5a7ec4;
+            border-color: #1c2e50;
+        }
+
+        .paper-link {
+            font-family: var(--mono);
+            font-size: 0.62em;
+            letter-spacing: 0.05em;
+            color: var(--faint-text);
+            border-bottom: 1px solid var(--rule);
+            transition: color 0.15s, border-color 0.15s;
+            padding-bottom: 1px;
+        }
+
+        .paper-link:hover {
+            color: var(--ink);
+            border-color: var(--muted);
+        }
+
+        .coming-soon {
+            font-family: var(--mono);
+            font-size: 0.64em;
+            color: var(--faint-text);
+            padding: 32px 0 0;
+            font-style: italic;
+            letter-spacing: 0.04em;
+        }
+
+        /* ───────── FOOTER ───────── */
+
+        footer {
+            border-top: 1px solid var(--rule);
+            margin-top: 80px;
+            padding: 20px 40px 40px;
+            max-width: 680px;
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+            justify-content: space-between;
+            font-family: var(--mono);
+            font-size: 0.56em;
+            color: var(--faint-text);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        footer span:first-child::before {
+            content: '$ ';
+            color: var(--accent);
+            opacity: 0.6;
+        }
+
+        @media (max-width: 620px) {
+            .nav-wrap {
+                flex-direction: column;
+                gap: 18px;
+            }
+
+            .paper-top {
+                flex-direction: column;
+                gap: 2px;
+            }
+
+            footer {
+                flex-direction: column;
+                gap: 6px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="nav-wrap">
+            <a href="index.html" class="logo">Shlok Mehendale</a>
+
+            <div class="nav-right">
+                <div class="nav-links">
+                    <a href="index.html">home</a>
+                    <a href="reading.html" class="active">reading</a>
+                    <a href="hobby.html">hobbies</a>
+                    <a href="Shlok_Mehendale_Resume.pdf" target="_blank">cv</a>
+                </div>
+
+                <div class="nav-controls">
+                    <button class="ctrl-btn" id="btn-invert">invert</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="wrap">
+
+        <div class="sec-head">
+            <span class="sec-idx">04</span>
+            <span class="sec-title">reading</span>
+        </div>
+
+        <p class="page-intro">
+            I'm not a blogger, but I do read a lot of papers. This is where I put down what I actually understood, what confused me, and sometimes a working implementation. Mostly for my own clarity — I would love to know if it helps you too.
+        </p>
+
+        <div class="filter-row">
+            <button class="filter-btn active" data-filter="all">all</button>
+            <button class="filter-btn" data-filter="mechanistic interp">mechanistic interp</button>
+            <button class="filter-btn" data-filter="learning theory">learning theory</button>
+            <button class="filter-btn" data-filter="generalization">generalization</button>
+            <button class="filter-btn" data-filter="geometry">geometry</button>
+        </div>
+
+        <!-- PAPER 1 -->
+
+        <div class="paper" data-tags="mechanistic interp,generalization">
+
+            <div class="paper-top">
+                <span class="paper-title">
+                    Grokking: Generalisation Beyond Overfitting on Small Algorithmic Datasets
+                </span>
+
+                <span class="paper-date">
+                    May 2025
+                </span>
+            </div>
+
+            <p class="paper-source">
+                Power et al., 2022 · OpenAI
+            </p>
+
+            <p class="paper-body">
+                Reproduction of the grokking phenomenon on modular arithmetic. I traced which circuits become active before and after the generalisation phase transition, and found that weight norm regularisation alone substantially accelerates grokking — which has direct implications for my own work on subspace crystallisation.
+            </p>
+
+            <div class="paper-footer">
+                <span class="tag">mechanistic interp</span>
+                <span class="tag">generalization</span>
+
+                <span class="type-pill impl">implementation</span>
+                <span class="type-pill analysis">analysis</span>
+
+                <a class="paper-link" href="#">
+                    notes →
+                </a>
+
+                <a class="paper-link" href="#">
+                    code →
+                </a>
+
+                <a class="paper-link"
+                   href="https://arxiv.org/abs/2201.02177"
+                   target="_blank">
+                    paper →
+                </a>
+            </div>
+        </div>
+
+        <!-- PAPER 2 -->
+
+        <div class="paper" data-tags="mechanistic interp">
+
+            <div class="paper-top">
+                <span class="paper-title">
+                    Progress Measures for Grokking via Mechanistic Interpretability
+                </span>
+
+                <span class="paper-date">
+                    — upcoming —
+                </span>
+            </div>
+
+            <p class="paper-source">
+                Nanda et al., 2023 · DeepMind
+            </p>
+
+            <p class="paper-body">
+                Nanda et al. identify progress measures — internal quantities that grow monotonically during training and predict generalisation. I want to verify these on my own grokking experiments and check whether the same measures hold for non-modular tasks.
+            </p>
+
+            <div class="paper-footer">
+                <span class="tag">mechanistic interp</span>
+
+                <span class="type-pill">
+                    planned
+                </span>
+
+                <a class="paper-link"
+                   href="https://arxiv.org/abs/2301.05217"
+                   target="_blank">
+                    paper →
+                </a>
+            </div>
+        </div>
+
+        <p class="coming-soon">
+            // more coming — I read faster than I write
+        </p>
+
+    </div>
+
+    <footer>
+        <span>shlok_mehendale @ bits-goa // 2026</span>
+        <span>EOF</span>
+    </footer>
+
+    <script>
+        document.getElementById('btn-invert').addEventListener('click', function () {
+            document.body.classList.toggle('inverted');
+            this.classList.toggle('on');
+        });
+
+        const btns = document.querySelectorAll('.filter-btn');
+
+        btns.forEach(btn => {
+            btn.addEventListener('click', () => {
+
+                btns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filter = btn.dataset.filter;
+
+                document.querySelectorAll('.paper').forEach(paper => {
+
+                    if (filter === 'all') {
+                        paper.classList.remove('hidden');
+                    } else {
+                        const tags = paper.dataset.tags || '';
+                        paper.classList.toggle(
+                            'hidden',
+                            !tags.includes(filter)
+                        );
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
