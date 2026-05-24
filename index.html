@@ -5,24 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shlok Mehendale</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inconsolata:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inconsolata:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
     <style>
+        /* ── DEFAULT: DARK ── */
         :root {
-            --ink: #1c1c1c;
-            --muted: #6b6b6b;
-            --faint: #e8e4df;
-            --bg: #faf8f5;
-            --accent: #b85c2a;
+            --ink:    #dedad2;
+            --muted:  #8a8886;
+            --faint:  #3a3835;
+            --faint-text: #6a6866;
+            --bg:     #0e0d0b;
+            --accent: #cc6e3a;
+            --rule:   #1f1e1b;
+            --mono:   'Inconsolata', monospace;
+        }
+        /* ── INVERTED: LIGHT ── */
+        body.inverted {
+            --ink:    #141412;
+            --muted:  #6a6866;
+            --faint:  #d6d2cb;
+            --faint-text: #9a9894;
+            --bg:     #f7f5f1;
+            --accent: #b05428;
+            --rule:   #e0dcd5;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.032'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 9999;
+        }
 
         body {
             font-family: 'EB Garamond', Georgia, serif;
             background: var(--bg);
             color: var(--ink);
             font-size: 18px;
-            line-height: 1.7;
+            line-height: 1.8;
+            transition: background 0.35s, color 0.35s;
         }
 
         a { color: inherit; text-decoration: none; }
@@ -30,374 +56,757 @@
         /* ── NAV ── */
         nav {
             padding: 28px 0 24px;
-            border-bottom: 1px solid var(--faint);
-            margin-bottom: 72px;
+            border-bottom: 1px solid var(--rule);
+            margin-bottom: 96px;
         }
-
-        nav .wrap {
-            max-width: 720px;
+        .nav-wrap {
+            max-width: 680px;
             margin: 0 auto;
-            padding: 0 24px;
+            padding: 0 40px;
             display: flex;
             justify-content: space-between;
             align-items: baseline;
         }
-
         .logo {
-            font-size: 1.05em;
-            font-weight: 500;
-            letter-spacing: 0.01em;
+            font-family: var(--mono);
+            font-size: 0.7em;
+            font-weight: 400;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--muted);
+            transition: color 0.2s;
         }
+        .logo:hover { color: var(--ink); }
+
+        .nav-right { display: flex; align-items: baseline; gap: 28px; }
 
         .nav-links {
             display: flex;
-            gap: 28px;
-            font-family: 'Inconsolata', monospace;
-            font-size: 0.8em;
-            letter-spacing: 0.04em;
+            gap: 18px;
+            font-family: var(--mono);
+            font-size: 0.68em;
+            letter-spacing: 0.05em;
         }
-
+        /* each link gets its own brackets */
         .nav-links a {
             color: var(--muted);
+            position: relative;
             transition: color 0.15s;
+            padding-bottom: 2px;
         }
-
+        .nav-links a::before { content: '['; margin-right: 1px; color: var(--faint-text); transition: color 0.15s; }
+        .nav-links a::after  { content: ']'; margin-left:  1px; color: var(--faint-text); transition: color 0.15s, width 0s; }
         .nav-links a:hover,
-        .nav-links a.active {
-            color: var(--ink);
-        }
+        .nav-links a.active  { color: var(--ink); }
+        .nav-links a:hover::before,
+        .nav-links a:hover::after,
+        .nav-links a.active::before,
+        .nav-links a.active::after { color: var(--accent); }
 
-        /* ── MAIN ── */
-        .wrap {
-            max-width: 720px;
-            margin: 0 auto;
-            padding: 0 24px 80px;
-        }
-
-        /* ── HERO ── */
-        .hero { margin-bottom: 64px; }
-
-        .greeting {
-            font-family: 'Inconsolata', monospace;
-            font-size: 0.78em;
+        .nav-controls { display: flex; gap: 8px; }
+        .ctrl-btn {
+            background: none;
+            border: none;
+            color: var(--faint-text);
+            font-family: var(--mono);
+            font-size: 0.62em;
             letter-spacing: 0.1em;
-            color: var(--accent);
+            padding: 0;
+            cursor: pointer;
             text-transform: uppercase;
-            margin-bottom: 14px;
+            transition: color 0.15s;
+            position: relative;
+        }
+        .ctrl-btn::after {
+            content: '';
+            position: absolute;
+            bottom: -2px; left: 0;
+            width: 0; height: 1px;
+            background: var(--accent);
+            transition: width 0.2s ease;
+        }
+        .ctrl-btn:hover { color: var(--muted); }
+        .ctrl-btn:hover::after { width: 100%; }
+        .ctrl-btn.on { color: var(--accent); }
+        .ctrl-btn.on::after { width: 100%; }
+
+        /* ── LAYOUT ── */
+        .wrap {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 0 40px 140px;
         }
 
-        .greeting-text::after {
-            content: '|';
-            animation: blink 0.75s step-end infinite;
-            margin-left: 1px;
-            opacity: 1;
-        }
+        /* ── PREAMBLE ── */
+        .preamble { margin-bottom: 104px; }
 
-        .greeting-text.done::after {
-            animation: blink 1.2s step-end infinite;
+        .tw-line {
+            font-family: var(--mono);
+            font-size: 0.68em;
+            font-weight: 400;
+            letter-spacing: 0.13em;
+            color: var(--accent);
+            margin-bottom: 32px;
+            min-height: 1.3em;
+            opacity: 0.8;
         }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
+        .tw-text::after {
+            content: '█';
+            animation: blink 0.9s step-end infinite;
+            font-size: 0.75em;
         }
+        @keyframes blink { 0%,100%{opacity:0.8} 50%{opacity:0} }
 
-        .hero p {
-            font-size: 1.08em;
-            color: #444;
-            margin-bottom: 14px;
-        }
-
-        .hero p a {
+        .lede {
+            font-size: 1.32em;
+            line-height: 1.56;
             color: var(--ink);
-            border-bottom: 1px solid var(--faint);
-            transition: border-color 0.2s;
+            margin-bottom: 22px;
+            max-width: 540px;
         }
 
-        .hero p a:hover { border-color: var(--accent); }
+        .body-text {
+            font-size: 0.99em;
+            color: var(--muted);
+            margin-bottom: 15px;
+            line-height: 1.9;
+            max-width: 560px;
+        }
+        .body-text a {
+            color: var(--ink);
+            position: relative;
+        }
+        .body-text a::before { content: none; }
+        .body-text a::after {
+            content: '';
+            position: absolute;
+            bottom: 1px; left: 0;
+            width: 100%; height: 1px;
+            background: var(--faint);
+            transition: background 0.2s;
+        }
+        .body-text a:hover::after { background: var(--accent); }
+
+        .epigraph {
+            margin-top: 40px;
+            padding-left: 20px;
+            border-left: 1px solid var(--faint);
+            font-style: italic;
+            font-size: 0.9em;
+            color: var(--muted);
+            max-width: 460px;
+            line-height: 1.75;
+        }
+        .epigraph cite {
+            display: block;
+            font-style: normal;
+            font-family: var(--mono);
+            font-size: 0.63em;
+            letter-spacing: 0.09em;
+            margin-top: 11px;
+            opacity: 0.55;
+        }
 
         .social-row {
-            margin-top: 28px;
+            margin-top: 34px;
             display: flex;
-            gap: 22px;
+            gap: 0;
             flex-wrap: wrap;
-            font-family: 'Inconsolata', monospace;
-            font-size: 0.82em;
-            letter-spacing: 0.04em;
+            font-family: var(--mono);
+            font-size: 0.67em;
+            letter-spacing: 0.06em;
+            align-items: center;
         }
-
         .social-row a {
             color: var(--muted);
-            border-bottom: 1px solid transparent;
-            transition: color 0.15s, border-color 0.15s;
+            transition: color 0.15s;
+            padding: 0 14px;
+            position: relative;
         }
-
-        .social-row a:hover {
-            color: var(--ink);
-            border-bottom-color: var(--ink);
+        .social-row a::before,
+        .social-row a::after { content: none; }
+        .social-row a:first-child { padding-left: 0; }
+        .social-row a + a::before {
+            content: '·' !important;
+            position: absolute;
+            left: 0; top: 50%;
+            transform: translateY(-50%);
+            color: var(--faint-text);
+            font-size: 1.1em;
         }
+        .social-row a:hover { color: var(--ink); }
 
         /* ── SECTION ── */
-        section { margin-bottom: 52px; }
+        section { margin-bottom: 76px; }
 
-        .section-label {
-            font-family: 'Inconsolata', monospace;
-            font-size: 0.72em;
+        .sec-head {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            margin-bottom: 28px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--rule);
+        }
+        .sec-idx {
+            font-family: var(--mono);
+            font-size: 0.52em;
+            font-weight: 600;
             letter-spacing: 0.12em;
+            color: var(--accent);
+            position: relative;
+            top: -3px;
+            opacity: 0.7;
+        }
+        .sec-title {
+            font-family: var(--mono);
+            font-size: 0.64em;
+            font-weight: 500;
+            letter-spacing: 0.22em;
             text-transform: uppercase;
             color: var(--muted);
-            margin-bottom: 20px;
-            padding-bottom: 8px;
-            border-bottom: 1px solid var(--faint);
         }
+        .sec-meta {
+            margin-left: auto;
+            font-family: var(--mono);
+            font-size: 0.54em;
+            color: var(--faint-text);
+            letter-spacing: 0.06em;
+            display: none;
+        }
+        body.inspect-mode .sec-meta { display: block; }
 
-        /* ── ENTRIES ── */
+        /* ── ENTRY ── */
         .entry {
             display: grid;
             grid-template-columns: 1fr auto;
-            gap: 4px 20px;
-            margin-bottom: 22px;
-            padding-bottom: 22px;
-            border-bottom: 1px solid var(--faint);
+            gap: 0 32px;
+            padding: 18px 0;
+            border-bottom: 1px solid var(--rule);
+            align-items: start;
         }
+        .entry:last-of-type { border-bottom: none; }
 
-        .entry:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-
-        .entry-title {
-            font-size: 1em;
-            font-weight: 500;
-            grid-column: 1;
-        }
-
-        .entry-sub {
-            font-size: 0.9em;
-            color: var(--muted);
-            grid-column: 1;
-            font-style: italic;
-        }
-
-        .entry-desc {
-            font-size: 0.92em;
-            color: #555;
+        .entry-coord {
+            display: none;
+            font-family: var(--mono);
+            font-size: 0.5em;
+            color: var(--accent);
             grid-column: 1 / -1;
-            margin-top: 4px;
-            line-height: 1.65;
+            margin-bottom: 4px;
+            letter-spacing: 0.07em;
         }
+        body.inspect-mode .entry-coord { display: block; }
 
-        .entry-date {
-            font-family: 'Inconsolata', monospace;
-            font-size: 0.75em;
+        .entry-title { font-size: 0.97em; font-weight: 500; line-height: 1.4; }
+        .entry-sub   { font-size: 0.82em; color: var(--muted); font-style: italic; margin-top: 3px; }
+        .entry-date  {
+            font-family: var(--mono);
+            font-size: 0.62em;
             color: var(--muted);
             white-space: nowrap;
-            grid-row: 1;
-            grid-column: 2;
-            padding-top: 4px;
+            padding-top: 3px;
+            letter-spacing: 0.03em;
         }
 
-        /* ── PAPER ENTRY (for papers page preview) ── */
+        /* ── PAPER ENTRIES ── */
         .paper-entry {
-            margin-bottom: 22px;
-            padding-bottom: 22px;
-            border-bottom: 1px solid var(--faint);
+            display: grid;
+            grid-template-columns: 1fr 76px;
+            gap: 0 24px;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--rule);
+            position: relative;
+            align-items: start;
         }
-
-        .paper-entry:last-child { border-bottom: none; }
+        .paper-entry:last-of-type { border-bottom: none; }
 
         .paper-title {
-            font-size: 1em;
+            font-size: 0.97em;
             font-weight: 500;
-            margin-bottom: 3px;
+            grid-column: 1;
+            line-height: 1.46;
+            position: relative;
+            cursor: default;
+        }
+        .paper-title-text {
+            position: relative;
+            display: inline;
+        }
+        .paper-title-text::after {
+            content: '';
+            position: absolute;
+            bottom: -1px; left: 0;
+            width: 0; height: 1px;
+            background: var(--ink);
+            opacity: 0.2;
+            transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .paper-entry:hover .paper-title-text::after { width: 100%; }
+
+        .paper-venue {
+            font-family: var(--mono);
+            font-size: 0.6em;
+            font-weight: 500;
+            color: var(--accent);
+            white-space: nowrap;
+            grid-column: 2;
+            padding-top: 4px;
+            letter-spacing: 0.04em;
+            text-align: right;
         }
 
-        .paper-meta {
-            font-family: 'Inconsolata', monospace;
-            font-size: 0.74em;
+        .paper-sub {
+            font-size: 0.79em;
             color: var(--muted);
-            letter-spacing: 0.03em;
-            margin-bottom: 5px;
+            grid-column: 1;
+            margin-top: 4px;
+            font-style: italic;
+            line-height: 1.5;
         }
 
         .paper-desc {
-            font-size: 0.92em;
-            color: #555;
-            line-height: 1.65;
+            font-family: var(--mono);
+            font-size: 0.64em;
+            color: var(--faint-text);
+            grid-column: 1 / -1;
+            margin-top: 10px;
+            line-height: 1.6;
+            padding-left: 16px;
+            border-left: 1px solid transparent;
+            transition: color 0.25s, border-color 0.25s;
         }
+        .paper-entry:hover .paper-desc {
+            color: var(--muted);
+            border-left-color: var(--accent);
+        }
+        .paper-desc::before { content: '// '; opacity: 0.4; }
 
-        /* ── TAG ── */
-        .tag {
-            display: inline-block;
-            font-family: 'Inconsolata', monospace;
-            font-size: 0.68em;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-            color: var(--accent);
-            border: 1px solid #e0c4b4;
-            border-radius: 2px;
-            padding: 1px 6px;
-            margin-right: 6px;
-            vertical-align: middle;
+        /* ── MATH TOOLTIP ── */
+        .math-pop {
+            visibility: hidden;
+            opacity: 0;
+            position: absolute;
+            top: calc(100% + 10px);
+            left: 0;
+            background: var(--bg);
+            border: 1px solid var(--rule);
+            padding: 13px 18px 11px 14px;
+            z-index: 100;
+            pointer-events: none;
+            transition: opacity 0.2s;
+            white-space: nowrap;
+            box-shadow: 0 6px 28px rgba(0,0,0,0.18);
         }
+        .math-pop::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 10%; bottom: 10%;
+            width: 2px;
+            background: var(--accent);
+            opacity: 0.45;
+        }
+        .paper-entry:hover .math-pop {
+            visibility: visible;
+            opacity: 1;
+        }
+        .math-pop .katex-html .mord,
+        .math-pop .katex-html .mrel,
+        .math-pop .katex-html .mop,
+        .math-pop .katex-html .mbin,
+        .math-pop .katex-html .mpunct,
+        .math-pop .katex-html .mopen,
+        .math-pop .katex-html .mclose,
+        .math-pop .katex-html .minner,
+        .math-pop .katex-html .mspace {
+            opacity: 0;
+            transform: translateY(4px);
+            display: inline-block;
+        }
+        .paper-entry:hover .math-pop .katex-html .mord,
+        .paper-entry:hover .math-pop .katex-html .mrel,
+        .paper-entry:hover .math-pop .katex-html .mop,
+        .paper-entry:hover .math-pop .katex-html .mbin,
+        .paper-entry:hover .math-pop .katex-html .mpunct,
+        .paper-entry:hover .math-pop .katex-html .mopen,
+        .paper-entry:hover .math-pop .katex-html .mclose,
+        .paper-entry:hover .math-pop .katex-html .minner,
+        .paper-entry:hover .math-pop .katex-html .mspace {
+            animation: token-in 0.26s ease forwards;
+        }
+        @keyframes token-in { to { opacity: 1; transform: translateY(0); } }
+
+        .math-label {
+            display: block;
+            font-family: var(--mono);
+            font-size: 0.6em;
+            color: var(--muted);
+            margin-top: 7px;
+            letter-spacing: 0.06em;
+            opacity: 0;
+            transition: opacity 0.3s 0.45s;
+        }
+        .paper-entry:hover .math-label { opacity: 0.65; }
 
         /* ── FOOTER ── */
         footer {
-            border-top: 1px solid var(--faint);
-            margin-top: 72px;
-            padding-top: 28px;
-            text-align: center;
-            font-family: 'Inconsolata', monospace;
-            font-size: 0.76em;
-            color: var(--muted);
-            letter-spacing: 0.04em;
+            border-top: 1px solid var(--rule);
+            margin-top: 80px;
+            padding: 20px 40px 40px;
+            max-width: 680px;
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+            justify-content: space-between;
+            font-family: var(--mono);
+            font-size: 0.56em;
+            color: var(--faint-text);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
         }
+        footer span:first-child::before { content: '$ '; color: var(--accent); opacity: 0.6; }
 
-        @media (max-width: 580px) {
-            nav .wrap { flex-direction: column; gap: 14px; }
-            .entry { grid-template-columns: 1fr; }
-            .entry-date { grid-row: auto; grid-column: 1; }
+        /* EOF trigger */
+        #footer-eof {
+            cursor: pointer;
+            transition: color 0.2s;
+            user-select: none;
+        }
+        #footer-eof:hover { color: var(--accent); }
+
+        /* ── EUREKA overlay ── */
+        #eureka {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 10000;
+            background: var(--bg);
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 24px;
+            cursor: pointer;
+        }
+        #eureka.show { display: flex; }
+        #eureka-formula { font-size: 2em; }
+        #eureka-label {
+            font-family: var(--mono);
+            font-size: 0.62em;
+            letter-spacing: 0.2em;
+            color: var(--accent);
+            text-transform: uppercase;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        #eureka-sub {
+            font-family: 'EB Garamond', serif;
+            font-style: italic;
+            font-size: 1em;
+            color: var(--muted);
+            max-width: 340px;
+            text-align: center;
+            line-height: 1.68;
+        }
+        #eureka-close {
+            font-family: var(--mono);
+            font-size: 0.56em;
+            letter-spacing: 0.12em;
+            color: var(--faint-text);
+            margin-top: 8px;
+            text-transform: uppercase;
+        }
+        @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.35} }
+
+        @media (max-width: 620px) {
+            .nav-wrap { flex-direction: column; gap: 18px; }
+            .paper-entry { grid-template-columns: 1fr; }
+            .paper-venue { grid-column: 1; text-align: left; }
+            footer { flex-direction: column; gap: 6px; }
         }
     </style>
 </head>
 <body>
 
+<div id="eureka" onclick="closeEureka()">
+    <div id="eureka-formula"></div>
+    <div id="eureka-label">∎ q.e.d.</div>
+    <div id="eureka-sub">The moment of understanding is not the end of a proof — it is the beginning of the next problem.</div>
+    <div id="eureka-close">[ esc or click to return ]</div>
+</div>
+
 <nav>
-    <div class="wrap">
+    <div class="nav-wrap">
         <a href="index.html" class="logo">Shlok Mehendale</a>
-        <div class="nav-links">
-            <a href="index.html" class="active">home</a>
-            <a href="projects.html">projects</a>
-            <a href="experiences.html">experience</a>
-            <a href="papers.html">papers</a>
-            <a href="hobby.html">hobbies</a>
+        <div class="nav-right">
+            <div class="nav-links">
+                <a href="index.html" class="active">home</a>
+                <a href="reading.html">reading</a>
+                <a href="hobby.html">hobbies</a>
+                <a href="Shlok_Mehendale_Resume.pdf" target="_blank">cv</a>
+            </div>
+            <div class="nav-controls">
+                <button class="ctrl-btn" id="btn-invert">invert</button>
+                <button class="ctrl-btn" id="btn-inspect">inspect</button>
+            </div>
         </div>
     </div>
 </nav>
 
 <div class="wrap">
 
-    <div class="hero">
-        <p class="greeting"><span class="greeting-text" id="greeting"></span></p>
-        <p>
-            I'm a pre-final year student at <a href="https://www.bits-pilani.ac.in/goa/">BITS Pilani (Goa)</a>, doing a dual major in Mathematics and Computer Science. Currently pursuing a year of undergraduate thesis under <a href="https://www.cs.jhu.edu/~ayuille1/">Dr. Alan Yuille</a> (Bloomberg Distinguished Professor of Computer Science and Cognitive Science) at Johns Hopkins University. I hail from <a href="https://en.wikipedia.org/wiki/Ambarnath">Ambernath</a>, however I grew up moving across India.
+    <div class="preamble">
+        <p class="tw-line"><span class="tw-text" id="tw"></span></p>
+
+        <p class="lede">I want to understand how systems learn to generalise — and why they sometimes don't.</p>
+
+        <p class="body-text">
+            Pre-final year at <a href="https://www.bits-pilani.ac.in/goa/">BITS Pilani, Goa</a>, dual major in Mathematics and Computer Science. Currently a visiting scholar at <a href="https://ccvl.jhu.edu/">CCVL, Johns Hopkins</a>, working on continual learning through the lens of mechanistic interpretability.
         </p>
-        <p>
-            My current interests centre around understanding Intelligence (<a href="http://jmc.stanford.edu/articles/dartmouth/dartmouth.pdf">Artificial</a> and Biological) and <a href="https://arxiv.org/abs/2604.21691">learning mechanics</a>. As Popper said, we are students of problems rather than subject matter, I like to frequently dabble in theoretical neuroscience, statistical physics and pure mathematics. Earlier, I built a Mars rover and spent considerable time on computer vision.
+        <p class="body-text">
+            My path here was indirect. I grew up across nearly ten schools all over India, built a Mars rover before I had a research paper, and spent a long time being more interested in <em>why</em> things work than in making them work. That instinct eventually found the right vocabulary: representation geometry, causal inference, statistical learning theory.
         </p>
-        <p>
-            I am currently obsessed with understanding learning dynamics and looking at domain-adaptive continual learning through a lens of mechanistic interpretability for my undergraduate thesis.
-        </p>
+
+        <blockquote class="epigraph">
+            We are not students of some subject matter, but students of problems. And problems, of course, are found in all disciplines.
+            <cite>— Karl Popper, Objective Knowledge</cite>
+        </blockquote>
 
         <div class="social-row">
             <a href="mailto:shlokmehendale@gmail.com">email</a>
             <a href="https://github.com/MehShlok" target="_blank">github</a>
             <a href="https://www.linkedin.com/in/shlok-mehendale-j18/" target="_blank">linkedin</a>
-            <a href="https://scholar.google.com/citations?user=K5tJyXMAAAAJ&hl=en&oi=ao" target="_blank">google scholar</a>
+            <a href="https://scholar.google.com/citations?user=K5tJyXMAAAAJ&hl=en&oi=ao" target="_blank">scholar</a>
             <a href="Shlok_Mehendale_Resume.pdf" target="_blank">cv</a>
         </div>
     </div>
 
-    <!-- WHERE -->
     <section>
-        <p class="section-label">currently</p>
-
-        <div class="entry">
-            <div class="entry-title">Visiting Research Scholar — CCVL, Johns Hopkins University</div>
-            <div class="entry-date">Feb 2026–</div>
-            <div class="entry-sub">Supervised by Prof. Alan L. Yuille</div>
-            <div class="entry-desc">Continual learning through the lens of mechanistic interpretability, for my undergraduate research thesis.</div>
+        <div class="sec-head">
+            <span class="sec-idx">01</span>
+            <span class="sec-title">currently</span>
+            <span class="sec-meta">positions // n=2</span>
         </div>
 
         <div class="entry">
-            <div class="entry-title">Research Intern — Lossfunk, Bangalore</div>
-            <div class="entry-date">Dec 2025–</div>
-            <div class="entry-sub">Supervised by Paras Chopra</div>
-            <div class="entry-desc">Mechanistic interpretability and representation learning in deep neural networks.</div>
+            <div>
+                <div class="entry-coord">node[0] :: research.jhu</div>
+                <div class="entry-title">Visiting Research Scholar — CCVL, Johns Hopkins</div>
+                <div class="entry-sub">Prof. Alan L. Yuille</div>
+            </div>
+            <div class="entry-date">Feb 2026 —</div>
         </div>
-    </section>
-    
-    <!-- RECENT RESEARCH -->
-    <section>
-        <p class="section-label">Research</p>
-
         <div class="entry">
-            <div class="entry-title">Subspace Crystallization: Grokking in Modular Arithmetic Networks</div>
-            <div class="entry-date">NeurIPS'26, ICML Mech Interp Workshop'26</div>
-            <div class="entry-sub">Shlok Mehendale, Paras Chopra &middot; Lossfunk</div>
-            <div class="entry-desc">Geometric and causal signatures of grokking. Does representation geometry causally mediate generalisation, or do geometric changes merely accompany optimisation dynamics?</div>
-        </div>
-
-        <div class="entry">
-            <div class="entry-title">Matching High-Dimensional Geometric Quantiles for Test-Time Adaptation</div>
-            <div class="entry-date">ECCV'26</div>
-            <div class="entry-sub"> Sravan Danda, Aditya Challa, Shlok Mehendale, Snehanshu Saha &middot; APPCAIR, BITS Pilani</div>
-            <div class="entry-desc">A novel TTA method that estimates distribution shift by matching geometric quantiles of classifier features, without requiring labeled corrupted data.</div>
-        </div>
-
-        <div class="entry">
-            <div class="entry-title">A Radon-Nikodým Perspective on Anomaly Detection</div>
-            <div class="entry-date">TMLR</div>
-            <div class="entry-sub">Shlok Mehendale, Aditya Challa, Rahul Yedida, Sravan Danda, Santonu Sarkar, Snehanshu Saha &middot; APPCAIR</div>
-            <div class="entry-desc">Establishes PAC learnability for anomaly detection and proposes RN-Loss, a measure-theoretic loss function bridging supervised and unsupervised approaches.</div>
-        </div>
-
-         <div class="entry">
-            <div class="entry-title">Benchmarking Anomaly Detection Algorithms: Deep Learning and Beyond</div>
-            <div class="entry-date">IEEE TAI</div>
-            <div class="entry-sub"> Shanay Mehta, Shlok Mehendale, Nicole Fernandes, Jyotirmoy Sarkar, Santonu Sarkar, Snehanshu Saha &middot; APPCAIR &middot; cited by IBM Research</div>
-            <div class="entry-desc">Benchmarks 30+ anomaly detection algorithms across 104 public datasets. Finds tree-based methods like dBTAI often match or outperform deep learning on small univariate datasets, while being substantially faster.</div>
-        </div>
-
-        <div class="entry">
-            <div class="entry-title">Bridging the Gap: A Weighted Attention Bottleneck Transformer for Multimodal Fusion</div>
-            <div class="entry-date">UofT ConferenceX'25</div>
-            <div class="entry-sub">Shlok Mehendale &middot; Won ProjectX Research Competition</div>
-            <div class="entry-desc">Cross-modal reconstruction building upon Google Research's Multimodal Bottleneck Transformer, with a weighted attention mechanism for improved multimodal fusion.</div>
-        </div>
- 
-        <div class="entry">
-            <div class="entry-title">Atmospheric Noise Resilient Image Classification: A Hybrid Pin-GTSVM</div>
-            <div class="entry-date">BITS Pilani</div>
-            <div class="entry-sub">Shlok Mehendale, JK Sahoo &middot; BITS Pilani</div>
-            <div class="entry-desc">A hybrid CNN–PinGTSVM model for hazy parking slot classification that removes the need for a separate dehazing step, achieving 98.20% accuracy against 88.63% for prior dehazing-based approaches.</div>
+            <div>
+                <div class="entry-coord">node[1] :: research.lossfunk</div>
+                <div class="entry-title">Research Intern — Lossfunk</div>
+                <div class="entry-sub">Paras Chopra</div>
+            </div>
+            <div class="entry-date">Dec 2025 —</div>
         </div>
     </section>
 
-
-    <!-- RECENT WRITING PREVIEW -->
     <section>
-        <p class="section-label">papers &amp; notes <span style="font-style:italic;font-family:'EB Garamond',serif;letter-spacing:0;text-transform:none;font-size:1.2em;">— analyses &amp; implementations</span></p>
+        <div class="sec-head">
+            <span class="sec-idx">02</span>
+            <span class="sec-title">research</span>
+            <span class="sec-meta">papers // n=6</span>
+        </div>
 
         <div class="paper-entry">
-            <p class="paper-title">Grokking — what does it mean to generalise?</p>
-            <p class="paper-meta"><span class="tag">mechanistic interp</span> Power et al., 2022 &middot; reading notes + PyTorch implementation</p>
-            <p class="paper-desc">My attempt to reproduce the grokking phenomenon on modular arithmetic and trace which circuits light up before vs. after the generalisation phase transition.</p>
+            <div class="paper-title">
+                <span class="paper-title-text">Subspace Crystallization: Grokking in Modular Arithmetic Networks</span>
+                <div class="math-pop" id="mp-grok"><span class="math-label"></span></div>
+            </div>
+            <div class="paper-venue">NeurIPS'26</div>
+            <div class="paper-sub">with Paras Chopra · Lossfunk</div>
+            <div class="paper-desc">representation geometry causally mediates generalisation; weight-norm regularisation accelerates the memorisation→structured-subspace phase transition.</div>
         </div>
 
-        <p style="margin-top:16px;font-family:'Inconsolata',monospace;font-size:0.8em;color:var(--muted);">
-            <a href="papers.html" style="border-bottom:1px solid var(--faint);color:var(--ink);transition:border-color 0.2s;"
-               onmouseover="this.style.borderColor='var(--accent)'"
-               onmouseout="this.style.borderColor='var(--faint)'">all notes →</a>
-        </p>
-    </section>
+        <div class="paper-entry">
+            <div class="paper-title">
+                <span class="paper-title-text">Matching High-Dimensional Geometric Quantiles for Test-Time Adaptation</span>
+                <div class="math-pop" id="mp-quant"><span class="math-label"></span></div>
+            </div>
+            <div class="paper-venue">ECCV'26</div>
+            <div class="paper-sub">with Danda, Challa, Saha · APPCAIR</div>
+            <div class="paper-desc">estimates distribution shift at test time by matching geometric quantiles of classifier features — no labeled corrupted data required, architecture-agnostic.</div>
+        </div>
 
+        <div class="paper-entry">
+            <div class="paper-title">
+                <span class="paper-title-text">A Radon-Nikodým Perspective on Anomaly Detection</span>
+                <div class="math-pop" id="mp-rn"><span class="math-label"></span></div>
+            </div>
+            <div class="paper-venue">ACM/IMS JDS</div>
+            <div class="paper-sub">with Challa, Yedida, Danda, Sarkar, Saha · APPCAIR</div>
+            <div class="paper-desc">PAC learnability for anomaly detection established; RN-Loss weighted by the Radon-Nikodým derivative bridges the supervised–unsupervised gap and outperforms SoTA.</div>
+        </div>
+
+        <div class="paper-entry">
+            <div class="paper-title">
+                <span class="paper-title-text">Benchmarking Anomaly Detection: Deep Learning and Beyond</span>
+            </div>
+            <div class="paper-venue">IEEE TAI</div>
+            <div class="paper-sub">with Mehta, Fernandes, Sarkar, Saha · cited by IBM Research</div>
+            <div class="paper-desc">30+ algorithms across 104 datasets: tree-based methods match or beat deep learning on small univariate data while being orders of magnitude faster.</div>
+        </div>
+
+        <div class="paper-entry">
+            <div class="paper-title">
+                <span class="paper-title-text">Weighted Attention Bottleneck Transformer for Multimodal Fusion</span>
+            </div>
+            <div class="paper-venue">UofT'25</div>
+            <div class="paper-sub">Won ProjectX · ETH Zurich, Cornell, CMU, Edinburgh</div>
+            <div class="paper-desc">cross-modal reconstruction via a hierarchical bottleneck; adaptive fusion without full cross-attention, building on Google Research's MBT.</div>
+        </div>
+
+        <div class="paper-entry">
+            <div class="paper-title">
+                <span class="paper-title-text">Atmospheric Noise Resilient Image Classification: A Hybrid Pin-GTSVM</span>
+            </div>
+            <div class="paper-venue">Comp. Intelligence</div>
+            <div class="paper-sub">with Sahoo, Roul · BITS Pilani</div>
+            <div class="paper-desc">treats haze as a modelling problem, not a preprocessing step — CNN–PinGTSVM achieves 98.20% vs. 88.63% for dehazing-first baselines.</div>
+        </div>
+
+    </section>
 </div>
 
 <footer>
-    <p>© 2025 Shlok Mehendale</p>
+    <span>shlok_mehendale @ bits-goa // 2026</span>
+    <div style="display:flex; align-items:flex-end; gap:10px;">
+        <svg width="90" height="38" viewBox="0 0 90 38" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity:0.38; margin-bottom:2px;">
+            <!-- handwritten "click here" -->
+            <path d="M2 22 C4 19, 7 17, 10 18 C13 19, 11 23, 9 22 C7 21, 9 18, 12 19" stroke="var(--accent)" stroke-width="1.1" stroke-linecap="round" fill="none"/>
+            <path d="M13 15 C15 12, 19 13, 19 16 C19 19, 15 19, 15 17 C15 14, 19 14, 21 16" stroke="var(--accent)" stroke-width="1.1" stroke-linecap="round" fill="none"/>
+            <path d="M22 13 C23 10, 26 10, 27 13 L27 20" stroke="var(--accent)" stroke-width="1.1" stroke-linecap="round" fill="none"/>
+            <path d="M24 16 L28 16" stroke="var(--accent)" stroke-width="1.1" stroke-linecap="round" fill="none"/>
+            <path d="M29 10 L30 20" stroke="var(--accent)" stroke-width="1.1" stroke-linecap="round" fill="none"/>
+            <path d="M32 13 C34 10, 38 11, 38 15 C38 19, 33 20, 32 17 C31 14, 34 12, 37 14" stroke="var(--accent)" stroke-width="1.1" stroke-linecap="round" fill="none"/>
+            <!-- space -->
+            <path d="M42 14 C44 11, 48 12, 47 16 C46 20, 42 19, 43 16 C44 13, 48 14, 49 17" stroke="var(--accent)" stroke-width="1.1" stroke-linecap="round" fill="none"/>
+            <path d="M51 10 C52 14, 52 18, 51 22" stroke="var(--accent)" stroke-width="1.1" stroke-linecap="round" fill="none"/>
+            <path d="M51 14 C53 12, 56 12, 57 15 C58 18, 55 21, 52 20" stroke="var(--accent)" stroke-width="1.1" stroke-linecap="round" fill="none"/>
+            <path d="M59 10 L59 22 M59 14 C61 11, 65 11, 65 15 L65 22" stroke="var(--accent)" stroke-width="1.1" stroke-linecap="round" fill="none"/>
+            <path d="M67 10 L67 22 M67 10 L71 10 M67 15 L70 15 M67 22 L71 22" stroke="var(--accent)" stroke-width="1.1" stroke-linecap="round" fill="none"/>
+            <!-- arrow curving down-right toward EOF -->
+            <path d="M74 23 C78 24, 83 27, 85 32" stroke="var(--accent)" stroke-width="1.1" stroke-linecap="round" fill="none"/>
+            <path d="M85 32 L81 30 M85 32 L84 28" stroke="var(--accent)" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+        </svg>
+        <span id="footer-eof" title="∎">EOF</span>
+    </div>
 </footer>
 
 <script>
-    const el = document.getElementById('greeting');
-    const text = 'hi there';
-    let i = 0;
-    function type() {
-        if (i < text.length) {
-            el.textContent += text[i++];
-            setTimeout(type, 90 + Math.random() * 60);
-        } else {
-            el.classList.add('done');
-        }
+/* typewriter */
+const phrases = [
+    'i study how networks learn to generalise.',
+    'i grew up moving. ten schools. never stopped.',
+    'the geometry of learning is the question.',
+    'built a mars rover before i had a paper.',
+    'currently at johns hopkins, thinking hard.',
+];
+let pi = 0, ci = 0, del = false;
+const tw = document.getElementById('tw');
+function tick() {
+    const p = phrases[pi];
+    if (!del) {
+        tw.textContent = p.slice(0, ++ci);
+        if (ci === p.length) { setTimeout(() => { del = true; tick(); }, 2800); return; }
+        setTimeout(tick, 48 + Math.random() * 36);
+    } else {
+        tw.textContent = p.slice(0, --ci);
+        if (ci === 0) { del = false; pi = (pi + 1) % phrases.length; setTimeout(tick, 320); return; }
+        setTimeout(tick, 22 + Math.random() * 14);
     }
-    setTimeout(type, 300);
+}
+setTimeout(tick, 500);
+
+/* controls */
+document.getElementById('btn-invert').addEventListener('click', function() {
+    document.body.classList.toggle('inverted');
+    this.classList.toggle('on');
+});
+document.getElementById('btn-inspect').addEventListener('click', function() {
+    document.body.classList.toggle('inspect-mode');
+    this.classList.toggle('on');
+    this.textContent = document.body.classList.contains('inspect-mode') ? 'close' : 'inspect';
+});
+
+/* KaTeX + stagger */
+window.addEventListener('load', () => {
+    if (typeof katex === 'undefined') return;
+
+    const formulas = {
+        'mp-grok':  { tex: '\\mathcal{L}(\\theta) \\to 0,\\;\\hat{R}_{\\mathrm{gen}} \\downarrow \\;\\Rightarrow\\; \\text{subspace crystallises}', label: 'loss → 0, generalisation ↓, structure emerges' },
+        'mp-quant': { tex: 'Q_{\\alpha}(\\mathbf{x}) = \\arg\\min_{\\mathbf{q}} \\,\\mathbb{E}\\bigl[\\rho_{\\alpha}(\\|\\mathbf{x}-\\mathbf{q}\\|)\\bigr]', label: 'geometric quantile as check-function minimiser' },
+        'mp-rn':    { tex: '\\dfrac{d\\mu}{d\\nu}(x) = \\lim_{\\varepsilon\\to 0}\\dfrac{\\mu(B_\\varepsilon(x))}{\\nu(B_\\varepsilon(x))}', label: 'anomaly score as local density ratio' },
+    };
+
+    for (const [id, {tex, label}] of Object.entries(formulas)) {
+        const pop = document.getElementById(id);
+        if (!pop) continue;
+        const lbl = pop.querySelector('.math-label');
+        const container = document.createElement('span');
+        katex.render(tex, container, { throwOnError: false });
+        pop.insertBefore(container, lbl);
+        if (lbl) lbl.textContent = label;
+
+        const entry = pop.closest('.paper-entry');
+        entry.addEventListener('mouseenter', () => {
+            const atoms = pop.querySelectorAll('.mord,.mrel,.mop,.mbin,.mpunct,.mopen,.mclose,.minner,.mspace');
+            atoms.forEach((el, i) => {
+                el.style.animationDelay = `${i * 26}ms`;
+                el.style.animation = 'none';
+                el.offsetHeight;
+                el.style.animation = '';
+            });
+        });
+    }
+});
+
+/* EUREKA — click EOF in footer, or type "eureka" */
+const eurekaEl  = document.getElementById('eureka');
+const eurekaFml = document.getElementById('eureka-formula');
+
+const picks = [
+    { tex: 'e^{i\\pi} + 1 = 0',                                              note: "euler's identity" },
+    { tex: '\\int_{-\\infty}^{\\infty} e^{-x^2}\\,dx = \\sqrt{\\pi}',        note: 'gaussian integral' },
+    { tex: '\\sum_{n=1}^{\\infty} \\frac{1}{n^2} = \\frac{\\pi^2}{6}',       note: 'basel problem — euler, 1734' },
+    { tex: 'P(A|B) = \\frac{P(B|A)\\,P(A)}{P(B)}',                           note: "bayes' theorem" },
+    { tex: '\\nabla \\times \\mathbf{B} = \\mu_0\\mathbf{J} + \\mu_0\\varepsilon_0\\frac{\\partial \\mathbf{E}}{\\partial t}', note: "maxwell's fourth equation" },
+    { tex: 'i\\hbar\\frac{\\partial}{\\partial t}\\Psi = \\hat{H}\\Psi',      note: 'schrödinger equation' },
+    { tex: '\\frac{d}{dt}\\oint_C \\mathbf{v}\\cdot d\\mathbf{l} = 0',        note: "kelvin's circulation theorem" },
+];
+
+function showEureka() {
+    if (typeof katex === 'undefined') return;
+    const pick = picks[Math.floor(Math.random() * picks.length)];
+    document.getElementById('eureka-label').textContent = '∎  ' + pick.note;
+    eurekaFml.innerHTML = '';
+    katex.render(pick.tex, eurekaFml, { throwOnError: false, displayMode: true });
+    eurekaEl.classList.add('show');
+    requestAnimationFrame(() => {
+        const atoms = eurekaFml.querySelectorAll('.mord,.mrel,.mop,.mbin,.mpunct,.mopen,.mclose,.minner,.mspace');
+        atoms.forEach((el, i) => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(8px)';
+            el.style.transition = `opacity 0.4s ${i * 38}ms ease, transform 0.4s ${i * 38}ms ease`;
+            requestAnimationFrame(() => { el.style.opacity = '1'; el.style.transform = 'translateY(0)'; });
+        });
+    });
+}
+
+document.getElementById('footer-eof').addEventListener('click', showEureka);
+
+/* also keep keyboard trigger */
+let keyBuf = '';
+document.addEventListener('keydown', e => {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+    keyBuf = (keyBuf + e.key).slice(-6);
+    if (keyBuf.toLowerCase() === 'eureka') { showEureka(); keyBuf = ''; }
+});
+
+function closeEureka() { eurekaEl.classList.remove('show'); }
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeEureka(); });
 </script>
 </body>
 </html>
