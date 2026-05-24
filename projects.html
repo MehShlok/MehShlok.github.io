@@ -3,355 +3,299 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects - Shlok Mehendale</title>
+    <title>Projects — Shlok Mehendale</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inconsolata:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            --ink: #1c1c1c;
+            --muted: #6b6b6b;
+            --faint: #e8e4df;
+            --bg: #faf8f5;
+            --accent: #b85c2a;
         }
-        
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
-            font-family: 'Georgia', serif;
-            line-height: 1.6;
-            color: #333;
-            background: #fff;
-        }
-        
-        h1, h2, h3, .logo {
-            font-family: 'Times New Roman', Times, serif;
-        }
-        
-        nav {
-            border-bottom: 1px solid #eee;
-            padding: 20px 0;
-            margin-bottom: 60px;
-        }
-        
-        nav .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            font-weight: 600;
-            font-size: 1.1em;
-            color: #1a1a1a;
-            text-decoration: none;
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 30px;
-        }
-        
-        .nav-links a {
-            color: #666;
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-        
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: #1a1a1a;
-        }
-        
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 20px 60px;
-        }
-        
-        h1 {
-            font-size: 2.8em;
-            font-weight: 600;
-            margin-bottom: 15px;
-            color: #1a1a1a;
-            line-height: 1.2;
-        }
-        
-        .page-intro {
-            font-size: 1.1em;
-            color: #666;
-            margin-bottom: 50px;
-            line-height: 1.6;
-        }
-        
-        .project {
-            margin-bottom: 50px;
-            padding-bottom: 40px;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .project:last-of-type {
-            border-bottom: none;
-        }
-        
-        .project h2 {
-            font-size: 1.4em;
-            font-weight: 600;
-            margin-bottom: 12px;
-            color: #1a1a1a;
-            line-height: 1.3;
-        }
-        
-        .project-meta {
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 0.9em;
-            color: #888;
-            margin-bottom: 15px;
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-        
-        .project-meta span {
-            display: inline-block;
-        }
-        
-        .project-tags {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-            margin-bottom: 15px;
-        }
-        
-        .tag {
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 0.85em;
-            background: #f5f5f5;
-            color: #666;
-            padding: 4px 10px;
-            border-radius: 3px;
-        }
-        
-        .project p {
-            color: #444;
-            margin-bottom: 12px;
+            font-family: 'EB Garamond', Georgia, serif;
+            background: var(--bg);
+            color: var(--ink);
+            font-size: 18px;
             line-height: 1.7;
         }
-        
-        .project-links {
-            margin-top: 15px;
+
+        a { color: inherit; text-decoration: none; }
+
+        nav {
+            padding: 28px 0 24px;
+            border-bottom: 1px solid var(--faint);
+            margin-bottom: 72px;
+        }
+
+        nav .wrap {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 0 24px;
             display: flex;
-            gap: 15px;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+
+        .logo { font-size: 1.05em; font-weight: 500; }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            font-family: 'Inconsolata', monospace;
+            font-size: 0.8em;
+            letter-spacing: 0.04em;
+        }
+
+        .nav-links a { color: var(--muted); transition: color 0.15s; }
+        .nav-links a:hover, .nav-links a.active { color: var(--ink); }
+
+        .wrap { max-width: 720px; margin: 0 auto; padding: 0 24px 80px; }
+
+        .page-header { margin-bottom: 52px; }
+
+        .page-title {
+            font-size: 2em;
+            font-weight: 500;
+            line-height: 1.2;
+            margin-bottom: 14px;
+        }
+
+        .page-intro {
+            font-size: 0.97em;
+            color: #555;
+            max-width: 560px;
+            line-height: 1.75;
+        }
+
+        .section-label {
+            font-family: 'Inconsolata', monospace;
+            font-size: 0.72em;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 20px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--faint);
+        }
+
+        section { margin-bottom: 52px; }
+
+        .project {
+            padding: 22px 0;
+            border-bottom: 1px solid var(--faint);
+        }
+
+        .project:first-of-type { padding-top: 0; }
+        .project:last-of-type { border-bottom: none; }
+
+        .project-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 16px;
+            margin-bottom: 4px;
+        }
+
+        .project-title {
+            font-size: 1.02em;
+            font-weight: 500;
+        }
+
+        .project-date {
+            font-family: 'Inconsolata', monospace;
+            font-size: 0.74em;
+            color: var(--muted);
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .project-super {
+            font-size: 0.87em;
+            color: var(--muted);
+            font-style: italic;
+            margin-bottom: 8px;
+        }
+
+        .project-body {
+            font-size: 0.93em;
+            color: #505050;
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+
+        .project-footer {
+            display: flex;
+            align-items: center;
+            gap: 10px;
             flex-wrap: wrap;
         }
-        
-        .project-links a {
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 0.9em;
-            color: #333;
-            text-decoration: none;
-            border-bottom: 1px solid #333;
-            transition: opacity 0.2s;
+
+        .tag {
+            display: inline-block;
+            font-family: 'Inconsolata', monospace;
+            font-size: 0.68em;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--accent);
+            border: 1px solid #e0c4b4;
+            border-radius: 2px;
+            padding: 1px 6px;
         }
-        
-        .project-links a:hover {
-            opacity: 0.6;
+
+        .proj-link {
+            font-family: 'Inconsolata', monospace;
+            font-size: 0.76em;
+            color: var(--muted);
+            border-bottom: 1px solid var(--faint);
+            transition: color 0.15s, border-color 0.15s;
         }
-        
+
+        .proj-link:hover { color: var(--ink); border-color: var(--ink); }
+
         footer {
-            margin-top: 80px;
-            padding-top: 30px;
-            border-top: 1px solid #eee;
+            border-top: 1px solid var(--faint);
+            margin-top: 72px;
+            padding-top: 28px;
             text-align: center;
-            color: #999;
-            font-size: 0.9em;
+            font-family: 'Inconsolata', monospace;
+            font-size: 0.76em;
+            color: var(--muted);
+            letter-spacing: 0.04em;
         }
-        
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 2em;
-            }
-            
-            nav .container {
-                flex-direction: column;
-                gap: 15px;
-            }
-            
-            .nav-links {
-                gap: 20px;
-            }
-            
-            .project-meta {
-                flex-direction: column;
-                gap: 5px;
-            }
+
+        @media (max-width: 580px) {
+            nav .wrap { flex-direction: column; gap: 14px; }
+            .project-top { flex-direction: column; gap: 2px; }
         }
     </style>
 </head>
 <body>
-    <nav>
-        <div class="container">
-            <a href="index.html" class="logo">Shlok Mehendale</a>
-            <div class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="projects.html" class="active">Projects</a>
-                <a href="experiences.html">Experience</a>
-                <a href="blogs.html">Blogs</a>
-                <a href="hobby.html">Hobbies</a>
-            </div>
-        </div>
-    </nav>
 
-    <div class="container">
-        <h1>Projects</h1>
-        <p class="page-intro">A collection of things I've built, explored, and published—from research in machine learning to practical applications.</p>
-
-        <!-- PROJECT 1 -->
-        <div class="project">
-            <h2>Weighted Attention Bottleneck Transformer</h2>
-            <div class="project-meta">
-                <span>2025 - Present</span>
-            </div>
-            <div class="project-tags">
-                <span class="tag">Multimodal Representation Learning</span>
-                <span class="tag">Generative AI</span>
-            </div>
-            <p>Cross-Modal reconstruction, building on Google Research's work on Multimodal Bottleneck Transformer.</p>
-            <p>Published and presented at University of Toronto ConferenceX'25 (Currently under preparation for submission at CVPR).</p>
+<nav>
+    <div class="wrap">
+        <a href="index.html" class="logo">Shlok Mehendale</a>
+        <div class="nav-links">
+            <a href="index.html">home</a>
+            <a href="projects.html" class="active">projects</a>
+            <a href="experiences.html">experience</a>
+            <a href="papers.html">papers</a>
+            <a href="hobby.html">hobbies</a>
         </div>
-        
-        <!-- PROJECT 2 -->
-        <div class="project">
-            <h2>A measure theoretic perspective on OOD classification and long-tailed learning</h2>
-            <div class="project-meta">
-                <span>2024 - Present</span>
-                <span>(Supervised by Dr. Snehanshu Saha)</span>
-            </div>
-            <div class="project-tags">
-                <span class="tag">Machine Learning</span>
-                <span class="tag">Long-Tailed learning</span>
-                <span class="tag">Measure Theory</span>
-            </div>
-            <p>Proposed a unified PAC-learnable anomaly detection framework grounded in measure theory (specifically the Radon–Nikodým derivative), outperforming state-of-the-art methods on 96 real-world datasets.</p>
-            <p>Submitted to ACM/IMS Journal of Data Science, 2025</p>
-            <div class="project-links">
-                <a href="https://arxiv.org/abs/2502.18002">Paper</a>
-            </div>
-        </div>
-
-        <!-- PROJECT 3 -->
-        <div class="project">
-            <h2>Anomaly Detection: Deep Learning and Beyond</h2>
-            <div class="project-meta">
-                <span>2024 - 2025</span>
-                <span>(Supervised by Dr. Snehanshu Saha)</span>
-            </div>
-            <div class="project-tags">
-                <span class="tag">Deep Learning</span>
-                <span class="tag">Anomaly Detection</span>
-            </div>
-            <p>Conducted a large-scale benchmark of 20+ ML and DL-based anomaly detection methods across 104 datasets, revealing tree-based methods often outperform deep models in low-data, low-anomaly regimes.</p>
-            <p>Submitted to IEEE TAI, cited by IBM Research.</p>
-            <div class="project-links">
-                <a href="https://arxiv.org/abs/2402.07281">Paper</a>
-            </div>
-        </div>
-
-        <!-- PROJECT 4 -->
-        <div class="project">
-            <h2>Driver behaviour modeling using imitation learning and deep RL</h2>
-            <div class="project-meta">
-                <span>2025 - Present</span>
-                <span>(Supervised by Dr. Santonu Sarkar)</span>
-            </div>
-            <div class="project-tags">
-                <span class="tag">Reinforcement Learning</span>
-                <span class="tag">Autonomous Driving</span>
-            </div>
-            <p>ADAPT (Adaptive Driver Anomaly Perception Technology) is an industry-funded research project focused on quantifying driver behavior unruliness by leveraging human-like traffic data generated through advanced simulation techniques.</p>
-        </div>
-
-        <!-- PROJECT 5 -->
-        <div class="project">
-            <h2>High Dimensional Quantile Distribution Shift</h2>
-            <div class="project-meta">
-                <span>2025 - Present</span>
-                <span>(Supervised by Dr. Sravan Danda)</span>
-            </div>
-            <div class="project-tags">
-                <span class="tag">Statistical Learning Theory</span>
-                
-            </div>
-            <p>Developing robust statistical tools/DL algorithms that are resilient to quantile-based distribution changes.</p>
-            <p>Submitted to Transactions on Machine Learning Research (TMLR)</p>
-        </div>
-        
-        <!-- PROJECT 6 -->
-        <div class="project">
-            <h2>Implicit dehazing pipeline for precise image classification</h2>
-            <div class="project-meta">
-                <span>2023 - 2024</span>
-                <span>(Supervised by Dr. JK Sahoo)</span>
-            </div>
-            <div class="project-tags">
-                <span class="tag">Computer Vision</span>
-                <span class="tag">Hybrid Deep Learning models</span>
-            </div>
-            <p>Designed a dehazing-free classification system using pre-trained CNN features and Pinball Twin SVM, achieving 98% accuracy under severe atmospheric noise.</p>
-            <div class="project-links">
-                <a href="https://arxiv.org/abs/2501.13422">Paper</a>
-            </div>
-        </div>
-
-        <!-- PROJECT 7 -->
-        <div class="project">
-            <h2>IoT sensor fault detection for smart buildings in Sweden</h2>
-            <div class="project-meta">
-                <span>2024</span>
-                <span>(Supervised by Dr. Christer Ahlund, Dr. Karan Mitra, Dr. Saguna (LTU Sweden), Dr. Neena Goveas)</span>
-            </div>
-            <div class="project-tags">
-                <span class="tag">Internet of Things</span>
-                <span class="tag">Brickschema</span>
-            </div>
-            <p>This was a project in collaboration with Ace-cybersafe(Sweden) where I worked with BrickSchema-modeled IoT sensor data to detect and classify faults using ML techniques. Integrated semantic modeling and real-time data streams for fault monitoring.</p>
-        </div>
-
-        <!-- PROJECT 8 -->
-        <div class="project">
-            <h2>BITSAuto: An autonomous vehicle</h2>
-            <div class="project-meta">
-                <span>2023 - 2024</span>
-                <span>(Supervised by Dr. Neena Goveas (Robotics Lab))</span>
-            </div>
-            <div class="project-tags">
-                <span class="tag">Autonomous Driving</span>
-                <span class="tag">Robotics</span>
-            </div>
-            <p>A funded project for developing an autonomous (self-driving) vehicle.</p>
-            <p>Led a team of 28 Computer Science undergraduate students and made immense progress on the fronts of: Image Segmentation , Point Cloud Mapping , GNSS Localisation , Path Planning and Controls</p>
-            <div class="project-links">
-                <a href="https://github.com/MehShlok/Image_Segmentation_BITSAuto">Image Segmentation</a>
-                <a href="https://github.com/Devarsh2607/Point-Cloud-Localization">Mapping</a>
-                <a href="https://github.com/AashishKanted/GNSS-Localization">GNSS Localisation</a>
-                <a href="https://github.com/Vishesh-Ag-BITSG/BITSAuto-Assignments/tree/main">Path planning & Controls</a>
-            </div>
-        </div>
-
-        <!-- PROJECT 9 -->
-        <div class="project">
-            <h2>Confluence of Epidemiological Modeling and Deep Learning</h2>
-            <div class="project-meta">
-                <span>2023</span>
-            </div>
-            <div class="project-tags">
-                <span class="tag">Epidemiological Modeling</span>
-                <span class="tag">Artificial Neural Networks</span>
-            </div>
-            <p>Presented to Dr. Abhishek Pandey, Associate Director (CIDMA), Yale University and selected for a summer course on Epidemiological Modeling.</p>
-            <p>Altered Epi-DNNs paper on Indian Covid-19 data and a novel SEIRD model; also presented at a course offered under Dr. Anushaya Mohapatra, BITS Goa</p>
-        </div>
-        
-        <footer>
-            <p>© 2025 Shlok Mehendale</p>
-        </footer>
     </div>
+</nav>
+
+<div class="wrap">
+
+    <div class="page-header">
+        <h1 class="page-title">Projects</h1>
+        <p class="page-intro">A few things I've built and researched outside the classroom (none of these are course projects), from machine learning theory to autonomous systems (realization.. I like space robots :)).</p>
+    </div>
+
+    <!-- RESEARCH -->
+    <section>
+        <p class="section-label">research</p>
+
+        <div class="project">
+            <div class="project-top">
+                <span class="project-title">ADAPT — Adaptive Driver Anomaly Perception Technology</span>
+                <span class="project-date">2025–</span>
+            </div>
+            <p class="project-super">Supervised by Dr. Santonu Sarkar &middot; Funded by Mercedes-Benz</p>
+            <p class="project-body">Imitation learning framework for quantifying erratic driver behaviour, leveraging a transformer with a hierarchical weighted bottleneck fusion mechanism for multi-modal data.</p>
+            <div class="project-footer">
+                <span class="tag">imitation learning</span>
+                <span class="tag">autonomous driving</span>
+            </div>
+        </div>
+
+        <div class="project">
+            <div class="project-top">
+                <span class="project-title">Implicit Dehazing for Precise Image Classification</span>
+                <span class="project-date">2023–24</span>
+            </div>
+            <p class="project-super">Supervised by Dr. JK Sahoo &middot; BITS Pilani</p>
+            <p class="project-body">Hybrid CNN–PinGTSVM model for hazy parking slot classification that removes the need for a separate dehazing step entirely, achieving 98.20% accuracy vs. 88.63% for prior dehazing-based approaches.</p>
+            <div class="project-footer">
+                <span class="tag">computer vision</span>
+                <span class="tag">hybrid models</span>
+                <a class="proj-link" href="https://arxiv.org/abs/2501.13422" target="_blank">paper →</a>
+            </div>
+        </div>
+
+        <div class="project">
+            <div class="project-top">
+                <span class="project-title">Confluence of Epidemiological Modeling and Deep Learning</span>
+                <span class="project-date">2023</span>
+            </div>
+            <p class="project-super">BITS Pilani &amp; Yale University</p>
+            <p class="project-body">Modified Epi-DNNs for Indian Covid-19 data and proposed a novel SEIRD model. Presented to Dr. Abhishek Pandey, Associate Director (CIDMA), Yale — selected for a summer course on Epidemiological Modeling.</p>
+            <div class="project-footer">
+                <span class="tag">epidemiology</span>
+                <span class="tag">deep learning</span>
+            </div>
+        </div>
+
+        <div class="project">
+            <div class="project-top">
+                <span class="project-title">IoT Sensor Fault Detection for Smart Buildings</span>
+                <span class="project-date">2024</span>
+            </div>
+            <p class="project-super">Supervised by Dr. Christer Ahlund, Dr. Karan Mitra, Dr. Saguna (LTU Sweden), Dr. Neena Goveas</p>
+            <p class="project-body">BrickSchema-modeled IoT sensor data for fault classification using ML techniques. Integrated semantic modeling and real-time data streams for fault monitoring. Industry-funded, deployed in Sweden (Ace-cybersafe).</p>
+            <div class="project-footer">
+                <span class="tag">IoT</span>
+                <span class="tag">BrickSchema</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ENGINEERING -->
+    <section>
+        <p class="section-label">engineering</p>
+
+        <div class="project">
+            <div class="project-top">
+                <span class="project-title">BITSAuto — Autonomous Vehicle</span>
+                <span class="project-date">2023–24</span>
+            </div>
+            <p class="project-super">Robotics Lab, BITS Goa &amp; Moon Labs, IISER Bhopal</p>
+            <p class="project-body">Led a team of 28 CS undergraduates to build a production-ready autonomous vehicle. Covered image segmentation, point cloud mapping, GNSS localisation, path planning, and controls.</p>
+            <div class="project-footer">
+                <span class="tag">robotics</span>
+                <span class="tag">computer vision</span>
+                <a class="proj-link" href="https://github.com/MehShlok/Image_Segmentation_BITSAuto" target="_blank">segmentation →</a>
+                <a class="proj-link" href="https://github.com/Devarsh2607/Point-Cloud-Localization" target="_blank">mapping →</a>
+                <a class="proj-link" href="https://github.com/AashishKanted/GNSS-Localization" target="_blank">GNSS →</a>
+                <a class="proj-link" href="https://github.com/Vishesh-Ag-BITSG/BITSAuto-Assignments/tree/main" target="_blank">path planning →</a>
+            </div>
+        </div>
+
+        <div class="project">
+            <div class="project-top">
+                <span class="project-title">Project Kratos — Mars Rover</span>
+                <span class="project-date">2023–25</span>
+            </div>
+            <p class="project-super">Mars Rover Team, BITS Goa</p>
+            <p class="project-body">Deep learning–based hand gesture recognition for rover control (Gated LSTM). Achieved probabilistic mapping with point cloud data and elevation maps using a Zed 2i stereo camera. Won International Rover Challenge'24, featured in Times of India.</p>
+            <div class="project-footer">
+                <span class="tag">robotics</span>
+                <span class="tag">point cloud</span>
+                <span class="tag">gesture recognition</span>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+<footer>
+    <p>© 2025 Shlok Mehendale &nbsp;·&nbsp; BITS Pilani, Goa</p>
+</footer>
+
 </body>
 </html>
