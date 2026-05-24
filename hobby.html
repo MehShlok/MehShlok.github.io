@@ -3,211 +3,131 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shlok Mehendale</title>
+    <title>Hobbies — Shlok Mehendale</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inconsolata:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Georgia', serif;
-            line-height: 1.6;
-            color: #333;
-            background: #fff;
-        }
-        
-        h1, h2, h3, .logo {
-            font-family: 'Times New Roman', Times, serif;
-        }
-        
-        nav {
-            border-bottom: 1px solid #eee;
-            padding: 20px 0;
-            margin-bottom: 60px;
-        }
-        
-        nav .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            font-weight: 600;
-            font-size: 1.1em;
-            color: #1a1a1a;
-            text-decoration: none;
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 30px;
-        }
-        
-        .nav-links a {
-            color: #666;
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-        
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: #1a1a1a;
-        }
-        
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 20px 60px;
-        }
-        
-        .hero {
-            margin-bottom: 60px;
-        }
-        
-        h1 {
-            font-size: 2.8em;
-            font-weight: 600;
-            margin-bottom: 15px;
-            color: #1a1a1a;
-            line-height: 1.2;
-        }
-        
-        .subtitle {
-            font-size: 1.2em;
-            color: #666;
-            margin-bottom: 30px;
-            line-height: 1.6;
-        }
-        
-        .social-links {
-            display: flex;
-            font-family: 'Courier New', Courier, monospace;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin-top: 30px;
-        }
-        
-        .social-links a {
-            color: #333;
-            text-decoration: none;
-            border-bottom: 1px solid #333;
-            transition: opacity 0.2s;
-        }
-        
-        .social-links a:hover {
-            opacity: 0.6;
-        }
-        
-        .intro-text {
-            font-family: 'Georgia', serif;
+        :root {
+            --ink: #1c1c1c;
+            --muted: #6b6b6b;
+            --faint: #e8e4df;
+            --bg: #faf8f5;
+            --accent: #b85c2a;
         }
 
-        .details-text {
-            font-family: 'Courier New', Courier, monospace;
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'EB Garamond', Georgia, serif;
+            background: var(--bg);
+            color: var(--ink);
+            font-size: 18px;
+            line-height: 1.7;
         }
-        
-        section {
-            margin-bottom: 50px;
+
+        a { color: inherit; text-decoration: none; }
+
+        nav {
+            padding: 28px 0 24px;
+            border-bottom: 1px solid var(--faint);
+            margin-bottom: 72px;
         }
-        
-        h2 {
-            font-size: 1.5em;
-            font-weight: 600;
-            margin-bottom: 20px;
-            color: #1a1a1a;
+
+        nav .wrap {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
         }
-        
-        .about-text {
-            font-size: 1.05em;
-            line-height: 1.8;
+
+        .logo { font-size: 1.05em; font-weight: 500; }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            font-family: 'Inconsolata', monospace;
+            font-size: 0.8em;
+            letter-spacing: 0.04em;
+        }
+
+        .nav-links a { color: var(--muted); transition: color 0.15s; }
+        .nav-links a:hover, .nav-links a.active { color: var(--ink); }
+
+        .wrap { max-width: 720px; margin: 0 auto; padding: 0 24px 80px; }
+
+        .page-header { margin-bottom: 48px; }
+
+        .page-title {
+            font-size: 2em;
+            font-weight: 500;
+            line-height: 1.2;
+            margin-bottom: 28px;
+        }
+
+        .prose p {
+            font-size: 1.02em;
             color: #444;
+            line-height: 1.85;
+            margin-bottom: 20px;
+            max-width: 620px;
         }
-        
-        .about-text p {
-            margin-bottom: 15px;
-        }
-        
-        .experience-item {
-            margin-bottom: 25px;
-            padding-bottom: 25px;
-            border-bottom: 1px solid #f0f0f0;
-        }
-        
-        .experience-item:last-child {
-            border-bottom: none;
-        }
-        
-        .experience-item h3 {
-            font-size: 1.1em;
-            font-weight: 600;
-            color: #1a1a1a;
-            margin-bottom: 5px;
-        }
-        
-        .experience-meta {
-            font-size: 0.95em;
-            color: #666;
-            margin-bottom: 8px;
-        }
-        
-        .experience-item p {
-            color: #555;
-        }
-        
+
+        .prose p:last-child { margin-bottom: 0; }
+
         footer {
-            margin-top: 80px;
-            padding-top: 30px;
-            border-top: 1px solid #eee;
+            border-top: 1px solid var(--faint);
+            margin-top: 72px;
+            padding-top: 28px;
             text-align: center;
-            color: #999;
-            font-size: 0.9em;
+            font-family: 'Inconsolata', monospace;
+            font-size: 0.76em;
+            color: var(--muted);
+            letter-spacing: 0.04em;
         }
-        
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 2em;
-            }
-            
-            nav .container {
-                flex-direction: column;
-                gap: 15px;
-            }
-            
-            .nav-links {
-                gap: 20px;
-            }
+
+        @media (max-width: 580px) {
+            nav .wrap { flex-direction: column; gap: 14px; }
         }
     </style>
 </head>
 <body>
-    <nav>
-        <div class="container">
-            <a href="index.html" class="logo">Shlok Mehendale</a>
-            <div class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="projects.html">Projects</a>
-                <a href="experiences.html">Experience</a>
-                <a href="blogs.html">Blogs</a>
-                <a href="hobby.html" class="active">Hobbies</a>
-            </div>
-        </div>
-    </nav>
 
-    <div class="container">
-        <div class="hero">
-            <p class="subtitle">Thanks for taking interest in me. This section will be populated soon..</p>
+<nav>
+    <div class="wrap">
+        <a href="index.html" class="logo">Shlok Mehendale</a>
+        <div class="nav-links">
+            <a href="index.html">home</a>
+            <a href="projects.html">projects</a>
+            <a href="experiences.html">experience</a>
+            <a href="papers.html">papers</a>
+            <a href="hobby.html" class="active">hobbies</a>
         </div>
-        
-        
-        <footer>
-            <p>© 2025 Shlok Mehendale</p>
-        </footer>
     </div>
+</nav>
+
+<div class="wrap">
+    <div class="page-header">
+        <h1 class="page-title">Hobbies</h1>
+
+        <div class="prose">
+            <p>
+                I grew up across nearly ten different schools all over India, which probably explains why I'm comfortable being thrown into unfamiliar situations and in fact love meeting new people, going on hikes/long trips.
+            </p>
+            <p>
+                Sports have always been a big part of my life. In an earlier life, I played badminton at the state level. I've also played chess at the district level and still play casually! Horse riding is something I picked up along the way and has stuck around. Other than that I swim, play football and just long walks in the nature are appealing as well!
+            </p>
+            <p>
+                When I'm not doing any of that, I'm usually reading (I started when I was 4.. with chacha chaudhary, enid blyton, tinkle! transitioning to..) non-fiction, philosophy of mind (Some amazing books such as Being You, give an insight into the workings behind abstract topics as consciouness), that kind of thing. I listen to a lot of music, play guitar occasionally, and I'm almost always in the middle of a sudoku. There's something about a problem with a deterministic answer that I find very calming (Hence Mathematics!).
+            </p>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>© 2025 Shlok Mehendale</p>
+</footer>
+
 </body>
 </html>
