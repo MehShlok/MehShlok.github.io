@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Papers — Shlok Mehendale</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inconsolata:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #1c1c1c;
+            --muted: #6b6b6b;
+            --faint: #e8e4df;
+            --bg: #faf8f5;
+            --accent: #b85c2a;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'EB Garamond', Georgia, serif;
+            background: var(--bg);
+            color: var(--ink);
+            font-size: 18px;
+            line-height: 1.7;
+        }
+
+        a { color: inherit; text-decoration: none; }
+
+        nav {
+            padding: 28px 0 24px;
+            border-bottom: 1px solid var(--faint);
+            margin-bottom: 72px;
+        }
+
+        nav .wrap {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+
+        .logo { font-size: 1.05em; font-weight: 500; }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            font-family: 'Inconsolata', monospace;
+            font-size: 0.8em;
+            letter-spacing: 0.04em;
+        }
+
+        .nav-links a { color: var(--muted); transition: color 0.15s; }
+        .nav-links a:hover, .nav-links a.active { color: var(--ink); }
+
+        .wrap { max-width: 720px; margin: 0 auto; padding: 0 24px 80px; }
+
+        /* PAGE HEADER */
+        .page-header { margin-bottom: 52px; }
+
+        .page-title {
+            font-size: 2em;
+            font-weight: 500;
+            line-height: 1.2;
+            margin-bottom: 14px;
+        }
+
+        .page-intro {
+            font-size: 0.97em;
+            color: #555;
+            max-width: 560px;
+            line-height: 1.75;
+        }
+
+        /* FILTER ROW */
+        .filter-row {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .filter-btn {
+            font-family: 'Inconsolata', monospace;
+            font-size: 0.72em;
+            letter-spacing: 0.07em;
+            text-transform: uppercase;
+            border: 1px solid var(--faint);
+            border-radius: 2px;
+            padding: 4px 12px;
+            cursor: pointer;
+            background: transparent;
+            color: var(--muted);
+            transition: all 0.15s;
+        }
+
+        .filter-btn:hover { border-color: var(--ink); color: var(--ink); }
+        .filter-btn.active { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+
+        /* SECTION LABEL */
+        .section-label {
+            font-family: 'Inconsolata', monospace;
+            font-size: 0.72em;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 20px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--faint);
+        }
+
+        /* PAPER CARD */
+        .paper {
+            margin-bottom: 0;
+            padding: 22px 0;
+            border-bottom: 1px solid var(--faint);
+        }
+
+        .paper:first-of-type { padding-top: 0; }
+
+        .paper-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 16px;
+            margin-bottom: 4px;
+        }
+
+        .paper-title {
+            font-size: 1.02em;
+            font-weight: 500;
+        }
+
+        .paper-date {
+            font-family: 'Inconsolata', monospace;
+            font-size: 0.74em;
+            color: var(--muted);
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .paper-source {
+            font-size: 0.87em;
+            color: var(--muted);
+            font-style: italic;
+            margin-bottom: 8px;
+        }
+
+        .paper-body {
+            font-size: 0.93em;
+            color: #505050;
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+
+        .paper-footer {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            display: inline-block;
+            font-family: 'Inconsolata', monospace;
+            font-size: 0.68em;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--accent);
+            border: 1px solid #e0c4b4;
+            border-radius: 2px;
+            padding: 1px 6px;
+        }
+
+        .paper-link {
+            font-family: 'Inconsolata', monospace;
+            font-size: 0.76em;
+            color: var(--muted);
+            border-bottom: 1px solid var(--faint);
+            transition: color 0.15s, border-color 0.15s;
+        }
+
+        .paper-link:hover { color: var(--ink); border-color: var(--ink); }
+
+        /* TYPE PILL */
+        .type-pill {
+            font-family: 'Inconsolata', monospace;
+            font-size: 0.68em;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            padding: 1px 7px;
+            border-radius: 2px;
+            background: #ede9e3;
+            color: var(--muted);
+        }
+
+        .type-pill.impl { background: #dff0e4; color: #3a7a4e; }
+        .type-pill.analysis { background: #e4ecf8; color: #3457a0; }
+
+        /* COMING SOON */
+        .coming-soon {
+            font-family: 'Inconsolata', monospace;
+            font-size: 0.82em;
+            color: var(--muted);
+            padding: 32px 0 12px;
+            font-style: italic;
+        }
+
+        footer {
+            border-top: 1px solid var(--faint);
+            margin-top: 72px;
+            padding-top: 28px;
+            text-align: center;
+            font-family: 'Inconsolata', monospace;
+            font-size: 0.76em;
+            color: var(--muted);
+            letter-spacing: 0.04em;
+        }
+
+        @media (max-width: 580px) {
+            nav .wrap { flex-direction: column; gap: 14px; }
+            .paper-top { flex-direction: column; gap: 2px; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="wrap">
+        <a href="index.html" class="logo">Shlok Mehendale</a>
+        <div class="nav-links">
+            <a href="index.html">home</a>
+            <a href="projects.html">projects</a>
+            <a href="experiences.html">experience</a>
+            <a href="papers.html" class="active">papers</a>
+            <a href="hobby.html">hobbies</a>
+        </div>
+    </div>
+</nav>
+
+<div class="wrap">
+
+    <div class="page-header">
+        <h1 class="page-title">Papers &amp; Notes</h1>
+        <p class="page-intro">
+            I'm not a blogger, but I do read a lot of papers. This is where I put down what I actually understood, what confused me, and sometimes a working implementation. Mostly for my own clarity .. I would love to know if it helps you in any way!!
+        </p>
+    </div>
+
+    <!-- Optional filter buttons — remove if you don't want them -->
+    <div class="filter-row">
+        <button class="filter-btn active">all</button>
+        <button class="filter-btn">mechanistic interp</button>
+        <button class="filter-btn">learning theory</button>
+        <button class="filter-btn">generalization</button>
+        <button class="filter-btn">geometry</button>
+    </div>
+
+    <!-- ═══ ENTRIES ═══ -->
+    <!-- Duplicate a .paper block for each new entry. Most recent first. -->
+
+    <div class="paper">
+        <div class="paper-top">
+            <span class="paper-title">Grokking: Generalisation Beyond Overfitting on Small Algorithmic Datasets</span>
+            <span class="paper-date">May 2025</span>
+        </div>
+        <p class="paper-source">Power et al., 2022 &nbsp;·&nbsp; OpenAI</p>
+        <p class="paper-body">
+            Reproduction of the grokking phenomenon on modular arithmetic. I traced which circuits become active before and after the generalisation phase transition, and found that weight norm regularisation alone substantially accelerates grokking — which has direct implications for my own work on subspace crystallisation.
+        </p>
+        <div class="paper-footer">
+            <span class="tag">mechanistic interp</span>
+            <span class="tag">generalization</span>
+            <span class="type-pill impl">implementation</span>
+            <span class="type-pill analysis">analysis</span>
+            <!-- swap # for the actual link when you have one -->
+            <a class="paper-link" href="#">notes →</a>
+            <a class="paper-link" href="#">code →</a>
+            <a class="paper-link" href="https://arxiv.org/abs/2201.02177" target="_blank">paper →</a>
+        </div>
+    </div>
+
+    <div class="paper">
+        <div class="paper-top">
+            <span class="paper-title">Progress measures for grokking via mechanistic interpretability</span>
+            <span class="paper-date">— upcoming —</span>
+        </div>
+        <p class="paper-source">Nanda et al., 2023 &nbsp;·&nbsp; DeepMind</p>
+        <p class="paper-body">
+            Nanda et al. identify "progress measures" — internal quantities that grow monotonically during training and predict generalisation. I want to verify these on my own grokking experiments and check whether the same measures hold for non-modular tasks.
+        </p>
+        <div class="paper-footer">
+            <span class="tag">mechanistic interp</span>
+            <span class="type-pill">planned</span>
+            <a class="paper-link" href="https://arxiv.org/abs/2301.05217" target="_blank">paper →</a>
+        </div>
+    </div>
+
+    <p class="coming-soon">More coming — I read faster than I write :)</p>
+
+</div>
+
+<footer>
+    <p>© 2025 Shlok Mehendale &nbsp;·&nbsp; BITS Pilani, Goa</p>
+</footer>
+
+<script>
+    // Simple tag filter
+    const btns = document.querySelectorAll('.filter-btn');
+    btns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            btns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            // Full filtering logic can be added when you have real tags on papers
+        });
+    });
+</script>
+
+</body>
+</html>
