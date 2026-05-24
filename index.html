@@ -467,12 +467,38 @@
         footer span:first-child::before { content: '$ '; color: var(--accent); opacity: 0.6; }
 
         /* EOF trigger */
+
+        .footer-easter {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .footer-dots {
+            font-family: var(--mono);
+            color: var(--faint-text);
+            opacity: 0.35;
+            transition: opacity 0.2s ease;
+            letter-spacing: 0.08em;
+        }
+        
         #footer-eof {
             cursor: pointer;
-            transition: color 0.2s;
+            opacity: 0.6;
+            transition:
+                color 0.2s ease,
+                opacity 0.2s ease;
             user-select: none;
         }
-        #footer-eof:hover { color: var(--accent); }
+        
+        .footer-easter:hover .footer-dots {
+            opacity: 0.7;
+        }
+        
+        #footer-eof:hover {
+            color: var(--accent);
+            opacity: 1;
+        }
 
         /* ── EUREKA overlay ── */
         #eureka {
@@ -673,14 +699,8 @@
 
 <footer>
     <span>shlok_mehendale// 2026</span>
-    <div style="display:flex; align-items:center; gap:12px;">
-        <div style="display:flex; align-items:center; gap:0; opacity:0.45;">
-            <span style="font-family:'Caveat',cursive; font-size:1.4em; color:var(--accent); line-height:1; letter-spacing:0.01em;">click here</span>
-            <svg width="32" height="24" viewBox="0 0 32 24" fill="none" style="margin-bottom:-4px;">
-                <path d="M2 6 C8 4, 18 10, 24 18" stroke="var(--accent)" stroke-width="1.2" stroke-linecap="round" fill="none"/>
-                <path d="M24 18 L19 16 M24 18 L23 13" stroke="var(--accent)" stroke-width="1.2" stroke-linecap="round" fill="none"/>
-            </svg>
-        </div>
+    <div class="footer-easter">
+        <span class="footer-dots">···</span>
         <span id="footer-eof" title="∎">EOF</span>
     </div>
 </footer>
