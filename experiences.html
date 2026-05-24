@@ -3,211 +3,434 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shlok Mehendale</title>
+    <title>Experience — Shlok Mehendale</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inconsolata:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Georgia', serif;
-            line-height: 1.6;
-            color: #333;
-            background: #fff;
-        }
-        
-        h1, h2, h3, .logo {
-            font-family: 'Times New Roman', Times, serif;
-        }
-        
-        nav {
-            border-bottom: 1px solid #eee;
-            padding: 20px 0;
-            margin-bottom: 60px;
-        }
-        
-        nav .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            font-weight: 600;
-            font-size: 1.1em;
-            color: #1a1a1a;
-            text-decoration: none;
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 30px;
-        }
-        
-        .nav-links a {
-            color: #666;
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-        
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: #1a1a1a;
-        }
-        
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 20px 60px;
-        }
-        
-        .hero {
-            margin-bottom: 60px;
-        }
-        
-        h1 {
-            font-size: 2.8em;
-            font-weight: 600;
-            margin-bottom: 15px;
-            color: #1a1a1a;
-            line-height: 1.2;
-        }
-        
-        .subtitle {
-            font-size: 1.2em;
-            color: #666;
-            margin-bottom: 30px;
-            line-height: 1.6;
-        }
-        
-        .social-links {
-            display: flex;
-            font-family: 'Courier New', Courier, monospace;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin-top: 30px;
-        }
-        
-        .social-links a {
-            color: #333;
-            text-decoration: none;
-            border-bottom: 1px solid #333;
-            transition: opacity 0.2s;
-        }
-        
-        .social-links a:hover {
-            opacity: 0.6;
-        }
-        
-        .intro-text {
-            font-family: 'Georgia', serif;
+        :root {
+            --ink: #1c1c1c;
+            --muted: #6b6b6b;
+            --faint: #e8e4df;
+            --bg: #faf8f5;
+            --accent: #b85c2a;
         }
 
-        .details-text {
-            font-family: 'Courier New', Courier, monospace;
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'EB Garamond', Georgia, serif;
+            background: var(--bg);
+            color: var(--ink);
+            font-size: 18px;
+            line-height: 1.7;
         }
-        
-        section {
-            margin-bottom: 50px;
+
+        a { color: inherit; text-decoration: none; }
+
+        nav {
+            padding: 28px 0 24px;
+            border-bottom: 1px solid var(--faint);
+            margin-bottom: 72px;
         }
-        
-        h2 {
-            font-size: 1.5em;
-            font-weight: 600;
+
+        nav .wrap {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+
+        .logo { font-size: 1.05em; font-weight: 500; }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            font-family: 'Inconsolata', monospace;
+            font-size: 0.8em;
+            letter-spacing: 0.04em;
+        }
+
+        .nav-links a { color: var(--muted); transition: color 0.15s; }
+        .nav-links a:hover, .nav-links a.active { color: var(--ink); }
+
+        .wrap { max-width: 720px; margin: 0 auto; padding: 0 24px 80px; }
+
+        .page-header { margin-bottom: 52px; }
+
+        .page-title {
+            font-size: 2em;
+            font-weight: 500;
+            line-height: 1.2;
+            margin-bottom: 14px;
+        }
+
+        section { margin-bottom: 52px; }
+
+        .section-label {
+            font-family: 'Inconsolata', monospace;
+            font-size: 0.72em;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--muted);
             margin-bottom: 20px;
-            color: #1a1a1a;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--faint);
         }
-        
-        .about-text {
-            font-size: 1.05em;
-            line-height: 1.8;
-            color: #444;
+
+        .entry {
+            padding: 22px 0;
+            border-bottom: 1px solid var(--faint);
         }
-        
-        .about-text p {
-            margin-bottom: 15px;
+
+        .entry:first-of-type { padding-top: 0; }
+        .entry:last-of-type { border-bottom: none; }
+
+        .entry-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 16px;
+            margin-bottom: 3px;
         }
-        
-        .experience-item {
-            margin-bottom: 25px;
-            padding-bottom: 25px;
-            border-bottom: 1px solid #f0f0f0;
+
+        .entry-title {
+            font-size: 1.02em;
+            font-weight: 500;
         }
-        
-        .experience-item:last-child {
-            border-bottom: none;
+
+        .entry-date {
+            font-family: 'Inconsolata', monospace;
+            font-size: 0.74em;
+            color: var(--muted);
+            white-space: nowrap;
+            flex-shrink: 0;
         }
-        
-        .experience-item h3 {
-            font-size: 1.1em;
-            font-weight: 600;
-            color: #1a1a1a;
-            margin-bottom: 5px;
-        }
-        
-        .experience-meta {
-            font-size: 0.95em;
-            color: #666;
+
+        .entry-sub {
+            font-size: 0.87em;
+            color: var(--muted);
+            font-style: italic;
             margin-bottom: 8px;
         }
-        
-        .experience-item p {
-            color: #555;
+
+        .entry-body {
+            font-size: 0.93em;
+            color: #505050;
+            line-height: 1.7;
         }
-        
+
+        .entry-body p { margin-bottom: 5px; }
+        .entry-body p:last-child { margin-bottom: 0; }
+
         footer {
-            margin-top: 80px;
-            padding-top: 30px;
-            border-top: 1px solid #eee;
+            border-top: 1px solid var(--faint);
+            margin-top: 72px;
+            padding-top: 28px;
             text-align: center;
-            color: #999;
-            font-size: 0.9em;
+            font-family: 'Inconsolata', monospace;
+            font-size: 0.76em;
+            color: var(--muted);
+            letter-spacing: 0.04em;
         }
-        
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 2em;
-            }
-            
-            nav .container {
-                flex-direction: column;
-                gap: 15px;
-            }
-            
-            .nav-links {
-                gap: 20px;
-            }
+
+        @media (max-width: 580px) {
+            nav .wrap { flex-direction: column; gap: 14px; }
+            .entry-top { flex-direction: column; gap: 2px; }
         }
     </style>
 </head>
 <body>
-    <nav>
-        <div class="container">
-            <a href="index.html" class="logo">Shlok Mehendale</a>
-            <div class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="projects.html">Projects</a>
-                <a href="experiences.html" class="active">Experience</a>
-                <a href="blogs.html">Blogs</a>
-                <a href="hobby.html">Hobbies</a>
+
+<nav>
+    <div class="wrap">
+        <a href="index.html" class="logo">Shlok Mehendale</a>
+        <div class="nav-links">
+            <a href="index.html">home</a>
+            <a href="projects.html">projects</a>
+            <a href="experiences.html" class="active">experience</a>
+            <a href="papers.html">papers</a>
+            <a href="hobby.html">hobbies</a>
+        </div>
+    </div>
+</nav>
+
+<div class="wrap">
+
+    <div class="page-header">
+        <h1 class="page-title">Experience</h1>
+    </div>
+
+    <!-- INDUSTRY -->
+    <section>
+        <p class="section-label">industry</p>
+
+        <div class="entry">
+            <div class="entry-top">
+                <span class="entry-title">Co-Founder (Technical) — Henneth</span>
+                <span class="entry-date">Nov 2024–Feb 2025</span>
+            </div>
+            <p class="entry-sub">Stanford, USA</p>
+            <div class="entry-body">
+                <p>Co-founded an AI startup developing autonomous testing agents to replace the beta testing phase in the software development cycle.</p>
             </div>
         </div>
-    </nav>
 
-    <div class="container">
-        <div class="hero">
-            <p class="subtitle">Thanks for taking interest in me. This section will be populated soon..</p>
+        <div class="entry">
+            <div class="entry-top">
+                <span class="entry-title">Computer Vision Intern — BITSAuto</span>
+                <span class="entry-date">2023–24</span>
+            </div>
+            <p class="entry-sub">Robotics Lab, BITS &amp; Moon Labs, IISER Bhopal Partnership</p>
+            <div class="entry-body">
+                <p>Led a student team to develop production-ready computer vision and navigation systems for autonomous driving: image segmentation, point cloud mapping, GNSS localisation, and path planning.</p>
+            </div>
         </div>
-        
-        
-        <footer>
-            <p>© 2025 Shlok Mehendale</p>
-        </footer>
-    </div>
+
+        <div class="entry">
+            <div class="entry-top">
+                <span class="entry-title">Technical Consultant — STEM4ALL</span>
+                <span class="entry-date">May–Jul 2024</span>
+            </div>
+            <p class="entry-sub">California, USA</p>
+            <div class="entry-body">
+                <p>Created and delivered a comprehensive course curriculum on neural networks and deep learning for industry professionals.</p>
+            </div>
+        </div>
+    </section>
+
+    
+    <!-- RESEARCH -->
+    <section>
+        <p class="section-label">research</p>
+
+        <div class="entry">
+            <div class="entry-top">
+                <span class="entry-title">Visiting Research Scholar — CCVL, Johns Hopkins University</span>
+                <span class="entry-date">Feb 2026–</span>
+            </div>
+            <p class="entry-sub">Supervised by Prof. Alan L. Yuille (Bloomberg Distinguished Professor of Cognitive Science and CS)</p>
+            <div class="entry-body">
+                <p>Working on Continual Learning through the lens of Mechanistic Interpretability for my undergraduate research thesis.</p>
+            </div>
+        </div>
+
+        <div class="entry">
+            <div class="entry-top">
+                <span class="entry-title">Undergraduate Researcher — APPCAIR, BITS Pilani</span>
+                <span class="entry-date">May 2024–</span>
+            </div>
+            <p class="entry-sub">Supervised by Dr. Snehanshu Saha (Head, APPCAIR)</p>
+            <div class="entry-body">
+                <p>Developing anomaly detection and imbalanced learning frameworks with applications in predictive risk modeling. Engineered a statistical loss function grounded in measure theory for stochastic loss forecasting.</p>
+                <p>Also working on ADAPT (Adaptive Driver Anomaly Perception Technology), a Mercedes-Benz funded project — imitation learning framework with a hierarchical weighted bottleneck fusion mechanism for multi-modal driver data.</p>
+            </div>
+        </div>
+
+        <div class="entry">
+            <div class="entry-top">
+                <span class="entry-title">Research Intern — Lossfunk</span>
+                <span class="entry-date">Dec 2025–</span>
+            </div>
+            <p class="entry-sub">Supervised by Paras Chopra &middot; Bangalore-based AI startup</p>
+            <div class="entry-body">
+                <p>Mechanistic interpretability and representation learning in deep neural networks. Investigating whether representation geometry causally mediates generalisation in modular arithmetic networks.</p>
+            </div>
+        </div>
+
+        <div class="entry">
+            <div class="entry-top">
+                <span class="entry-title">Network Security Research — LTU Sweden</span>
+                <span class="entry-date">Jul–Nov 2024</span>
+            </div>
+            <p class="entry-sub">Supervised by Dr. Christer Ahlund, Dr. Karan Mitra, Dr. Saguna (LTU), Dr. Neena Goveas (BITS Goa)</p>
+            <div class="entry-body">
+                <p>BrickSchema-modeled IoT sensor data for fault detection and classification using ML techniques. Integrated semantic modeling and real-time data streams for fault monitoring. Industry-funded, deployed in Sweden (Ace-cybersafe).</p>
+            </div>
+        </div>
+
+        <div class="entry">
+            <div class="entry-top">
+                <span class="entry-title">Epidemiological Modeling — BITS Pilani &amp; Yale University</span>
+                <span class="entry-date">2023</span>
+            </div>
+            <p class="entry-sub">Presented to Dr. Abhishek Pandey, Associate Director (CIDMA), Yale University</p>
+            <div class="entry-body">
+                <p>Modified Epi-DNNs for Indian Covid-19 data and proposed a novel SEIRD model. Selected for a Yale summer course on Epidemiological Modeling.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- TEACHING -->
+    <section>
+        <p class="section-label">teaching</p>
+
+        <div class="entry">
+            <div class="entry-top">
+                <span class="entry-title">Teaching Assistant — Mathematics &amp; CS, BITS Pilani</span>
+                <span class="entry-date">2023–</span>
+            </div>
+            <div class="entry-body">
+                <p>Mathematics II (Linear Algebra, Complex Numbers) — Sem 2, '23–24 &amp; '24–25</p>
+                <p>Probability and Statistics — Sem 1, '24–25</p>
+            </div>
+        </div>
+
+        <div class="entry">
+            <div class="entry-top">
+                <span class="entry-title">Teaching Assistant — WILP (Coursera), BITS Pilani</span>
+                <span class="entry-date">2024–</span>
+            </div>
+            <div class="entry-body">
+                <p>Command Line Scripting — Sem 2, '24–25</p>
+                <p>Object-oriented Programming — Sem 1, '25–26</p>
+                <p>Data Visualization — Sem 2, '25–26</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SELECTED HONOURS -->
+    <section>
+        <p class="section-label">selected honours</p>
+
+        <div class="entry">
+            <div class="entry-top">
+                <span class="entry-title">UofT ProjectX Research Competition — Winner</span>
+                <span class="entry-date">2025</span>
+            </div>
+            <div class="entry-body">
+                <p>Led a team of 4 CS undergraduates at an international level. Competing teams included ETH Zurich, Cornell, CMU, and University of Edinburgh. Featured in NavHind Times.</p>
+            </div>
+        </div>
+
+        <div class="entry">
+            <div class="entry-top">
+                <span class="entry-title">AWES National Scholarship</span>
+                <span class="entry-date">2024</span>
+            </div>
+            <div class="entry-body">
+                <p>Recipient; top 5 in Mathematics at BITS Pilani (Goa).</p>
+            </div>
+        </div>
+
+        <div class="entry">
+            <div class="entry-top">
+                <span class="entry-title">Amazon ML Challenge'25 — Top 1%</span>
+                <span class="entry-date">2025</span>
+            </div>
+            <div class="entry-body">
+                <p>Developed a Gated Multimodal Fusion Network integrating BGE-Large text embeddings with structured and image features via gated attention.</p>
+            </div>
+        </div>
+
+        <div class="entry">
+            <div class="entry-top">
+                <span class="entry-title">Selected for research presentation to Olaf Scholz</span>
+                <span class="entry-date">2024</span>
+            </div>
+            <div class="entry-body">
+                <p>Former German Chancellor.</p>
+            </div>
+        </div>
+
+        <div class="entry">
+            <div class="entry-top">
+                <span class="entry-title">IKDD Uplink Intern</span>
+                <span class="entry-date">2024</span>
+            </div>
+            <div class="entry-body">
+                <p>Selected under Dr. Vineeth Balasubramanian (Microsoft Research, IIT Hyderabad).</p>
+            </div>
+        </div>
+
+        <div class="entry">
+            <div class="entry-top">
+                <span class="entry-title">NXP AIM Hackathon — National &amp; Regional Winner</span>
+                <span class="entry-date">2024</span>
+            </div>
+            <p class="entry-sub">NXP Semiconductors &middot; Time of Sports</p>
+            <div class="entry-body">
+                <p>Developed quantised models for sign recognition, traffic light detection, and obstacle avoidance using YOLO v8. Offered an internship at NXP Semiconductors.</p>
+            </div>
+        </div>
+
+        <div class="entry">
+            <div class="entry-top">
+                <span class="entry-title">International Rover Challenge'24 — 3rd, Autonomous Mission</span>
+                <span class="entry-date">2024</span>
+            </div>
+            <div class="entry-body">
+                <p>3rd in Autonomous Mission and 6th Overall as part of Project Kratos, The Mars Rover Team. Featured in Times of India.</p>
+            </div>
+        </div>
+
+        <div class="entry">
+            <div class="entry-top">
+                <span class="entry-title">Selected summer schools &amp; workshops</span>
+                <span class="entry-date">2024–25</span>
+            </div>
+            <div class="entry-body">
+                <p>Brain, Computation and Learning Workshop'25 — IISc Bangalore (one of very few undergraduates, alongside Masters and PhD candidates; speakers included Dr. Rajesh Rao, Dr. Maneesh Sahani) &middot; CVIT Summer School '24 &amp; '25 &middot; 3D-Vision Summer School'25 (IIIT Hyderabad; speakers included the author of the Gaussian Splatting paper)</p>
+            </div>
+        </div>
+
+        <div class="entry">
+            <div class="entry-top">
+                <span class="entry-title">IndoML '24 — Student Volunteer</span>
+                <span class="entry-date">2024</span>
+            </div>
+            <div class="entry-body">
+                <p>Volunteered and shared work on anomaly detection with pioneers in the field of data science and ML.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- TEACHING (extended) -->
+    <section>
+        <p class="section-label">mentoring</p>
+
+        <div class="entry">
+            <div class="entry-top">
+                <span class="entry-title">Technical Course Mentor — Autonomous Robotics</span>
+                <span class="entry-date">2024</span>
+            </div>
+            <p class="entry-sub">Sponsored by GeeksForGeeks &middot; BITS Pilani</p>
+            <div class="entry-body">
+                <p>Mentored a batch of 100 students on Autonomous Robotics as a summer term project.</p>
+            </div>
+        </div>
+
+        <div class="entry">
+            <div class="entry-top">
+                <span class="entry-title">Academic Mentor — Probability &amp; Statistics</span>
+                <span class="entry-date">2024</span>
+            </div>
+            <p class="entry-sub">Academic Assistance Program, BITS Pilani</p>
+            <div class="entry-body">
+                <p>Mentored students through the Academic Assistance Program for the Probability and Statistics course.</p>
+            </div>
+        </div>
+
+        <div class="entry">
+            <div class="entry-top">
+                <span class="entry-title">Founder — PathFinders</span>
+                <span class="entry-date">Jan–Oct 2023</span>
+            </div>
+            <p class="entry-sub">Executive Head</p>
+            <div class="entry-body">
+                <p>Founded a not-for-profit organisation for mentoring and guidance of engineering aspirants. Led a team of 6 undergraduates who mentored 28 students into top institutes in India.</p>
+            </div>
+        </div>
+
+    </section>
+
+
+</div>
+
+<footer>
+    <p>© 2025 Shlok Mehendale &nbsp;·&nbsp; BITS Pilani, Goa</p>
+</footer>
+
 </body>
 </html>
