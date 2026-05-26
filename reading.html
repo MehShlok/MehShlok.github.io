@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- Before </head> -->
-<script>
-  if (localStorage.getItem('theme') === 'inverted')
-    document.documentElement.classList.add('preload-inverted');
-</script>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -562,18 +558,6 @@
             document.body.classList.toggle('inverted');
             this.classList.toggle('on');
         });
-        // In the page's script — theme init
-        (function() {
-            const saved = localStorage.getItem('theme');
-            const btn = document.getElementById('btn-invert');
-            if (saved === 'inverted') document.body.classList.add('inverted'), btn.classList.add('on');
-            document.documentElement.classList.remove('preload-inverted');
-            btn.addEventListener('click', function() {
-                const isInverted = document.body.classList.toggle('inverted');
-                this.classList.toggle('on', isInverted);
-                localStorage.setItem('theme', isInverted ? 'inverted' : 'light');
-            });
-        })();
 
         const btns = document.querySelectorAll('.filter-btn');
 
