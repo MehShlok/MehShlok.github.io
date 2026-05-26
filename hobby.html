@@ -8,16 +8,6 @@
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inconsolata:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --ink:       #dedad2;
-            --muted:     #8a8886;
-            --faint:     #3a3835;
-            --faint-text:#6a6866;
-            --bg:        #0e0d0b;
-            --accent:    #cc6e3a;
-            --rule:      #1f1e1b;
-            --mono:      'Inconsolata', monospace;
-        }
-        body.inverted {
             --ink:       #141412;
             --muted:     #6a6866;
             --faint:     #d6d2cb;
@@ -25,6 +15,16 @@
             --bg:        #f7f5f1;
             --accent:    #b05428;
             --rule:      #e0dcd5;
+            --mono:      'Inconsolata', monospace;
+        }
+        body.inverted {
+            --ink:       #dedad2;
+            --muted:     #8a8886;
+            --faint:     #3a3835;
+            --faint-text:#6a6866;
+            --bg:        #0e0d0b;
+            --accent:    #cc6e3a;
+            --rule:      #1f1e1b;
         }
 
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -139,16 +139,6 @@
             padding-bottom: 12px;
             border-bottom: 1px solid var(--rule);
         }
-        .sec-idx {
-            font-family: var(--mono);
-            font-size: 0.52em;
-            font-weight: 600;
-            letter-spacing: 0.12em;
-            color: var(--accent);
-            position: relative;
-            top: -3px;
-            opacity: 0.7;
-        }
         .sec-title {
             font-family: var(--mono);
             font-size: 0.64em;
@@ -167,9 +157,7 @@
             max-width: 560px;
         }
         .prose p:last-child { margin-bottom: 0; }
-
         .prose em { color: var(--ink); font-style: italic; }
-
         .prose a {
             color: var(--ink);
             position: relative;
@@ -184,7 +172,6 @@
         }
         .prose a:hover::after { background: var(--accent); }
 
-        /* inline accent tags */
         .tag {
             font-family: var(--mono);
             font-size: 0.72em;
@@ -211,11 +198,25 @@
         }
         footer span:first-child::before { content: '$ '; color: var(--accent); opacity: 0.6; }
 
+        .footer-easter { display: flex; align-items: center; gap: 8px; }
+        .footer-dots { font-family: var(--mono); color: var(--faint-text); opacity: 0.35; transition: opacity 0.2s ease; letter-spacing: 0.08em; }
+        #footer-eof { cursor: default; opacity: 0.6; }
+        .footer-easter:hover .footer-dots { opacity: 0.7; }
+
         @media (max-width: 620px) {
             .nav-wrap { flex-direction: column; gap: 18px; }
             footer { flex-direction: column; gap: 6px; }
         }
     </style>
+
+    <!-- Prevent theme flash -->
+    <script>
+        (function () {
+            if (localStorage.getItem('theme') === 'inverted') {
+                document.documentElement.classList.add('preload-inverted');
+            }
+        })();
+    </script>
 </head>
 <body>
 
@@ -243,7 +244,7 @@
 
     <div class="prose">
         <p>
-            I grew up across nearly ten different schools all over India (originally from a small town in Maharashtra, <a href="https://en.wikipedia.org/wiki/Ambarnath"> Ambarnath </a>), which probably explains why I'm comfortable being thrown into unfamiliar situations, and why I love meeting new people, going on hikes, and long trips with no fixed itinerary.
+            I grew up across nearly ten different schools all over India (originally from a small town in Maharashtra, <a href="https://en.wikipedia.org/wiki/Ambarnath">Ambarnath</a>), which probably explains why I'm comfortable being thrown into unfamiliar situations, and why I love meeting new people, going on hikes, and long trips with no fixed itinerary.
         </p>
         <p>
             Sports have always been a big part of my life. In an earlier life I played <em>badminton professionally</em>. I've also played <em>chess at the district level</em> and still play casually. Equestrianism is something I picked up along the way and am still very fond of. Other than that: swimming, football, and long walks somewhere green seem appealing.
@@ -259,14 +260,29 @@
 
 <footer>
     <span>shlok_mehendale// 2026</span>
-    <span>EOF</span>
+    <div class="footer-easter">
+        <span class="footer-dots">···</span>
+        <span id="footer-eof">EOF</span>
+    </div>
 </footer>
 
 <script>
-document.getElementById('btn-invert').addEventListener('click', function() {
-    document.body.classList.toggle('inverted');
-    this.classList.toggle('on');
-});
+    /* ── THEME PERSISTENCE ── */
+    (function () {
+        const saved = localStorage.getItem('theme');
+        const btn = document.getElementById('btn-invert');
+        if (saved === 'inverted') {
+            document.body.classList.add('inverted');
+            btn.classList.add('on');
+        }
+        document.documentElement.classList.remove('preload-inverted');
+
+        btn.addEventListener('click', function () {
+            const isInverted = document.body.classList.toggle('inverted');
+            this.classList.toggle('on', isInverted);
+            localStorage.setItem('theme', isInverted ? 'inverted' : 'light');
+        });
+    })();
 </script>
 </body>
 </html>
