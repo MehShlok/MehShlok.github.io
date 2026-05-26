@@ -10,19 +10,8 @@
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inconsolata:wght@300;400;500;600&family=Caveat:wght@400&display=swap" rel="stylesheet">
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
     <style>
-        /* ── DEFAULT: DARK ── */
+        /* ── DEFAULT: LIGHT ── */
         :root {
-            --ink:    #dedad2;
-            --muted:  #8a8886;
-            --faint:  #3a3835;
-            --faint-text: #6a6866;
-            --bg:     #0e0d0b;
-            --accent: #cc6e3a;
-            --rule:   #1f1e1b;
-            --mono:   'Inconsolata', monospace;
-        }
-        /* ── INVERTED: LIGHT ── */
-        body.inverted {
             --ink:    #141412;
             --muted:  #6a6866;
             --faint:  #d6d2cb;
@@ -30,6 +19,17 @@
             --bg:     #f7f5f1;
             --accent: #b05428;
             --rule:   #e0dcd5;
+            --mono:   'Inconsolata', monospace;
+        }
+        /* ── INVERTED: DARK ── */
+        body.inverted {
+            --ink:    #dedad2;
+            --muted:  #8a8886;
+            --faint:  #3a3835;
+            --faint-text: #6a6866;
+            --bg:     #0e0d0b;
+            --accent: #cc6e3a;
+            --rule:   #1f1e1b;
         }
 
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -88,7 +88,6 @@
             font-size: 0.68em;
             letter-spacing: 0.05em;
         }
-        /* each link gets its own brackets */
         .nav-links a {
             color: var(--muted);
             position: relative;
@@ -266,15 +265,6 @@
             text-transform: uppercase;
             color: var(--muted);
         }
-        .sec-meta {
-            margin-left: auto;
-            font-family: var(--mono);
-            font-size: 0.54em;
-            color: var(--faint-text);
-            letter-spacing: 0.06em;
-            display: none;
-        }
-        body.inspect-mode .sec-meta { display: block; }
 
         /* ── ENTRY ── */
         .entry {
@@ -286,17 +276,6 @@
             align-items: start;
         }
         .entry:last-of-type { border-bottom: none; }
-
-        .entry-coord {
-            display: none;
-            font-family: var(--mono);
-            font-size: 0.5em;
-            color: var(--accent);
-            grid-column: 1 / -1;
-            margin-bottom: 4px;
-            letter-spacing: 0.07em;
-        }
-        body.inspect-mode .entry-coord { display: block; }
 
         .entry-title { font-size: 0.97em; font-weight: 500; line-height: 1.4; }
         .entry-sub   { font-size: 0.82em; color: var(--muted); font-style: italic; margin-top: 3px; }
@@ -466,8 +445,6 @@
         }
         footer span:first-child::before { content: '$ '; color: var(--accent); opacity: 0.6; }
 
-        /* EOF trigger */
-
         .footer-easter {
             display: flex;
             align-items: center;
@@ -549,6 +526,18 @@
             footer { flex-direction: column; gap: 6px; }
         }
     </style>
+    <!-- Apply saved theme before paint to avoid flash -->
+    <script>
+        (function() {
+            if (localStorage.getItem('theme') === 'inverted') {
+                document.documentElement.classList.add('preload-inverted');
+            }
+        })();
+    </script>
+    <style>
+        /* Applied via documentElement before body exists, transferred to body on load */
+        html.preload-inverted body { /* handled by JS below */ }
+    </style>
 </head>
 <body>
 
@@ -571,7 +560,6 @@
             </div>
             <div class="nav-controls">
                 <button class="ctrl-btn" id="btn-invert">invert</button>
-                <button class="ctrl-btn" id="btn-inspect">inspect</button>
             </div>
         </div>
     </div>
@@ -582,13 +570,13 @@
     <div class="preamble">
         <p class="tw-line"><span class="tw-text" id="tw"></span></p>
 
-        <p class="lede">I want to understand intelligence and learning dynamics.</p>
+        <p class="lede">Hi! I'm Shlok.</p>
 
         <p class="body-text">
-            Pre-final year at <a href="https://www.bits-pilani.ac.in/goa/">BITS Pilani, Goa</a>, dual major in Mathematics and Computer Science. Currently a visiting scholar at <a href="https://ccvl.jhu.edu/">CCVL, Johns Hopkins</a>, working on continual learning through the lens of mechanistic interpretability.
+            I'm a pre-final year undergrad at <a href="https://www.bits-pilani.ac.in/goa/">BITS Pilani, Goa</a>, dual majoring in Mathematics and Computer Science. Currently a visiting scholar at <a href="https://ccvl.jhu.edu/">CCVL, Johns Hopkins</a>, working on continual learning through the lens of mechanistic interpretability, for my thesis.
         </p>
         <p class="body-text">
-            My path here was indirect. I grew up across nearly ten schools all over India, built a Mars rover before I had a research paper, and spent a long time being more interested in <em>why</em> things work than in making them work. That instinct eventually found the right vocabulary: learning mechanics, representation geometry and statistical learning theory. On a side note, I fantasized <emph>IISc</emph> (still do!) and had an opportunity to intern there during my sophomore.
+            My path here was indirect. I grew up across nearly ten schools all over India, built a Mars rover before I had a research paper, and have always been equally restless about building things and understanding them. That instinct eventually found the right vocabulary: mathematics, learning mechanics (A niche in ML/AI) and neuroscience.
         </p>
 
         <blockquote class="epigraph">
@@ -609,12 +597,10 @@
         <div class="sec-head">
             <span class="sec-idx">01</span>
             <span class="sec-title">currently</span>
-            <span class="sec-meta">positions // n=2</span>
         </div>
 
         <div class="entry">
             <div>
-                <div class="entry-coord">node[0] :: research.jhu</div>
                 <div class="entry-title">Visiting Research Scholar — CCVL, Johns Hopkins</div>
                 <div class="entry-sub">Prof. Alan L. Yuille</div>
             </div>
@@ -622,7 +608,6 @@
         </div>
         <div class="entry">
             <div>
-                <div class="entry-coord">node[1] :: research.lossfunk</div>
                 <div class="entry-title">Research Intern — Lossfunk</div>
                 <div class="entry-sub">Paras Chopra</div>
             </div>
@@ -634,7 +619,6 @@
         <div class="sec-head">
             <span class="sec-idx">02</span>
             <span class="sec-title">research</span>
-            <span class="sec-meta">papers // n=6</span>
         </div>
 
         <div class="paper-entry">
@@ -679,6 +663,15 @@
 
         <div class="paper-entry">
             <div class="paper-title">
+                <span class="paper-title-text">Stereotypy-Driven Exploration: Linking Habit and Flexibility in dlPFC–Striatum Circuits</span>
+            </div>
+            <div class="paper-venue">In progress</div>
+            <div class="paper-sub"> Shlok Mehendale, Upendra Vishwanath, Prasanna Venkhatesh</div>
+            <div class="paper-desc">We propose a repetition-sensitive reinforcement learning framework where the striatum encodes reinforcement history to drive habitual exploitation and the dlPFC monitors stereotypy to trigger exploratory shifts, positioning repetition itself rather than novelty or uncertainty as the key biological signal for fronto-striatal flexibility.</div>
+        </div>
+
+        <div class="paper-entry">
+            <div class="paper-title">
                 <span class="paper-title-text">Weighted Attention Bottleneck Transformer for Multimodal Fusion</span>
             </div>
             <div class="paper-venue">UofT'25</div>
@@ -707,6 +700,24 @@
 </footer>
 
 <script>
+/* ── THEME PERSISTENCE ── */
+(function() {
+    const saved = localStorage.getItem('theme');
+    const btn = document.getElementById('btn-invert');
+    if (saved === 'inverted') {
+        document.body.classList.add('inverted');
+        btn.classList.add('on');
+    }
+    // Clean up the html class used to prevent flash
+    document.documentElement.classList.remove('preload-inverted');
+
+    btn.addEventListener('click', function() {
+        const isInverted = document.body.classList.toggle('inverted');
+        this.classList.toggle('on', isInverted);
+        localStorage.setItem('theme', isInverted ? 'inverted' : 'light');
+    });
+})();
+
 /* typewriter */
 const phrases = [
     'i study how networks learn to generalise.',
@@ -728,17 +739,6 @@ function tick() {
     }
 }
 setTimeout(tick, 500);
-
-/* controls */
-document.getElementById('btn-invert').addEventListener('click', function() {
-    document.body.classList.toggle('inverted');
-    this.classList.toggle('on');
-});
-document.getElementById('btn-inspect').addEventListener('click', function() {
-    document.body.classList.toggle('inspect-mode');
-    this.classList.toggle('on');
-    this.textContent = document.body.classList.contains('inspect-mode') ? 'close' : 'inspect';
-});
 
 /* KaTeX + stagger */
 window.addEventListener('load', () => {
@@ -806,7 +806,6 @@ function showEureka() {
 
 document.getElementById('footer-eof').addEventListener('click', showEureka);
 
-/* also keep keyboard trigger */
 let keyBuf = '';
 document.addEventListener('keydown', e => {
     if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
