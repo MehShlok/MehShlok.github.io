@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,19 +10,8 @@
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inconsolata:wght@300;400;500;600&family=Caveat:wght@400&display=swap" rel="stylesheet">
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
     <style>
-        /* ── DEFAULT: DARK ── */
+        /* ── DEFAULT: LIGHT ── */
         :root {
-            --ink:    #dedad2;
-            --muted:  #8a8886;
-            --faint:  #3a3835;
-            --faint-text: #6a6866;
-            --bg:     #0e0d0b;
-            --accent: #cc6e3a;
-            --rule:   #1f1e1b;
-            --mono:   'Inconsolata', monospace;
-        }
-        /* ── INVERTED: LIGHT ── */
-        body.inverted {
             --ink:    #141412;
             --muted:  #6a6866;
             --faint:  #d6d2cb;
@@ -29,6 +19,17 @@
             --bg:     #f7f5f1;
             --accent: #b05428;
             --rule:   #e0dcd5;
+            --mono:   'Inconsolata', monospace;
+        }
+        /* ── INVERTED: DARK ── */
+        body.inverted {
+            --ink:    #dedad2;
+            --muted:  #8a8886;
+            --faint:  #3a3835;
+            --faint-text: #6a6866;
+            --bg:     #0e0d0b;
+            --accent: #cc6e3a;
+            --rule:   #1f1e1b;
         }
 
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -87,7 +88,6 @@
             font-size: 0.68em;
             letter-spacing: 0.05em;
         }
-        /* each link gets its own brackets */
         .nav-links a {
             color: var(--muted);
             position: relative;
@@ -526,6 +526,18 @@
             footer { flex-direction: column; gap: 6px; }
         }
     </style>
+    <!-- Apply saved theme before paint to avoid flash -->
+    <script>
+        (function() {
+            if (localStorage.getItem('theme') === 'inverted') {
+                document.documentElement.classList.add('preload-inverted');
+            }
+        })();
+    </script>
+    <style>
+        /* Applied via documentElement before body exists, transferred to body on load */
+        html.preload-inverted body { /* handled by JS below */ }
+    </style>
 </head>
 <body>
 
@@ -688,6 +700,24 @@
 </footer>
 
 <script>
+/* ── THEME PERSISTENCE ── */
+(function() {
+    const saved = localStorage.getItem('theme');
+    const btn = document.getElementById('btn-invert');
+    if (saved === 'inverted') {
+        document.body.classList.add('inverted');
+        btn.classList.add('on');
+    }
+    // Clean up the html class used to prevent flash
+    document.documentElement.classList.remove('preload-inverted');
+
+    btn.addEventListener('click', function() {
+        const isInverted = document.body.classList.toggle('inverted');
+        this.classList.toggle('on', isInverted);
+        localStorage.setItem('theme', isInverted ? 'inverted' : 'light');
+    });
+})();
+
 /* typewriter */
 const phrases = [
     'i study how networks learn to generalise.',
@@ -709,12 +739,6 @@ function tick() {
     }
 }
 setTimeout(tick, 500);
-
-/* controls */
-document.getElementById('btn-invert').addEventListener('click', function() {
-    document.body.classList.toggle('inverted');
-    this.classList.toggle('on');
-});
 
 /* KaTeX + stagger */
 window.addEventListener('load', () => {
@@ -782,7 +806,6 @@ function showEureka() {
 
 document.getElementById('footer-eof').addEventListener('click', showEureka);
 
-/* also keep keyboard trigger */
 let keyBuf = '';
 document.addEventListener('keydown', e => {
     if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
