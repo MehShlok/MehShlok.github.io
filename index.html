@@ -4,11 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shlok Mehendale</title>
+    
+    <!-- ── FAVICON (SVG Data URI) ── -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect x='20' y='20' width='60' height='60' fill='%23b05428'/%3E%3C/svg%3E">
+
+    <!-- ── GOOGLE ANALYTICS TAG ── -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9T1G40T7HF"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-9T1G40T7HF'); // Replace both 'G-XXXXXXXXXX' with your real Measurement ID
+    </script>
+    
+    <!-- ── FONTS & STYLES ── -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inconsolata:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inconsolata:wght@300;400;500;600&family=Caveat:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+    
     <style>
         /* ── DEFAULT: LIGHT ── */
         :root {
@@ -16,7 +32,7 @@
             --muted:  #6a6866;
             --faint:  #d6d2cb;
             --faint-text: #9a9894;
-            --bg:     #f7f5f1;
+            --bg:      #f7f5f1;
             --accent: #b05428;
             --rule:   #e0dcd5;
             --mono:   'Inconsolata', monospace;
@@ -27,7 +43,7 @@
             --muted:  #8a8886;
             --faint:  #3a3835;
             --faint-text: #6a6866;
-            --bg:     #0e0d0b;
+            --bg:      #0e0d0b;
             --accent: #cc6e3a;
             --rule:   #1f1e1b;
         }
@@ -116,7 +132,7 @@
             text-transform: uppercase;
             transition: color 0.15s;
             position: relative;
-        }
+            }
         .ctrl-btn::after {
             content: '';
             position: absolute;
@@ -462,20 +478,12 @@
         #footer-eof {
             cursor: pointer;
             opacity: 0.6;
-            transition:
-                color 0.2s ease,
-                opacity 0.2s ease;
+            transition: color 0.2s ease, opacity 0.2s ease;
             user-select: none;
         }
         
-        .footer-easter:hover .footer-dots {
-            opacity: 0.7;
-        }
-        
-        #footer-eof:hover {
-            color: var(--accent);
-            opacity: 1;
-        }
+        .footer-easter:hover .footer-dots { opacity: 0.7; }
+        #footer-eof:hover { color: var(--accent); opacity: 1; }
 
         /* ── EUREKA overlay ── */
         #eureka {
@@ -530,14 +538,10 @@
     <script>
         (function() {
             if (localStorage.getItem('theme') === 'inverted') {
-                document.documentElement.classList.add('preload-inverted');
+                document.documentElement.classList.add('inverted');
             }
         })();
     </script>
-    <style>
-        /* Applied via documentElement before body exists, transferred to body on load */
-        html.preload-inverted body { /* handled by JS below */ }
-    </style>
 </head>
 <body>
 
@@ -705,11 +709,8 @@
     const saved = localStorage.getItem('theme');
     const btn = document.getElementById('btn-invert');
     if (saved === 'inverted') {
-        document.body.classList.add('inverted');
         btn.classList.add('on');
     }
-    // Clean up the html class used to prevent flash
-    document.documentElement.classList.remove('preload-inverted');
 
     btn.addEventListener('click', function() {
         const isInverted = document.body.classList.toggle('inverted');
@@ -777,7 +778,7 @@ const eurekaEl  = document.getElementById('eureka');
 const eurekaFml = document.getElementById('eureka-formula');
 
 const picks = [
-    { tex: 'e^{i\\pi} + 1 = 0',                                              note: "euler's identity" },
+    { tex: 'e^{i\\pi} + 1 = 0',                               note: "euler's identity" },
     { tex: '\\int_{-\\infty}^{\\infty} e^{-x^2}\\,dx = \\sqrt{\\pi}',        note: 'gaussian integral' },
     { tex: '\\sum_{n=1}^{\\infty} \\frac{1}{n^2} = \\frac{\\pi^2}{6}',       note: 'basel problem — euler, 1734' },
     { tex: 'P(A|B) = \\frac{P(B|A)\\,P(A)}{P(B)}',                           note: "bayes' theorem" },
