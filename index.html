@@ -57,12 +57,12 @@
         }
         a { color: inherit; text-decoration: none; }
 
-        .wrap { max-width: 600px; margin: 0 auto; padding: 0 28px; }
+        .wrap { max-width: 680px; margin: 0 auto; padding: 0 28px; }
 
         /* ── NAV ── */
         nav { border-bottom: 1px solid var(--rule); }
         .nav-inner {
-            max-width: 600px;
+            max-width: 680px;
             margin: 0 auto;
             padding: 18px 28px;
             display: flex;
@@ -162,8 +162,12 @@
             font-size: 0.98em;
             line-height: 1.7;
             margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
         }
-        .interests span { color: var(--faint); margin: 0 7px; }
+        .interests .item { white-space: nowrap; }
+        .interests .sep { color: var(--faint); margin: 0 7px; }
 
         /* ── FOOTER ── */
         footer {
@@ -236,7 +240,7 @@
             I'm interested in understanding how neural networks learn: how they extract meaningful representations from data, and why their learning dynamics unfold the way they do. I approach this through <strong>deep learning theory</strong> and <strong>mechanistic interpretability</strong>, studying the internal structure that emerges during training and what it reveals about generalisation. More broadly, I'm drawn to problems at the interface of mathematics, machine learning, and the brain.
         </p>
         <p class="interests">
-            Deep Learning Theory &amp; Learning Mechanics<span>·</span>Mechanistic Interpretability<span>·</span>Computational Neuroscience &amp; Cognitive Science<span>·</span>Computer Vision
+            <span class="item">Deep Learning Theory &amp; Learning Mechanics</span><span class="sep">·</span><span class="item">Mechanistic Interpretability</span><span class="sep">·</span><span class="item">Computational Neuroscience &amp; Cognitive Science</span><span class="sep">·</span><span class="item">Computer Vision</span>
         </p>
     </section>
 
