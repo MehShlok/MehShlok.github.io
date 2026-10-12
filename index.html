@@ -32,7 +32,6 @@
             --bg:     #faf9f6;
             --accent: #a24b22;
             --rule:   #e7e3dc;
-            --card:   #ffffff;
             --sans:   -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
         }
         /* ── DARK ── */
@@ -43,56 +42,43 @@
             --bg:     #15140f;
             --accent: #d0824f;
             --rule:   #2a2823;
-            --card:   #1c1a15;
         }
 
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-        html { scroll-behavior: smooth; }
 
         body {
             font-family: 'EB Garamond', Georgia, serif;
             background: var(--bg);
             color: var(--ink);
-            font-size: 19px;
-            line-height: 1.75;
+            font-size: 16px;
+            line-height: 1.68;
             -webkit-font-smoothing: antialiased;
             transition: background 0.3s, color 0.3s;
         }
-
         a { color: inherit; text-decoration: none; }
 
-        .wrap { max-width: 660px; margin: 0 auto; padding: 0 32px; }
+        .wrap { max-width: 600px; margin: 0 auto; padding: 0 28px; }
 
         /* ── NAV ── */
-        nav {
-            border-bottom: 1px solid var(--rule);
-            background: var(--bg);
-            position: sticky;
-            top: 0;
-            z-index: 10;
-        }
+        nav { border-bottom: 1px solid var(--rule); }
         .nav-inner {
-            max-width: 660px;
+            max-width: 600px;
             margin: 0 auto;
-            padding: 20px 32px;
+            padding: 18px 28px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        .nav-name { font-size: 1.05em; font-weight: 600; letter-spacing: -0.01em; }
-        .nav-right { display: flex; align-items: center; gap: 22px; }
-        .nav-links { display: flex; gap: 20px; }
-        .nav-links a, .cv-link {
+        .nav-name { font-size: 0.98em; font-weight: 600; letter-spacing: -0.01em; }
+        .nav-right { display: flex; align-items: center; gap: 18px; }
+        .cv-link {
             font-family: var(--sans);
             font-size: 0.72em;
             letter-spacing: 0.02em;
             color: var(--muted);
             transition: color 0.15s;
         }
-        .nav-links a:hover, .cv-link:hover { color: var(--accent); }
-        @media (max-width: 560px) { .nav-links { display: none; } }
-
+        .cv-link:hover { color: var(--accent); }
         .toggle {
             font-family: var(--sans);
             font-size: 0.68em;
@@ -108,130 +94,90 @@
         .toggle:hover { color: var(--accent); border-color: var(--accent); }
 
         /* ── HERO ── */
-        header { padding: 92px 0 72px; }
-        .intro-eyebrow {
+        header { padding: 64px 0 44px; }
+        .eyebrow {
             font-family: var(--sans);
-            font-size: 0.72em;
-            letter-spacing: 0.14em;
+            font-size: 0.68em;
+            letter-spacing: 0.13em;
             text-transform: uppercase;
             color: var(--accent);
             margin-bottom: 20px;
         }
-        h1 { font-size: 2.5em; font-weight: 600; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 26px; }
-        .body-text { color: var(--muted); margin-bottom: 18px; }
+        .greeting {
+            font-size: 1.32em;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            margin-bottom: 18px;
+        }
+        .body-text { color: var(--muted); margin-bottom: 15px; }
         .body-text:last-of-type { margin-bottom: 0; }
         .body-text a { color: var(--ink); border-bottom: 1px solid var(--rule); transition: border-color 0.2s; }
         .body-text a:hover { border-color: var(--accent); }
         .body-text strong { color: var(--ink); font-weight: 600; }
 
         .epigraph {
-            margin: 40px 0 0;
-            padding-left: 22px;
+            margin: 32px 0 0;
+            padding-left: 18px;
             border-left: 2px solid var(--rule);
             font-style: italic;
-            font-size: 0.96em;
+            font-size: 0.92em;
             color: var(--muted);
-            line-height: 1.7;
+            line-height: 1.6;
         }
         .epigraph cite {
             display: block;
             font-style: normal;
             font-family: var(--sans);
-            font-size: 0.72em;
+            font-size: 0.74em;
             letter-spacing: 0.04em;
-            margin-top: 12px;
+            margin-top: 10px;
             color: var(--faint);
         }
 
         .social-row {
-            margin-top: 36px;
+            margin-top: 28px;
             display: flex;
             flex-wrap: wrap;
-            gap: 8px 20px;
+            gap: 6px 18px;
             font-family: var(--sans);
-            font-size: 0.78em;
+            font-size: 0.76em;
             letter-spacing: 0.02em;
         }
         .social-row a { color: var(--muted); transition: color 0.15s; border-bottom: 1px solid transparent; padding-bottom: 1px; }
         .social-row a:hover { color: var(--accent); border-color: var(--accent); }
 
-        /* ── SECTIONS ── */
-        section { padding: 48px 0; border-top: 1px solid var(--rule); }
+        /* ── RESEARCH ── */
+        section { padding: 40px 0; border-top: 1px solid var(--rule); }
         .sec-title {
             font-family: var(--sans);
-            font-size: 0.74em;
+            font-size: 0.7em;
             font-weight: 600;
             letter-spacing: 0.16em;
             text-transform: uppercase;
             color: var(--faint);
-            margin-bottom: 28px;
+            margin-bottom: 22px;
         }
-        .interests { color: var(--ink); font-size: 1.05em; line-height: 1.7; }
-        .interests span { color: var(--faint); margin: 0 8px; }
-
-        /* ── ENTRY (experience / teaching) ── */
-        .entry {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            gap: 28px;
-            padding: 16px 0;
+        .interests {
+            color: var(--ink);
+            font-size: 0.98em;
+            line-height: 1.7;
+            margin-top: 20px;
         }
-        .entry + .entry { border-top: 1px solid var(--rule); }
-        .entry-title { font-size: 1.02em; font-weight: 500; line-height: 1.4; }
-        .entry-title a { border-bottom: 1px solid var(--rule); transition: border-color 0.2s; }
-        .entry-title a:hover { border-color: var(--accent); }
-        .entry-sub { font-size: 0.86em; color: var(--muted); font-style: italic; margin-top: 4px; line-height: 1.5; }
-        .entry-date {
-            font-family: var(--sans);
-            font-size: 0.72em;
-            color: var(--faint);
-            white-space: nowrap;
-            flex-shrink: 0;
-            padding-top: 4px;
-        }
-
-        /* ── PAPERS ── */
-        .paper {
-            padding: 20px 0;
-        }
-        .paper + .paper { border-top: 1px solid var(--rule); }
-        .paper-head { display: flex; justify-content: space-between; align-items: baseline; gap: 20px; }
-        .paper-title { font-size: 1.02em; font-weight: 500; line-height: 1.45; }
-        .paper-title a { border-bottom: 1px solid var(--rule); transition: border-color 0.2s; }
-        .paper-title a:hover { border-color: var(--accent); }
-        .paper-venue {
-            font-family: var(--sans);
-            font-size: 0.68em;
-            font-weight: 500;
-            color: var(--accent);
-            white-space: nowrap;
-            text-align: right;
-            flex-shrink: 0;
-            padding-top: 3px;
-            line-height: 1.6;
-        }
-        .paper-venue span { display: block; }
-        .paper-authors { font-size: 0.84em; color: var(--muted); font-style: italic; margin-top: 6px; line-height: 1.5; }
-        .paper-desc { font-size: 0.9em; color: var(--muted); margin-top: 8px; line-height: 1.6; }
-
-        @media (max-width: 560px) {
-            body { font-size: 18px; }
-            h1 { font-size: 2.1em; }
-            header { padding: 60px 0 56px; }
-            .paper-head, .entry { flex-direction: column; gap: 6px; }
-            .paper-venue, .entry-date { text-align: left; }
-            .paper-venue span { display: inline; margin-right: 10px; }
-        }
+        .interests span { color: var(--faint); margin: 0 7px; }
 
         /* ── FOOTER ── */
         footer {
             border-top: 1px solid var(--rule);
-            padding: 32px 0 56px;
+            padding: 26px 0 48px;
             font-family: var(--sans);
-            font-size: 0.72em;
+            font-size: 0.7em;
             letter-spacing: 0.03em;
             color: var(--faint);
+        }
+
+        @media (max-width: 520px) {
+            .greeting { font-size: 1.2em; }
+            header { padding: 48px 0 40px; }
         }
     </style>
 
@@ -249,24 +195,19 @@
 
 <nav>
     <div class="nav-inner">
-        <a href="#top" class="nav-name">Shlok Mehendale</a>
+        <a href="#" class="nav-name">Shlok Mehendale</a>
         <div class="nav-right">
-            <div class="nav-links">
-                <a href="#experience">Experience</a>
-                <a href="#publications">Publications</a>
-                <a href="#teaching">Teaching</a>
-                <a href="Shlok_Mehendale_Resume.pdf" target="_blank" class="cv-link">Resume</a>
-            </div>
+            <a href="Shlok_Mehendale_Resume.pdf" target="_blank" class="cv-link">Resume</a>
             <button class="toggle" id="theme-toggle">Dark</button>
         </div>
     </div>
 </nav>
 
-<div class="wrap" id="top">
+<div class="wrap">
 
     <header>
-        <p class="intro-eyebrow">Mathematics &amp; Computer Science · BITS Pilani, Goa</p>
-        <h1>Hi, I'm Shlok.</h1>
+        <p class="eyebrow">Mathematics &amp; Computer Science · BITS Pilani, Goa</p>
+        <p class="greeting">Hi, I'm Shlok.</p>
 
         <p class="body-text">
             I'm a pre-final year undergraduate at <a href="https://www.bits-pilani.ac.in/goa/">BITS Pilani, Goa</a>, dual majoring in Mathematics and Computer Science. I'm currently a visiting scholar supervised by <a href="https://www.cs.jhu.edu/~ayuille1/">Dr. Alan Yuille</a> at Johns Hopkins University, working on continual learning through the lens of mechanistic interpretability for my thesis.
@@ -289,135 +230,14 @@
         </div>
     </header>
 
-    <!-- ── RESEARCH STATEMENT ── -->
-    <section id="research-statement">
+    <section>
         <div class="sec-title">Research</div>
         <p class="body-text" style="color: var(--ink);">
             I'm interested in understanding how neural networks learn: how they extract meaningful representations from data, and why their learning dynamics unfold the way they do. I approach this through <strong>deep learning theory</strong> and <strong>mechanistic interpretability</strong>, studying the internal structure that emerges during training and what it reveals about generalisation. More broadly, I'm drawn to problems at the interface of mathematics, machine learning, and the brain.
         </p>
-        <p class="interests" style="margin-top: 22px;">
+        <p class="interests">
             Deep Learning Theory &amp; Learning Mechanics<span>·</span>Mechanistic Interpretability<span>·</span>Computational Neuroscience &amp; Cognitive Science<span>·</span>Computer Vision
         </p>
-    </section>
-
-    <!-- ── EXPERIENCE ── -->
-    <section id="experience">
-        <div class="sec-title">Experience</div>
-
-        <div class="entry">
-            <div>
-                <div class="entry-title">Visiting Research Scholar, <a href="https://ccvl.jhu.edu/">Johns Hopkins University</a></div>
-                <div class="entry-sub">Prof. Alan L. Yuille</div>
-            </div>
-            <div class="entry-date">Feb 2026 to present</div>
-        </div>
-        <div class="entry">
-            <div>
-                <div class="entry-title">Research Intern, <a href="https://lossfunk.com/">Lossfunk</a></div>
-                <div class="entry-sub">Paras Chopra</div>
-            </div>
-            <div class="entry-date">Dec 2025 to present</div>
-        </div>
-        <div class="entry">
-            <div>
-                <div class="entry-title">Undergraduate Student Researcher, APPCAIR, BITS Pilani</div>
-                <div class="entry-sub">Prof. Snehanshu Saha</div>
-            </div>
-            <div class="entry-date">May 2024 to present</div>
-        </div>
-        <div class="entry">
-            <div>
-                <div class="entry-title">Research Intern, Luleå University of Technology, Sweden</div>
-                <div class="entry-sub">Prof. Neena Goveas and Prof. Christer Åhlund</div>
-            </div>
-            <div class="entry-date">Jul 2024 to Nov 2024</div>
-        </div>
-        <div class="entry">
-            <div>
-                <div class="entry-title">Technical Consultant &amp; Curriculum Designer, STEM4ALL, California</div>
-                <div class="entry-sub">Designed and delivered a professional-grade deep learning and neural networks curriculum for industry specialists.</div>
-            </div>
-            <div class="entry-date">Summer '24–'25</div>
-        </div>
-    </section>
-
-    <!-- ── PUBLICATIONS ── -->
-    <section id="publications">
-        <div class="sec-title">Publications</div>
-
-        <div class="paper">
-            <div class="paper-head">
-                <div class="paper-title">Subspace Crystallization: Grokking in Modular Arithmetic Networks</div>
-                <div class="paper-venue"><span>submitted</span></div>
-            </div>
-            <div class="paper-authors">Shlok Mehendale, Paras Chopra · Lossfunk</div>
-            <div class="paper-desc">A causally active subspace crystallises inside the weights while the rest stays inert and free. Compression follows generalisation, never causes it.</div>
-        </div>
-
-        <div class="paper">
-            <div class="paper-head">
-                <div class="paper-title"><a href="https://arxiv.org/pdf/2601.11022">Matching High-Dimensional Geometric Quantiles for Test-Time Adaptation</a></div>
-                <div class="paper-venue"><span>submitted to ECCV '26</span></div>
-            </div>
-            <div class="paper-authors">Sravan Danda, Aditya Challa, Shlok Mehendale, Snehanshu Saha · APPCAIR</div>
-            <div class="paper-desc">Most test-time adaptation methods are tied to specific architectures. This one matches geometric quantiles of classifier features to correct for distribution shift, working on transformers and convnets alike, with no labelled corrupted data required.</div>
-        </div>
-
-        <div class="paper">
-            <div class="paper-head">
-                <div class="paper-title"><a href="https://arxiv.org/abs/2502.18002">A Radon–Nikodým Perspective on Anomaly Detection</a></div>
-                <div class="paper-venue"><span>submitted to TMLR</span></div>
-            </div>
-            <div class="paper-authors">Shlok Mehendale, Aditya Challa, Rahul Yedida, Sravan Danda, Santonu Sarkar, Snehanshu Saha · APPCAIR</div>
-            <div class="paper-desc">The right loss function for anomaly detection is the vanilla loss reweighted by the Radon–Nikodým derivative of the normal and anomalous distributions. PAC learnability established, evaluated across 96 datasets.</div>
-        </div>
-
-        <div class="paper">
-            <div class="paper-head">
-                <div class="paper-title">Weighted Attention Bottleneck Transformer for Multimodal Fusion</div>
-                <div class="paper-venue"><span>under review at AAAI '27</span></div>
-            </div>
-            <div class="paper-authors">Shlok Mehendale · Won ProjectX · ETH Zurich, Cornell, CMU, Edinburgh</div>
-            <div class="paper-desc">Cross-modal reconstruction via a hierarchical bottleneck; adaptive fusion without full cross-attention, building on Google Research's MBT.</div>
-        </div>
-
-        <div class="paper">
-            <div class="paper-head">
-                <div class="paper-title"><a href="https://arxiv.org/abs/2402.07281">Benchmarking Anomaly Detection: Deep Learning and Beyond</a></div>
-                <div class="paper-venue"><span>submitted to IEEE TAI</span></div>
-            </div>
-            <div class="paper-authors">Shanay Mehta*, Shlok Mehendale*, Nicole Fernandes*, Jyotirmoy Sarkar, Santonu Sarkar, Snehanshu Saha · cited by IBM Research</div>
-            <div class="paper-desc">30+ algorithms across 104 datasets: tree-based methods match or beat deep learning on small univariate data while being orders of magnitude faster.</div>
-        </div>
-
-        <div class="paper">
-            <div class="paper-head">
-                <div class="paper-title"><a href="https://arxiv.org/abs/2501.13422v1">Atmospheric Noise Resilient Image Classification: A Hybrid Pin-GTSVM</a></div>
-                <div class="paper-venue"><span>submitted to Comp. Intelligence</span></div>
-            </div>
-            <div class="paper-authors">Shlok Mehendale, JK Sahoo · BITS Pilani</div>
-            <div class="paper-desc">Treats haze as a modelling problem, not a preprocessing step: CNN–PinGTSVM achieves 98.20% vs. 88.63% for dehazing-first baselines.</div>
-        </div>
-    </section>
-
-    <!-- ── TEACHING ── -->
-    <section id="teaching">
-        <div class="sec-title">Teaching</div>
-
-        <div class="entry">
-            <div>
-                <div class="entry-title">Teaching Assistant, BITS Pilani (WILP / Coursera)</div>
-                <div class="entry-sub">Evaluation frameworks for foundational courses: Data Visualization, Command Line Scripting, and Object-Oriented Programming.</div>
-            </div>
-            <div class="entry-date">'24–'25, '25–'26</div>
-        </div>
-        <div class="entry">
-            <div>
-                <div class="entry-title">Undergraduate Teaching Assistant, BITS Pilani, Goa</div>
-                <div class="entry-sub">Tutorials and assessment for Mathematics-2 (Linear Algebra &amp; Complex Numbers) and Probability &amp; Statistics.</div>
-            </div>
-            <div class="entry-date">'23–'24, '24–'25</div>
-        </div>
     </section>
 
     <footer>
