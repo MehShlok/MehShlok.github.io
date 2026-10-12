@@ -4,582 +4,275 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shlok Mehendale</title>
-    
-    <!-- ── FAVICON (SVG Data URI) ── -->
+    <meta name="description" content="Shlok Mehendale — undergraduate researcher in deep learning theory, learning mechanics, and mechanistic interpretability.">
+
+    <!-- ── FAVICON ── -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%231a1a1a'/%3E%3Ctext x='51%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia, serif' font-size='40' font-weight='500' fill='%23f7f5f1' letter-spacing='-2'%3ESM%3C/text%3E%3C/svg%3E">
-    <!-- ── GOOGLE ANALYTICS TAG ── -->
+
+    <!-- ── ANALYTICS ── -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-9T1G40T7HF"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
-      gtag('config', 'G-9T1G40T7HF'); 
+      gtag('config', 'G-9T1G40T7HF');
     </script>
-    
-    <!-- ── FONTS & STYLES ── -->
+
+    <!-- ── FONTS ── -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inconsolata:wght@300;400;500;600&family=Caveat:wght@400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
-    
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
     <style>
-        /* ── DEFAULT: LIGHT ── */
+        /* ── LIGHT (default) ── */
         :root {
-            --ink:    #141412;
-            --muted:  #6a6866;
-            --faint:  #d6d2cb;
-            --faint-text: #9a9894;
-            --bg:      #f7f5f1;
-            --accent: #b05428;
-            --rule:   #e0dcd5;
-            --mono:   'Inconsolata', monospace;
+            --ink:    #1a1917;
+            --muted:  #6a6762;
+            --faint:  #9a968f;
+            --bg:     #faf9f6;
+            --accent: #a24b22;
+            --rule:   #e7e3dc;
+            --card:   #ffffff;
+            --sans:   -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
         }
-        /* ── INVERTED: DARK ── */
-        body.inverted {
-            --ink:    #dedad2;
-            --muted:  #8a8886;
-            --faint:  #3a3835;
-            --faint-text: #6a6866;
-            --bg:      #0e0d0b;
-            --accent: #cc6e3a;
-            --rule:   #1f1e1b;
+        /* ── DARK ── */
+        html.dark {
+            --ink:    #e6e2da;
+            --muted:  #9c9890;
+            --faint:  #6c6860;
+            --bg:     #15140f;
+            --accent: #d0824f;
+            --rule:   #2a2823;
+            --card:   #1c1a15;
         }
 
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-        body::before {
-            content: '';
-            position: fixed;
-            inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.032'/%3E%3C/svg%3E");
-            pointer-events: none;
-            z-index: 9999;
-        }
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: 'EB Garamond', Georgia, serif;
             background: var(--bg);
             color: var(--ink);
-            font-size: 18px;
-            line-height: 1.8;
-            transition: background 0.35s, color 0.35s;
+            font-size: 19px;
+            line-height: 1.75;
+            -webkit-font-smoothing: antialiased;
+            transition: background 0.3s, color 0.3s;
         }
 
         a { color: inherit; text-decoration: none; }
 
+        .wrap { max-width: 660px; margin: 0 auto; padding: 0 32px; }
+
         /* ── NAV ── */
         nav {
-            padding: 28px 0 24px;
             border-bottom: 1px solid var(--rule);
-            margin-bottom: 96px;
+            background: var(--bg);
+            position: sticky;
+            top: 0;
+            z-index: 10;
         }
-        .nav-wrap {
-            max-width: 680px;
+        .nav-inner {
+            max-width: 660px;
             margin: 0 auto;
-            padding: 0 40px;
+            padding: 20px 32px;
             display: flex;
             justify-content: space-between;
-            align-items: baseline;
+            align-items: center;
         }
-        .logo {
-            font-family: var(--mono);
-            font-size: 0.7em;
-            font-weight: 400;
-            letter-spacing: 0.16em;
-            text-transform: uppercase;
+        .nav-name { font-size: 1.05em; font-weight: 600; letter-spacing: -0.01em; }
+        .nav-right { display: flex; align-items: center; gap: 22px; }
+        .nav-links { display: flex; gap: 20px; }
+        .nav-links a, .cv-link {
+            font-family: var(--sans);
+            font-size: 0.72em;
+            letter-spacing: 0.02em;
             color: var(--muted);
-            transition: color 0.2s;
-        }
-        .logo:hover { color: var(--ink); }
-
-        .nav-right { display: flex; align-items: baseline; gap: 28px; }
-
-        .nav-links {
-            display: flex;
-            gap: 18px;
-            font-family: var(--mono);
-            font-size: 0.68em;
-            letter-spacing: 0.05em;
-        }
-        .nav-links a {
-            color: var(--muted);
-            position: relative;
             transition: color 0.15s;
-            padding-bottom: 2px;
         }
-        .nav-links a::before { content: '['; margin-right: 1px; color: var(--faint-text); transition: color 0.15s; }
-        .nav-links a::after  { content: ']'; margin-left:  1px; color: var(--faint-text); transition: color 0.15s, width 0s; }
-        .nav-links a:hover,
-        .nav-links a.active  { color: var(--ink); }
-        .nav-links a:hover::before,
-        .nav-links a:hover::after,
-        .nav-links a.active::before,
-        .nav-links a.active::after { color: var(--accent); }
+        .nav-links a:hover, .cv-link:hover { color: var(--accent); }
+        @media (max-width: 560px) { .nav-links { display: none; } }
 
-        .nav-controls { display: flex; gap: 8px; }
-        .ctrl-btn {
+        .toggle {
+            font-family: var(--sans);
+            font-size: 0.68em;
+            letter-spacing: 0.03em;
+            color: var(--muted);
             background: none;
-            border: none;
-            color: var(--faint-text);
-            font-family: var(--mono);
-            font-size: 0.62em;
-            letter-spacing: 0.1em;
-            padding: 0;
+            border: 1px solid var(--rule);
+            border-radius: 999px;
+            padding: 4px 12px;
             cursor: pointer;
+            transition: color 0.15s, border-color 0.15s;
+        }
+        .toggle:hover { color: var(--accent); border-color: var(--accent); }
+
+        /* ── HERO ── */
+        header { padding: 92px 0 72px; }
+        .intro-eyebrow {
+            font-family: var(--sans);
+            font-size: 0.72em;
+            letter-spacing: 0.14em;
             text-transform: uppercase;
-            transition: color 0.15s;
-            position: relative;
-            }
-        .ctrl-btn::after {
-            content: '';
-            position: absolute;
-            bottom: -2px; left: 0;
-            width: 0; height: 1px;
-            background: var(--accent);
-            transition: width 0.2s ease;
-        }
-        .ctrl-btn:hover { color: var(--muted); }
-        .ctrl-btn:hover::after { width: 100%; }
-        .ctrl-btn.on { color: var(--accent); }
-        .ctrl-btn.on::after { width: 100%; }
-
-        /* ── LAYOUT ── */
-        .wrap {
-            max-width: 680px;
-            margin: 0 auto;
-            padding: 0 40px 140px;
-        }
-
-        /* ── PREAMBLE ── */
-        .preamble { margin-bottom: 104px; }
-
-        .tw-line {
-            font-family: var(--mono);
-            font-size: 0.68em;
-            font-weight: 400;
-            letter-spacing: 0.13em;
             color: var(--accent);
-            margin-bottom: 32px;
-            min-height: 1.3em;
-            opacity: 0.8;
+            margin-bottom: 20px;
         }
-        .tw-text::after {
-            content: '█';
-            animation: blink 0.9s step-end infinite;
-            font-size: 0.75em;
-        }
-        @keyframes blink { 0%,100%{opacity:0.8} 50%{opacity:0} }
-
-        .lede {
-            font-size: 1.32em;
-            line-height: 1.56;
-            color: var(--ink);
-            margin-bottom: 22px;
-            max-width: 540px;
-        }
-
-        .body-text {
-            font-size: 0.99em;
-            color: var(--muted);
-            margin-bottom: 15px;
-            line-height: 1.9;
-            max-width: 560px;
-        }
-        .body-text a {
-            color: var(--ink);
-            position: relative;
-        }
-        .body-text a::before { content: none; }
-        .body-text a::after {
-            content: '';
-            position: absolute;
-            bottom: 1px; left: 0;
-            width: 100%; height: 1px;
-            background: var(--faint);
-            transition: background 0.2s;
-        }
-        .body-text a:hover::after { background: var(--accent); }
+        h1 { font-size: 2.5em; font-weight: 600; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 26px; }
+        .body-text { color: var(--muted); margin-bottom: 18px; }
+        .body-text:last-of-type { margin-bottom: 0; }
+        .body-text a { color: var(--ink); border-bottom: 1px solid var(--rule); transition: border-color 0.2s; }
+        .body-text a:hover { border-color: var(--accent); }
+        .body-text strong { color: var(--ink); font-weight: 600; }
 
         .epigraph {
-            margin-top: 40px;
-            padding-left: 20px;
-            border-left: 1px solid var(--faint);
+            margin: 40px 0 0;
+            padding-left: 22px;
+            border-left: 2px solid var(--rule);
             font-style: italic;
-            font-size: 0.9em;
+            font-size: 0.96em;
             color: var(--muted);
-            max-width: 460px;
-            line-height: 1.75;
+            line-height: 1.7;
         }
         .epigraph cite {
             display: block;
             font-style: normal;
-            font-family: var(--mono);
-            font-size: 0.63em;
-            letter-spacing: 0.09em;
-            margin-top: 11px;
-            opacity: 0.55;
+            font-family: var(--sans);
+            font-size: 0.72em;
+            letter-spacing: 0.04em;
+            margin-top: 12px;
+            color: var(--faint);
         }
 
         .social-row {
-            margin-top: 34px;
+            margin-top: 36px;
             display: flex;
-            gap: 0;
             flex-wrap: wrap;
-            font-family: var(--mono);
-            font-size: 0.67em;
-            letter-spacing: 0.06em;
-            align-items: center;
+            gap: 8px 20px;
+            font-family: var(--sans);
+            font-size: 0.78em;
+            letter-spacing: 0.02em;
         }
-        .social-row a {
-            color: var(--muted);
-            transition: color 0.15s;
-            padding: 0 14px;
-            position: relative;
-        }
-        .social-row a::before,
-        .social-row a::after { content: none; }
-        .social-row a:first-child { padding-left: 0; }
-        .social-row a + a::before {
-            content: '·' !important;
-            position: absolute;
-            left: 0; top: 50%;
-            transform: translateY(-50%);
-            color: var(--faint-text);
-            font-size: 1.1em;
-        }
-        .social-row a:hover { color: var(--ink); }
+        .social-row a { color: var(--muted); transition: color 0.15s; border-bottom: 1px solid transparent; padding-bottom: 1px; }
+        .social-row a:hover { color: var(--accent); border-color: var(--accent); }
 
-        /* ── SECTION ── */
-        section { margin-bottom: 76px; }
-
-        .sec-head {
-            display: flex;
-            align-items: baseline;
-            gap: 10px;
-            margin-bottom: 28px;
-            padding-bottom: 12px;
-            border-bottom: 1px solid var(--rule);
-        }
-        .sec-idx {
-            font-family: var(--mono);
-            font-size: 0.52em;
-            font-weight: 600;
-            letter-spacing: 0.12em;
-            color: var(--accent);
-            position: relative;
-            top: -3px;
-            opacity: 0.7;
-        }
+        /* ── SECTIONS ── */
+        section { padding: 48px 0; border-top: 1px solid var(--rule); }
         .sec-title {
-            font-family: var(--mono);
-            font-size: 0.64em;
-            font-weight: 500;
-            letter-spacing: 0.22em;
+            font-family: var(--sans);
+            font-size: 0.74em;
+            font-weight: 600;
+            letter-spacing: 0.16em;
             text-transform: uppercase;
-            color: var(--muted);
+            color: var(--faint);
+            margin-bottom: 28px;
         }
+        .interests { color: var(--ink); font-size: 1.05em; line-height: 1.7; }
+        .interests span { color: var(--faint); margin: 0 8px; }
 
-        /* ── ENTRY ── */
+        /* ── ENTRY (experience / teaching) ── */
         .entry {
-            display: grid;
-            grid-template-columns: 1fr auto;
-            gap: 0 32px;
-            padding: 18px 0;
-            border-bottom: 1px solid var(--rule);
-            align-items: start;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 28px;
+            padding: 16px 0;
         }
-        .entry:last-of-type { border-bottom: none; }
-
-        .entry-title { font-size: 0.97em; font-weight: 500; line-height: 1.4; }
-        .entry-sub   { font-size: 0.82em; color: var(--muted); font-style: italic; margin-top: 3px; }
-        .entry-date  {
-            font-family: var(--mono);
-            font-size: 0.62em;
-            color: var(--muted);
+        .entry + .entry { border-top: 1px solid var(--rule); }
+        .entry-title { font-size: 1.02em; font-weight: 500; line-height: 1.4; }
+        .entry-title a { border-bottom: 1px solid var(--rule); transition: border-color 0.2s; }
+        .entry-title a:hover { border-color: var(--accent); }
+        .entry-sub { font-size: 0.86em; color: var(--muted); font-style: italic; margin-top: 4px; line-height: 1.5; }
+        .entry-date {
+            font-family: var(--sans);
+            font-size: 0.72em;
+            color: var(--faint);
             white-space: nowrap;
-            padding-top: 3px;
-            letter-spacing: 0.03em;
+            flex-shrink: 0;
+            padding-top: 4px;
         }
 
-        /* ── PAPER ENTRIES ── */
-        .paper-entry {
-            display: grid;
-            grid-template-columns: 1fr 76px;
-            gap: 0 24px;
+        /* ── PAPERS ── */
+        .paper {
             padding: 20px 0;
-            border-bottom: 1px solid var(--rule);
-            position: relative;
-            align-items: start;
         }
-        .paper-entry:last-of-type { border-bottom: none; }
-
-        .paper-title {
-            font-size: 0.97em;
-            font-weight: 500;
-            grid-column: 1;
-            line-height: 1.46;
-            position: relative;
-            cursor: default;
-        }
-        .paper-title-text {
-            position: relative;
-            display: inline;
-        }
-        .paper-title-text::after {
-            content: '';
-            position: absolute;
-            bottom: -1px; left: 0;
-            width: 0; height: 1px;
-            background: var(--ink);
-            opacity: 0.2;
-            transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .paper-entry:hover .paper-title-text::after { width: 100%; }
-
+        .paper + .paper { border-top: 1px solid var(--rule); }
+        .paper-head { display: flex; justify-content: space-between; align-items: baseline; gap: 20px; }
+        .paper-title { font-size: 1.02em; font-weight: 500; line-height: 1.45; }
+        .paper-title a { border-bottom: 1px solid var(--rule); transition: border-color 0.2s; }
+        .paper-title a:hover { border-color: var(--accent); }
         .paper-venue {
-            font-family: var(--mono);
-            font-size: 0.6em;
+            font-family: var(--sans);
+            font-size: 0.68em;
             font-weight: 500;
             color: var(--accent);
             white-space: nowrap;
-            grid-column: 2;
-            padding-top: 4px;
-            letter-spacing: 0.04em;
             text-align: right;
-        }
-
-        .paper-sub {
-            font-size: 0.79em;
-            color: var(--muted);
-            grid-column: 1;
-            margin-top: 4px;
-            font-style: italic;
-            line-height: 1.5;
-        }
-
-        .paper-desc {
-            font-family: var(--mono);
-            font-size: 0.64em;
-            color: var(--faint-text);
-            grid-column: 1 / -1;
-            margin-top: 10px;
+            flex-shrink: 0;
+            padding-top: 3px;
             line-height: 1.6;
-            padding-left: 16px;
-            border-left: 1px solid transparent;
-            transition: color 0.25s, border-color 0.25s;
         }
-        .paper-entry:hover .paper-desc {
-            color: var(--muted);
-            border-left-color: var(--accent);
-        }
-        .paper-desc::before { content: '// '; opacity: 0.4; }
+        .paper-venue span { display: block; }
+        .paper-authors { font-size: 0.84em; color: var(--muted); font-style: italic; margin-top: 6px; line-height: 1.5; }
+        .paper-desc { font-size: 0.9em; color: var(--muted); margin-top: 8px; line-height: 1.6; }
 
-        /* ── MATH TOOLTIP ── */
-        .math-pop {
-            visibility: hidden;
-            opacity: 0;
-            position: absolute;
-            top: calc(100% + 10px);
-            left: 0;
-            background: var(--bg);
-            border: 1px solid var(--rule);
-            padding: 13px 18px 11px 14px;
-            z-index: 100;
-            pointer-events: none;
-            transition: opacity 0.2s;
-            white-space: nowrap;
-            box-shadow: 0 6px 28px rgba(0,0,0,0.18);
+        @media (max-width: 560px) {
+            body { font-size: 18px; }
+            h1 { font-size: 2.1em; }
+            header { padding: 60px 0 56px; }
+            .paper-head, .entry { flex-direction: column; gap: 6px; }
+            .paper-venue, .entry-date { text-align: left; }
+            .paper-venue span { display: inline; margin-right: 10px; }
         }
-        .math-pop::before {
-            content: '';
-            position: absolute;
-            left: 0; top: 10%; bottom: 10%;
-            width: 2px;
-            background: var(--accent);
-            opacity: 0.45;
-        }
-        .paper-entry:hover .math-pop {
-            visibility: visible;
-            opacity: 1;
-        }
-        .math-pop .katex-html .mord,
-        .math-pop .katex-html .mrel,
-        .math-pop .katex-html .mop,
-        .math-pop .katex-html .mbin,
-        .math-pop .katex-html .mpunct,
-        .math-pop .katex-html .mopen,
-        .math-pop .katex-html .mclose,
-        .math-pop .katex-html .minner,
-        .math-pop .katex-html .mspace {
-            opacity: 0;
-            transform: translateY(4px);
-            display: inline-block;
-        }
-        .paper-entry:hover .math-pop .katex-html .mord,
-        .paper-entry:hover .math-pop .katex-html .mrel,
-        .paper-entry:hover .math-pop .katex-html .mop,
-        .paper-entry:hover .math-pop .katex-html .mbin,
-        .paper-entry:hover .math-pop .katex-html .mpunct,
-        .paper-entry:hover .math-pop .katex-html .mopen,
-        .paper-entry:hover .math-pop .katex-html .mclose,
-        .paper-entry:hover .math-pop .katex-html .minner,
-        .paper-entry:hover .math-pop .katex-html .mspace {
-            animation: token-in 0.26s ease forwards;
-        }
-        @keyframes token-in { to { opacity: 1; transform: translateY(0); } }
-
-        .math-label {
-            display: block;
-            font-family: var(--mono);
-            font-size: 0.6em;
-            color: var(--muted);
-            margin-top: 7px;
-            letter-spacing: 0.06em;
-            opacity: 0;
-            transition: opacity 0.3s 0.45s;
-        }
-        .paper-entry:hover .math-label { opacity: 0.65; }
 
         /* ── FOOTER ── */
         footer {
             border-top: 1px solid var(--rule);
-            margin-top: 80px;
-            padding: 20px 40px 40px;
-            max-width: 680px;
-            margin-left: auto;
-            margin-right: auto;
-            display: flex;
-            justify-content: space-between;
-            font-family: var(--mono);
-            font-size: 0.56em;
-            color: var(--faint-text);
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-        }
-        footer span:first-child::before { content: '$ '; color: var(--accent); opacity: 0.6; }
-
-        .footer-easter {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .footer-dots {
-            font-family: var(--mono);
-            color: var(--faint-text);
-            opacity: 0.35;
-            transition: opacity 0.2s ease;
-            letter-spacing: 0.08em;
-        }
-        
-        #footer-eof {
-            cursor: pointer;
-            opacity: 0.6;
-            transition: color 0.2s ease, opacity 0.2s ease;
-            user-select: none;
-        }
-        
-        .footer-easter:hover .footer-dots { opacity: 0.7; }
-        #footer-eof:hover { color: var(--accent); opacity: 1; }
-
-        /* ── EUREKA overlay ── */
-        #eureka {
-            display: none;
-            position: fixed;
-            inset: 0;
-            z-index: 10000;
-            background: var(--bg);
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            gap: 24px;
-            cursor: pointer;
-        }
-        #eureka.show { display: flex; }
-        #eureka-formula { font-size: 2em; }
-        #eureka-label {
-            font-family: var(--mono);
-            font-size: 0.62em;
-            letter-spacing: 0.2em;
-            color: var(--accent);
-            text-transform: uppercase;
-            animation: pulse 2s ease-in-out infinite;
-        }
-        #eureka-sub {
-            font-family: 'EB Garamond', serif;
-            font-style: italic;
-            font-size: 1em;
-            color: var(--muted);
-            max-width: 340px;
-            text-align: center;
-            line-height: 1.68;
-        }
-        #eureka-close {
-            font-family: var(--mono);
-            font-size: 0.56em;
-            letter-spacing: 0.12em;
-            color: var(--faint-text);
-            margin-top: 8px;
-            text-transform: uppercase;
-        }
-        @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.35} }
-
-        @media (max-width: 620px) {
-            .nav-wrap { flex-direction: column; gap: 18px; }
-            .paper-entry { grid-template-columns: 1fr; }
-            .paper-venue { grid-column: 1; text-align: left; }
-            footer { flex-direction: column; gap: 6px; }
+            padding: 32px 0 56px;
+            font-family: var(--sans);
+            font-size: 0.72em;
+            letter-spacing: 0.03em;
+            color: var(--faint);
         }
     </style>
-    <!-- Apply saved theme before paint to avoid flash -->
+
+    <!-- Apply saved theme before paint -->
     <script>
         (function() {
-            if (localStorage.getItem('theme') === 'inverted') {
-                document.documentElement.classList.add('inverted');
+            var t = localStorage.getItem('theme');
+            if (t === 'dark' || (!t && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
             }
         })();
     </script>
 </head>
 <body>
 
-<div id="eureka" onclick="closeEureka()">
-    <div id="eureka-formula"></div>
-    <div id="eureka-label">∎ q.e.d.</div>
-    <div id="eureka-sub">The moment of understanding is not the end of a proof, it is the beginning of the next problem.</div>
-    <div id="eureka-close">[ esc or click to return ]</div>
-</div>
-
 <nav>
-    <div class="nav-wrap">
-        <a href="index.html" class="logo">Shlok Mehendale</a>
+    <div class="nav-inner">
+        <a href="#top" class="nav-name">Shlok Mehendale</a>
         <div class="nav-right">
             <div class="nav-links">
-                <a href="index.html" class="active">home</a>
-                <a href="reading.html">reading</a>
-                <a href="hobby.html">hobbies</a>
-                <a href="Shlok_Mehendale_Resume.pdf" target="_blank">cv</a>
+                <a href="#research">Research</a>
+                <a href="#experience">Experience</a>
+                <a href="#teaching">Teaching</a>
+                <a href="Curriculum Vitae.pdf" target="_blank" class="cv-link">CV</a>
             </div>
-            <div class="nav-controls">
-                <button class="ctrl-btn" id="btn-invert">invert</button>
-            </div>
+            <button class="toggle" id="theme-toggle">Dark</button>
         </div>
     </div>
 </nav>
 
-<div class="wrap">
+<div class="wrap" id="top">
 
-    <div class="preamble">
-        <p class="tw-line"><span class="tw-text" id="tw"></span></p>
-
-        <p class="lede">Hi! I'm Shlok.</p>
+    <header>
+        <p class="intro-eyebrow">Mathematics &amp; Computer Science · BITS Pilani, Goa</p>
+        <h1>Hi, I'm Shlok.</h1>
 
         <p class="body-text">
-            I'm a pre-final year undergrad at <a href="https://www.bits-pilani.ac.in/goa/">BITS Pilani, Goa</a>, dual majoring in Mathematics and Computer Science. Currently a visiting scholar supervised by <a href="https://www.cs.jhu.edu/~ayuille1/">Dr. Alan Yuille </a>, at Johns Hopkins University, working on continual learning through the lens of mechanistic interpretability, for my thesis.
+            I'm a pre-final year undergraduate at <a href="https://www.bits-pilani.ac.in/goa/">BITS Pilani, Goa</a>, dual majoring in Mathematics and Computer Science. I'm currently a visiting scholar supervised by <a href="https://www.cs.jhu.edu/~ayuille1/">Dr. Alan Yuille</a> at Johns Hopkins University, working on continual learning through the lens of mechanistic interpretability for my thesis.
         </p>
         <p class="body-text">
-            My path here was indirect. I grew up moving across India, being exposed to varied cultures and languages (I might speak yours too!). Along the way, I picked up a keen interest in mathematics. In college, I developed deep learning systems for a Mars rover team, started research in statistical learning theory under Dr. Snehanshu Saha, and ended up submitting my first research paper in my second year. This trajectory naturally shaped my broader areas of interest today: understanding how networks extract meaningful representations from data and investigating the learning dynamics of neural networks (<strong>Learning Mechanics and Mechanistic Interpretability</strong>).
+            My path here was indirect. I grew up moving across India, picking up varied cultures and languages along the way — and a keen interest in mathematics. In college I built deep learning systems for a Mars rover team, started research in statistical learning theory under Dr. Snehanshu Saha, and submitted my first paper in my second year. These threads shaped my interests today: understanding how networks extract meaningful representations from data, and the learning dynamics of neural networks (<strong>learning mechanics and mechanistic interpretability</strong>).
         </p>
 
         <blockquote class="epigraph">
@@ -588,33 +281,93 @@
         </blockquote>
 
         <div class="social-row">
-            <a href="mailto:shlokmehendale@gmail.com">email</a>
-            <a href="https://github.com/MehShlok" target="_blank">github</a>
-            <a href="https://www.linkedin.com/in/shlok-mehendale-j18/" target="_blank">linkedin</a>
-            <a href="https://scholar.google.com/citations?user=K5tJyXMAAAAJ&hl=en&oi=ao" target="_blank">scholar</a>
-            <a href="Shlok_Mehendale_Resume.pdf" target="_blank">cv</a>
+            <a href="mailto:shlokmehendale@gmail.com">Email</a>
+            <a href="https://github.com/MehShlok" target="_blank">GitHub</a>
+            <a href="https://www.linkedin.com/in/shlok-mehendale-j18/" target="_blank">LinkedIn</a>
+            <a href="https://scholar.google.com/citations?user=K5tJyXMAAAAJ&hl=en&oi=ao" target="_blank">Google Scholar</a>
+            <a href="Curriculum Vitae.pdf" target="_blank">CV</a>
         </div>
-    </div>
+    </header>
 
-    <!-- ── SECTION: RESEARCH INTERESTS ── -->
-    <section style="margin-bottom: 56px;">
-        <div class="sec-head" style="margin-bottom: 16px;">
-            <span class="sec-idx">01</span>
-            <span class="sec-title">Research Interests</span>
-        </div>
-        <p class="body-text" style="max-width: 100%; color: var(--ink); font-size: 0.96em; line-height: 1.7; margin-bottom: 0;">
-            Deep Learning Theory and Learning Mechanics <span style="color: var(--faint-text); margin: 0 6px;">·</span> 
-            Mechanistic Interpretability <span style="color: var(--faint-text); margin: 0 6px;">·</span> 
-            Computational Neuroscience <span style="color: var(--faint-text); margin: 0 6px;">·</span> 
-            Computer Vision 
+    <!-- ── RESEARCH INTERESTS ── -->
+    <section>
+        <div class="sec-title">Research Interests</div>
+        <p class="interests">
+            Deep Learning Theory &amp; Learning Mechanics<span>·</span>Mechanistic Interpretability<span>·</span>Computational Neuroscience<span>·</span>Computer Vision
         </p>
     </section>
-    
-    <section>
-        <div class="sec-head">
-            <span class="sec-idx">02</span>
-            <span class="sec-title">Experience</span>
+
+    <!-- ── RESEARCH ── -->
+    <section id="research">
+        <div class="sec-title">Research</div>
+
+        <div class="paper">
+            <div class="paper-head">
+                <div class="paper-title">Subspace Crystallization: Grokking in Modular Arithmetic Networks</div>
+                <div class="paper-venue"><span>submitted to NeurIPS '26</span><span>ICML Mech Interp Wksp '26</span></div>
+            </div>
+            <div class="paper-authors">Shlok Mehendale, Paras Chopra · Lossfunk</div>
+            <div class="paper-desc">A causally active subspace crystallises inside the weights while the rest stays inert and free. Compression follows generalisation, never causes it.</div>
         </div>
+
+        <div class="paper">
+            <div class="paper-head">
+                <div class="paper-title"><a href="https://arxiv.org/pdf/2601.11022">Matching High-Dimensional Geometric Quantiles for Test-Time Adaptation</a></div>
+                <div class="paper-venue"><span>submitted to ECCV '26</span></div>
+            </div>
+            <div class="paper-authors">Sravan Danda, Aditya Challa, Shlok Mehendale, Snehanshu Saha · APPCAIR</div>
+            <div class="paper-desc">Most test-time adaptation methods are tied to specific architectures. This one matches geometric quantiles of classifier features to correct for distribution shift — working on transformers and convnets alike, with no labelled corrupted data required.</div>
+        </div>
+
+        <div class="paper">
+            <div class="paper-head">
+                <div class="paper-title"><a href="https://arxiv.org/abs/2502.18002">A Radon–Nikodým Perspective on Anomaly Detection</a></div>
+                <div class="paper-venue"><span>submitted to TMLR</span></div>
+            </div>
+            <div class="paper-authors">Shlok Mehendale, Aditya Challa, Rahul Yedida, Sravan Danda, Santonu Sarkar, Snehanshu Saha · APPCAIR</div>
+            <div class="paper-desc">The right loss function for anomaly detection is the vanilla loss reweighted by the Radon–Nikodým derivative of the normal and anomalous distributions. PAC learnability established, evaluated across 96 datasets.</div>
+        </div>
+
+        <div class="paper">
+            <div class="paper-head">
+                <div class="paper-title"><a href="https://arxiv.org/abs/2402.07281">Benchmarking Anomaly Detection: Deep Learning and Beyond</a></div>
+                <div class="paper-venue"><span>submitted to IEEE TAI</span></div>
+            </div>
+            <div class="paper-authors">Shanay Mehta*, Shlok Mehendale*, Nicole Fernandes*, Jyotirmoy Sarkar, Santonu Sarkar, Snehanshu Saha · cited by IBM Research</div>
+            <div class="paper-desc">30+ algorithms across 104 datasets: tree-based methods match or beat deep learning on small univariate data while being orders of magnitude faster.</div>
+        </div>
+
+        <div class="paper">
+            <div class="paper-head">
+                <div class="paper-title">Stereotypy-Driven Exploration: Linking Habit and Flexibility in dlPFC–Striatum Circuits</div>
+                <div class="paper-venue"><span>in progress</span></div>
+            </div>
+            <div class="paper-authors">Shlok Mehendale, Upendra Vishwanath, Prasanna Venkhatesh</div>
+            <div class="paper-desc">A repetition-sensitive reinforcement learning framework where the striatum encodes reinforcement history to drive habitual exploitation and the dlPFC monitors stereotypy to trigger exploratory shifts — positioning repetition itself, rather than novelty or uncertainty, as the key biological signal for fronto-striatal flexibility.</div>
+        </div>
+
+        <div class="paper">
+            <div class="paper-head">
+                <div class="paper-title">Weighted Attention Bottleneck Transformer for Multimodal Fusion</div>
+                <div class="paper-venue"><span>UofT '25</span></div>
+            </div>
+            <div class="paper-authors">Shlok Mehendale · Won ProjectX · ETH Zurich, Cornell, CMU, Edinburgh</div>
+            <div class="paper-desc">Cross-modal reconstruction via a hierarchical bottleneck; adaptive fusion without full cross-attention, building on Google Research's MBT.</div>
+        </div>
+
+        <div class="paper">
+            <div class="paper-head">
+                <div class="paper-title"><a href="https://arxiv.org/abs/2501.13422v1">Atmospheric Noise Resilient Image Classification: A Hybrid Pin-GTSVM</a></div>
+                <div class="paper-venue"><span>submitted to Comp. Intelligence</span></div>
+            </div>
+            <div class="paper-authors">Shlok Mehendale, JK Sahoo · BITS Pilani</div>
+            <div class="paper-desc">Treats haze as a modelling problem, not a preprocessing step — CNN–PinGTSVM achieves 98.20% vs. 88.63% for dehazing-first baselines.</div>
+        </div>
+    </section>
+
+    <!-- ── EXPERIENCE ── -->
+    <section id="experience">
+        <div class="sec-title">Experience</div>
 
         <div class="entry">
             <div>
@@ -626,253 +379,72 @@
         <div class="entry">
             <div>
                 <div class="entry-title">Research Intern — <a href="https://lossfunk.com/">Lossfunk</a></div>
-                <div class="entry-sub"><a href="https://www.hindustantimes.com/trending/newlyminted-indian-millionaire-reveals-how-his-life-changed-after-selling-startup-for-200m-101738831197618.html">Paras Chopra</a></div>
+                <div class="entry-sub">Paras Chopra</div>
             </div>
             <div class="entry-date">Dec 2025 —</div>
         </div>
         <div class="entry">
             <div>
-                <div class="entry-title">Undergraduate Student Researcher — <a href="#">APPCAIR, BITS Pilani</a></div>
+                <div class="entry-title">Undergraduate Student Researcher — APPCAIR, BITS Pilani</div>
                 <div class="entry-sub">Prof. Snehanshu Saha</div>
             </div>
             <div class="entry-date">May 2024 — Present</div>
         </div>
         <div class="entry">
             <div>
-                <div class="entry-title">Research Intern — <a href="#">Luleå University of Technology, Sweden</a></div>
+                <div class="entry-title">Research Intern — Luleå University of Technology, Sweden</div>
                 <div class="entry-sub">Prof. Neena Goveas and Prof. Christer Åhlund</div>
             </div>
             <div class="entry-date">Jul 2024 — Nov 2024</div>
         </div>
         <div class="entry">
             <div>
-                <div class="entry-title">Technical Consultant & Curriculum Designer — STEM4ALL (California)</div>
-                <div class="entry-sub">Created and implemented a professional-grade deep learning and neural network curriculum targeting industry specialists in California, USA.</div>
+                <div class="entry-title">Technical Consultant &amp; Curriculum Designer — STEM4ALL, California</div>
+                <div class="entry-sub">Designed and delivered a professional-grade deep learning and neural networks curriculum for industry specialists.</div>
             </div>
-            <div class="entry-date">Summer 24-25</div>
+            <div class="entry-date">Summer '24–'25</div>
         </div>
     </section>
 
-    <section>
-        <div class="sec-head">
-            <span class="sec-idx">03</span>
-            <span class="sec-title">Research</span>
-        </div>
-
-        <div class="paper-entry">
-            <div class="paper-title">
-                <span class="paper-title-text">Subspace Crystallization: Grokking in Modular Arithmetic Networks</span>
-                <div class="math-pop" id="mp-grok"><span class="math-label"></span></div>
-            </div>
-            <div class="paper-venue">submitted to NeurIPS'26</div>
-            <div class="paper-venue">ICML Mech Interp Wkshp'26</div>
-            <div class="paper-sub">Shlok Mehendale, Paras Chopra · Lossfunk</div>
-            <div class="paper-desc"> A causally active subspace crystallises inside the weights while the rest stays inert and free. Compression follows generalisation, never causes it.</div>
-        </div>
-
-        <div class="paper-entry">
-            <div class="paper-title">
-                <span class="paper-title-text"><a href="https://arxiv.org/pdf/2601.11022">Matching High-Dimensional Geometric Quantiles for Test-Time Adaptation</a></span>
-                <div class="math-pop" id="mp-quant"><span class="math-label"></span></div>
-            </div>
-            <div class="paper-venue">submitted to ECCV'26</div>
-            <div class="paper-sub"> Sravan Danda, Aditya Challa, Shlok Mehendale, Snehanshu Saha · APPCAIR</div>
-            <div class="paper-desc">most test-time adaptation methods are tied to specific architectures. this one matches geometric quantiles of classifier features to correct for distribution shift, works on transformers and convnets alike, no labelled corrupted data required.</div>
-        </div>
-
-        <div class="paper-entry">
-            <div class="paper-title">
-                <span class="paper-title-text"><a href="https://arxiv.org/abs/2502.18002">A Radon-Nikodým Perspective on Anomaly Detection</a></span>
-                <div class="math-pop" id="mp-rn"><span class="math-label"></span></div>
-            </div>
-            <div class="paper-venue">submitted to TMLR</div>
-            <div class="paper-sub">Shlok Mehendale, Aditya Challa, Rahul Yedida, Sravan Danda, Santonu Sarkar, Snehanshu Saha · APPCAIR</div>
-            <div class="paper-desc">the right loss function for anomaly detection is the vanilla loss reweighted by the Radon-Nikodým derivative, derived from the normal and anomalous distributions. PAC learnability established, evaluated across 96 datasets.</div>
-        </div>
-
-        <div class="paper-entry">
-            <div class="paper-title">
-                <span class="paper-title-text"><a href="https://arxiv.org/abs/2402.07281">Benchmarking Anomaly Detection: Deep Learning and Beyond</a></span>
-            </div>
-            <div class="paper-venue">submitted to IEEE TAI</div>
-            <div class="paper-sub"> Shanay Mehta*, Shlok Mehendale*, Nicole Fernandes*, Jyotirmoy Sarkar, Santonu Sarkar, Snehanshu Saha · cited by IBM Research</div>
-            <div class="paper-desc">30+ algorithms across 104 datasets: tree-based methods match or beat deep learning on small univariate data while being orders of magnitude faster.</div>
-        </div>
-
-        <div class="paper-entry">
-            <div class="paper-title">
-                <span class="paper-title-text">Stereotypy-Driven Exploration: Linking Habit and Flexibility in dlPFC–Striatum Circuits</span>
-            </div>
-            <div class="paper-venue">In progress</div>
-            <div class="paper-sub"> Shlok Mehendale, Upendra Vishwanath, Prasanna Venkhatesh</div>
-            <div class="paper-desc">We propose a repetition-sensitive reinforcement learning framework where the striatum encodes reinforcement history to drive habitual exploitation and the dlPFC monitors stereotypy to trigger exploratory shifts, positioning repetition itself rather than novelty or uncertainty as the key biological signal for fronto-striatal flexibility.</div>
-        </div>
-
-        <div class="paper-entry">
-            <div class="paper-title">
-                <span class="paper-title-text">Weighted Attention Bottleneck Transformer for Multimodal Fusion</span>
-            </div>
-            <div class="paper-venue">UofT'25</div>
-            <div class="paper-sub"> Shlok Mehendale · Won ProjectX · ETH Zurich, Cornell, CMU, Edinburgh</div>
-            <div class="paper-desc">cross-modal reconstruction via a hierarchical bottleneck; adaptive fusion without full cross-attention, building on Google Research's MBT.</div>
-        </div>
-
-        <div class="paper-entry">
-            <div class="paper-title">
-                <span class="paper-title-text"><a href="https://arxiv.org/abs/2501.13422v1">Atmospheric Noise Resilient Image Classification: A Hybrid Pin-GTSVM</a></span>
-            </div>
-            <div class="paper-venue">submitted to Comp. Intelligence</div>
-            <div class="paper-sub"> Shlok Mehendale, JK Sahoo · BITS Pilani</div>
-            <div class="paper-desc">treats haze as a modelling problem, not a preprocessing step — CNN–PinGTSVM achieves 98.20% vs. 88.63% for dehazing-first baselines.</div>
-        </div>
-
-    </section>
-
-    <!-- ── SECTION 04: TEACHING AND MENTORING ── -->
-    <section>
-        <div class="sec-head">
-            <span class="sec-idx">04</span>
-            <span class="sec-title">Teaching</span>
-        </div>
+    <!-- ── TEACHING ── -->
+    <section id="teaching">
+        <div class="sec-title">Teaching</div>
 
         <div class="entry">
             <div>
                 <div class="entry-title">Teaching Assistant — BITS Pilani (WILP / Coursera)</div>
-                <div class="entry-sub">Assisting and orchestrating evaluation frameworks for foundational technical courses: Data Visualization, Command Line Scripting and Object-oriented Programming.</div>
+                <div class="entry-sub">Evaluation frameworks for foundational courses: Data Visualization, Command Line Scripting, and Object-Oriented Programming.</div>
             </div>
-            <div class="entry-date">Semester-2 '24-25, Semester-1, 2 '25-26</div>
+            <div class="entry-date">'24–'25, '25–'26</div>
         </div>
-
         <div class="entry">
             <div>
                 <div class="entry-title">Undergraduate Teaching Assistant — BITS Pilani, Goa</div>
-                <div class="entry-sub">Delivered instructional support, handled tutorials, and assessed cohorts for Mathematics-2 (Linear Algebra & Complex Numbers) and Probability & Statistics.</div>
+                <div class="entry-sub">Tutorials and assessment for Mathematics-2 (Linear Algebra &amp; Complex Numbers) and Probability &amp; Statistics.</div>
             </div>
-            <div class="entry-date">Semester-2 '23-24, Semester-1, 2 '24-25</div>
+            <div class="entry-date">'23–'24, '24–'25</div>
         </div>
     </section>
+
+    <footer>
+        Shlok Mehendale · 2026
+    </footer>
+
 </div>
 
-<footer>
-    <span>shlok_mehendale// 2026</span>
-    <div class="footer-easter">
-        <span class="footer-dots">···</span>
-        <span id="footer-eof" title="∎">EOF</span>
-    </div>
-</footer>
-
 <script>
-/* ── THEME PERSISTENCE ── */
-(function() {
-    const saved = localStorage.getItem('theme');
-    const btn = document.getElementById('btn-invert');
-    if (saved === 'inverted') {
-        btn.classList.add('on');
-    }
-
-    btn.addEventListener('click', function() {
-        const isInverted = document.body.classList.toggle('inverted');
-        this.classList.toggle('on', isInverted);
-        localStorage.setItem('theme', isInverted ? 'inverted' : 'light');
-    });
-})();
-
-/* typewriter */
-const phrases = [
-    'i study how networks learn to generalise.',
-    'Currently: hanging somewhere between a proof and a guess :P',
-];
-let pi = 0, ci = 0, del = false;
-const tw = document.getElementById('tw');
-function tick() {
-    const p = phrases[pi];
-    if (!del) {
-        tw.textContent = p.slice(0, ++ci);
-        if (ci === p.length) { setTimeout(() => { del = true; tick(); }, 2800); return; }
-        setTimeout(tick, 48 + Math.random() * 36);
-    } else {
-        tw.textContent = p.slice(0, --ci);
-        if (ci === 0) { del = false; pi = (pi + 1) % phrases.length; setTimeout(tick, 320); return; }
-        setTimeout(tick, 22 + Math.random() * 14);
-    }
-}
-setTimeout(tick, 500);
-
-/* KaTeX + stagger */
-window.addEventListener('load', () => {
-    if (typeof katex === 'undefined') return;
-
-    const formulas = {
-        'mp-grok':  { tex: '\\mathcal{L}(\\theta) \\to 0,\\;\\hat{R}_{\\mathrm{gen}} \\downarrow \\;\\Rightarrow\\; \\text{subspace crystallises}', label: 'loss → 0, generalisation ↓, structure emerges' },
-        'mp-quant': { tex: 'Q_{\\alpha}(\\mathbf{x}) = \\arg\\min_{\\mathbf{q}} \\,\\mathbb{E}\\bigl[\\rho_{\\alpha}(\\|\\mathbf{x}-\\mathbf{q}\\|)\\bigr]', label: 'geometric quantile as check-function minimiser' },
-        'mp-rn':    { tex: '\\dfrac{d\\mu}{d\\nu}(x) = \\lim_{\\varepsilon\\to 0}\\dfrac{\\mu(B_\\varepsilon(x))}{\\nu(B_\\varepsilon(x))}', label: 'anomaly score as local density ratio' },
-    };
-
-    for (const [id, {tex, label}] of Object.entries(formulas)) {
-        const pop = document.getElementById(id);
-        if (!pop) continue;
-        const lbl = pop.querySelector('.math-label');
-        const container = document.createElement('span');
-        katex.render(tex, container, { throwOnError: false });
-        pop.insertBefore(container, lbl);
-        if (lbl) lbl.textContent = label;
-
-        const entry = pop.closest('.paper-entry');
-        entry.addEventListener('mouseenter', () => {
-            const atoms = pop.querySelectorAll('.mord,.mrel,.mop,.mbin,.mpunct,.mopen,.mclose,.minner,.mspace');
-            atoms.forEach((el, i) => {
-                el.style.animationDelay = `${i * 26}ms`;
-                el.style.animation = 'none';
-                el.offsetHeight;
-                el.style.animation = '';
-            });
+    /* ── THEME TOGGLE ── */
+    (function() {
+        var root = document.documentElement;
+        var btn = document.getElementById('theme-toggle');
+        function sync() { btn.textContent = root.classList.contains('dark') ? 'Light' : 'Dark'; }
+        sync();
+        btn.addEventListener('click', function() {
+            var dark = root.classList.toggle('dark');
+            localStorage.setItem('theme', dark ? 'dark' : 'light');
+            sync();
         });
-    }
-});
-
-/* EUREKA — click EOF in footer, or type "eureka" */
-const eurekaEl  = document.getElementById('eureka');
-const eurekaFml = document.getElementById('eureka-formula');
-
-const picks = [
-    { tex: 'e^{i\\pi} + 1 = 0',                               note: "euler's identity" },
-    { tex: '\\int_{-\\infty}^{\\infty} e^{-x^2}\\,dx = \\sqrt{\\pi}',        note: 'gaussian integral' },
-    { tex: '\\sum_{n=1}^{\\infty} \\frac{1}{n^2} = \\frac{\\pi^2}{6}',       note: 'basel problem — euler, 1734' },
-    { tex: 'P(A|B) = \\frac{P(B|A)\\,P(A)}{P(B)}',                           note: "bayes' theorem" },
-    { tex: '\\nabla \\times \\mathbf{B} = \\mu_0\\mathbf{J} + \\mu_0\\varepsilon_0\\frac{\\partial \\mathbf{E}}{\\partial t}', note: "maxwell's fourth equation" },
-    { tex: 'i\\hbar\\frac{\\partial}{\\partial t}\\Psi = \\hat{H}\\Psi',      note: 'schrödinger equation' },
-    { tex: '\\frac{d}{dt}\\oint_C \\mathbf{v}\\cdot d\\mathbf{l} = 0',        note: "kelvin's circulation theorem" },
-];
-
-function showEureka() {
-    if (typeof katex === 'undefined') return;
-    const pick = picks[Math.floor(Math.random() * picks.length)];
-    document.getElementById('eureka-label').textContent = '∎  ' + pick.note;
-    eurekaFml.innerHTML = '';
-    katex.render(pick.tex, eurekaFml, { throwOnError: false, displayMode: true });
-    eurekaEl.classList.add('show');
-    requestAnimationFrame(() => {
-        const atoms = eurekaFml.querySelectorAll('.mord,.mrel,.mop,.mbin,.mpunct,.mopen,.mclose,.minner,.mspace');
-        atoms.forEach((el, i) => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(8px)';
-            el.style.transition = `opacity 0.4s ${i * 38}ms ease, transform 0.4s ${i * 38}ms ease`;
-            requestAnimationFrame(() => { el.style.opacity = '1'; el.style.transform = 'translateY(0)'; });
-        });
-    });
-}
-
-document.getElementById('footer-eof').addEventListener('click', showEureka);
-
-let keyBuf = '';
-document.addEventListener('keydown', e => {
-    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
-    keyBuf = (keyBuf + e.key).slice(-6);
-    if (keyBuf.toLowerCase() === 'eureka') { showEureka(); keyBuf = ''; }
-});
-
-function closeEureka() { eurekaEl.classList.remove('show'); }
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeEureka(); });
+    })();
 </script>
 </body>
 </html>
