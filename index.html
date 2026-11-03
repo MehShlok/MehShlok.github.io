@@ -169,6 +169,35 @@
         .interests .item { white-space: nowrap; }
         .interests .sep { color: var(--faint); margin: 0 7px; }
 
+        /* ── PAPERS ── */
+        .pub-title {
+            font-size: 1.02em;
+            font-weight: 600;
+            line-height: 1.4;
+            border-bottom: 1px solid var(--rule);
+            transition: border-color 0.2s;
+        }
+        .pub-title:hover { border-color: var(--accent); }
+        .pub-meta {
+            font-family: var(--sans);
+            font-size: 0.74em;
+            letter-spacing: 0.02em;
+            color: var(--muted);
+            margin-top: 8px;
+        }
+        .pub-meta strong { color: var(--ink); font-weight: 600; }
+        .pub-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px 16px;
+            margin-top: 6px;
+            font-family: var(--sans);
+            font-size: 0.74em;
+            letter-spacing: 0.02em;
+        }
+        .pub-links a { color: var(--muted); border-bottom: 1px solid transparent; transition: color 0.15s; }
+        .pub-links a:hover { color: var(--accent); border-color: var(--accent); }
+
         /* ── FOOTER ── */
         footer {
             border-top: 1px solid var(--rule);
@@ -241,6 +270,17 @@
         </p>
         <p class="interests">
             <span class="item">Deep Learning Theory &amp; Learning Mechanics</span><span class="sep">·</span><span class="item">Mechanistic Interpretability</span><span class="sep">·</span><span class="item">Computational Neuroscience &amp; Cognitive Science</span><span class="sep">·</span><span class="item">Computer Vision</span>
+        </p>
+    </section>
+
+    <section>
+        <div class="sec-title">Papers</div>
+        <a href="subspace-crystallization/" class="pub-title">Subspace Crystallization in Grokking: Rank Compression Tracks the Phase Transition</a>
+        <p class="pub-meta"><strong>Shlok Mehendale</strong>, Paras Chopra · Lossfunk · Preprint, 2026</p>
+        <p class="pub-links">
+            <a href="subspace-crystallization/">Website</a>
+            <a href="subspace-crystallization/static/paper.pdf" target="_blank">PDF</a>
+            <a href="https://github.com/Lossfunk/Causal-geometric-grokking" target="_blank">Code</a>
         </p>
     </section>
 
