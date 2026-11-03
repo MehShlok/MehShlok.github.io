@@ -1,3 +1,28 @@
+//* ======================== Explainer Video ===================== */
+// Play only while on screen, and not at all for readers who prefer reduced motion.
+(function () {
+  var video = document.querySelector("video.explainer");
+  if (!video) return;
+
+  if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    video.removeAttribute("autoplay");
+    video.pause();
+    video.controls = true;
+    return;
+  }
+  if (!("IntersectionObserver" in window)) return;
+  new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        var p = video.play();
+        if (p && p.catch) p.catch(function () { video.controls = true; });
+      } else {
+        video.pause();
+      }
+    });
+  }, { threshold: 0.25 }).observe(video);
+})();
+
 //* ======================== Crystallization Widget ===================== */
 // d_out per matrix, test accuracy and the Nanda et al. losses, from Table 5
 // (29 grokked transformer seeds, each aligned at its own onset t_g).

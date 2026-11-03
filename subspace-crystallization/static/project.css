@@ -170,6 +170,16 @@ table td.hl {
   font-weight: 600;
 }
 
+/* ======================== Explainer video ===================== */
+video.explainer {
+  display: block;
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+  border-radius: 10px;
+  background: #ffffff;
+}
+
 /* ======================== Crystallization widget ===================== */
 .cw {
   padding: 1vh 0 0.5vh;
