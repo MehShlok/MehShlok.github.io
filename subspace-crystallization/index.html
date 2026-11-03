@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Subspace Crystallization in Grokking</title>
-    <meta name="description" content="Rank compression in grokking follows the onset of generalization, not memorization. The transformer's solution crystallizes into 8–13 directions per weight matrix during the transition, and imposing low rank early does not speed grokking up.">
+    <meta name="description" content="Rank compression in grokking follows the onset of generalization, not memorization. During the transition, the share of each transformer weight matrix's directions that the solution needs falls from 22–54% to 7–11%, and imposing low rank early does not speed grokking up.">
     <meta name="referrer" content="no-referrer-when-downgrade">
     <meta name="robots" content="all">
     <meta content="en_EN" property="og:locale">
@@ -23,11 +23,11 @@
 
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='1' y='1' width='6' height='6' rx='1' fill='%232f4f7a'/%3E%3Crect x='9' y='1' width='6' height='6' rx='1' fill='%237c9cc6'/%3E%3Crect x='1' y='9' width='6' height='6' rx='1' fill='%23c9d3dd'/%3E%3Crect x='9' y='9' width='6' height='6' rx='1' fill='%23c9d3dd'/%3E%3C/svg%3E">
 
-    <link rel="stylesheet" type="text/css" media="all" href="assets/stylesheets/main_free.css?v=3" />
-    <link rel="stylesheet" type="text/css" media="all" href="clarity/clarity.css?v=3" />
-    <link rel="stylesheet" type="text/css" media="all" href="static/project.css?v=3" />
+    <link rel="stylesheet" type="text/css" media="all" href="assets/stylesheets/main_free.css?v=4" />
+    <link rel="stylesheet" type="text/css" media="all" href="clarity/clarity.css?v=4" />
+    <link rel="stylesheet" type="text/css" media="all" href="static/project.css?v=4" />
     <link href="assets/fa/css/all.min.css" rel="stylesheet">
-    <script src="assets/scripts/navbar.js?v=3"></script>
+    <script src="assets/scripts/navbar.js?v=4"></script>
     <script type="text/x-mathjax-config">
         MathJax.Hub.Config({
             "HTML-CSS": {
@@ -61,7 +61,7 @@
                         <a href="https://x.com/paraschopra">Paras Chopra</a> · Lossfunk
                     </p>
                     <p class="abstract">
-                        When a network groks, the effective rank of its weights falls. Is that compression the cause of generalization, or a consequence of it? Training a mean-field MLP and a one-layer transformer on modular arithmetic, we find that compression follows the grokking onset rather than memorization, that the transformer's solution crystallizes into 8–13 directions per weight matrix during the transition, and that forcing low rank from the start does not make grokking come sooner. Compression is a <em>signature</em> of grokking, not its cause.
+                        When a network groks, the effective rank of its weights falls. Is that compression the cause of generalization, or a consequence of it? Training a mean-field MLP and a one-layer transformer on modular arithmetic, we find that compression follows the grokking onset rather than memorization, that during the transition the transformer's solution crystallizes from needing 22–54% of each weight matrix's directions to just 7–11%, and that forcing low rank from the start does not make grokking come sooner. Compression is a <em>signature</em> of grokking, not its cause.
                     </p>
                 </div>
 
@@ -79,8 +79,8 @@
             </div>
 
             <div class="blog-cover">
-                <img class="foreground" src="static/cover.svg" alt="Directions each transformer weight matrix needs to keep its outputs within 10%, 3,000 steps before and after the grokking onset">
-                <img class="background" src="static/cover.svg" alt="">
+                <img class="foreground" src="static/cover.svg?v=4" alt="Directions each transformer weight matrix needs to keep its outputs within 10%, 3,000 steps before and after the grokking onset">
+                <img class="background" src="static/cover.svg?v=4" alt="">
             </div>
         </div>
     </div>
@@ -101,9 +101,9 @@
             </div>
             <div class="finding">
                 <div class="num">02</div>
-                <div class="stat">27–53 → 8–13</div>
+                <div class="stat">22–54% → 7–11%</div>
                 <h3>Subspace crystallization</h3>
-                <p>Judged by the outputs, the directions each transformer weight matrix needs shrink from a quarter or more of those available to about a tenth, during the transition itself.</p>
+                <p>Judged by the outputs, the share of each transformer weight matrix's directions that the solution needs falls from 22–54% to 7–11% over the transition, from 3,000 steps before the onset to 3,000 after.</p>
             </div>
             <div class="finding">
                 <div class="num">03</div>
@@ -256,7 +256,7 @@
     </div>
     <div class="container blog main">
         <p class="text">
-            Three thousand steps before the onset, at 16% test accuracy, $d_{\text{out}}$ is 27–53 per matrix. At the onset it is 11–17, and 3,000 steps later 9–14. For $W_{\text{in}}$, $W_{\text{out}}$ and $W_U$ it is halfway down 740–960 steps before the onset, at about 60% test accuracy, in 28 or 29 of 29 seeds.
+            Three thousand steps before the onset, at 16% test accuracy, the outputs depend on 22–54% of each matrix's directions ($d_{\text{out}}$ = 27–53). At the onset this is 9–18%, and 3,000 steps later 7–11% ($d_{\text{out}}$ = 9–14). For $W_{\text{in}}$, $W_{\text{out}}$ and $W_U$ it is halfway down 740–960 steps before the onset, at about 60% test accuracy, in 28 or 29 of 29 seeds.
         </p>
 
         <h2>It Coincides With Cleanup</h2>
@@ -267,13 +267,13 @@
     <div class="container blog main gray">
         <img class="figure" src="static/figures/tf_crystallization.png" alt="Directions needed to keep outputs within 10% and test accuracy, aligned at the onset">
         <p class="caption">
-            <b>Directions of each weight matrix needed to keep the outputs within 10% (left) and test accuracy (right),</b> with each seed aligned at its own onset $t_g$. The count falls during the rise in test accuracy and settles at 8–13 per matrix.
+            <b>Directions of each weight matrix needed to keep the outputs within 10% (left) and test accuracy (right),</b> with each seed aligned at its own onset $t_g$. The count falls during the rise in test accuracy and settles at about a tenth of each matrix's directions.
         </p>
     </div>
     <div class="container blog main">
         <h2>The Final Solution Uses Few Directions</h2>
         <p class="text">
-            At the final checkpoint, $d_{0.99}$ is 7.7 of 97 directions for $W_E$, 8.7 of 128 for $W_{\text{out}}$ and 13.0 of 128 for $W_{\text{in}}$, and the MLP's post-activations need only 17 of 512 (3.4%). These counts are not inflated by the margin: $d_{\text{out}}$ is 8.1–13.0 for all four matrices. The leading directions really carry the solution: truncating to them keeps at least 99.26% of test accuracy, while random subspaces of the same rank keep at most 12.5%.
+            At the final checkpoint, $d_{0.99}$ is 7.9% of the directions of $W_E$ (7.7 of 97), 6.8% of $W_{\text{out}}$ (8.7 of 128) and 10.2% of $W_{\text{in}}$ (13.0 of 128), and the MLP's post-activations need only 3.4% (17 of 512). These counts are not inflated by the margin: $d_{\text{out}}$ is 8.1–13.0 directions for all four matrices, roughly 6–13% of each. The leading directions really carry the solution: truncating to them keeps at least 99.26% of test accuracy, while random subspaces of the same rank keep at most 12.5%.
         </p>
 
         <h2>Accuracy Can Fake Crystallization</h2>
@@ -455,7 +455,7 @@
         </div>
     </footer>
 
-    <script src="assets/scripts/main.js?v=3"></script>
-    <script src="static/project.js?v=3"></script>
+    <script src="assets/scripts/main.js?v=4"></script>
+    <script src="static/project.js?v=4"></script>
 </body>
 </html>

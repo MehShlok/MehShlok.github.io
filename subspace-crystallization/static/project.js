@@ -1,6 +1,7 @@
 //* ======================== Crystallization Widget ===================== */
 // d_out per matrix, test accuracy and the Nanda et al. losses, from Table 5
 // (29 grokked transformer seeds, each aligned at its own onset t_g).
+// Sizes are each matrix's maximum rank (Table 30).
 (function () {
   var root = document.getElementById("crystal-widget");
   if (!root) return;
@@ -10,7 +11,7 @@
     { name: "E", size: 97, d: [27.3, 26.0, 23.0, 19.9, 17.2, 12.0, 8.6] },
     { name: "in", size: 128, d: [28.0, 25.7, 21.0, 18.3, 15.9, 13.9, 13.8] },
     { name: "out", size: 128, d: [46.9, 40.2, 26.6, 16.7, 11.0, 9.2, 9.0] },
-    { name: "U", size: 97, d: [52.6, 46.6, 33.4, 24.2, 14.0, 9.1, 8.9] }
+    { name: "U", size: 98, d: [52.6, 46.6, 33.4, 24.2, 14.0, 9.1, 8.9] }
   ];
   var acc = [15.7, 26.2, 57.7, 82.4, 96.9, 99.9, 100.0];
   var restricted = [2.09, 1.37, 0.64, 0.26, 0.12, 0.03, 0.12];
@@ -28,7 +29,7 @@
     wrap.className = "cw-mat";
     wrap.innerHTML =
       '<div class="cw-label"><span><i>W</i><sub>' + m.name + "</sub></span>" +
-      '<span class="count"><b>0</b> / ' + m.size + "</span></div>";
+      '<span class="count"><b></b> <span class="raw"></span></span></div>';
     var box = document.createElement("div");
     box.className = "cw-cells";
     var list = [];
@@ -40,7 +41,7 @@
     wrap.appendChild(box);
     grids.appendChild(wrap);
     cells.push(list);
-    counts.push(wrap.querySelector(".count b"));
+    counts.push({ pct: wrap.querySelector(".count b"), raw: wrap.querySelector(".count .raw") });
   });
 
   function fmt(s) {
@@ -52,7 +53,8 @@
   function render(i) {
     mats.forEach(function (m, j) {
       var n = Math.round(m.d[i]);
-      counts[j].textContent = m.d[i].toFixed(1);
+      counts[j].pct.textContent = ((100 * m.d[i]) / m.size).toFixed(1) + "%";
+      counts[j].raw.textContent = "(" + m.d[i].toFixed(1) + "/" + m.size + ")";
       cells[j].forEach(function (c, k) {
         if (k < n) {
           // Leading singular directions are darkest.
