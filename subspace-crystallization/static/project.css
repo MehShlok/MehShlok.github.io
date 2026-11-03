@@ -307,7 +307,7 @@ footer .foot p {
     grid-template-columns: 1fr;
   }
 }
-@media screen and (max-width: 768.98px) {
+@media screen and (width < 769px) {
   /* Single-column hero: keep the cover from stretching to the full width. */
   div.container.blog#first-content div.blog-title .blog-cover {
     justify-content: center;
