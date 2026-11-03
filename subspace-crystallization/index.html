@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subspace Crystallization in Grokking</title>
+    <meta name="description" content="Rank compression in grokking follows the onset of generalization, not memorization. The transformer's solution crystallizes into 8–13 directions per weight matrix during the transition, and imposing low rank early does not speed grokking up.">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <meta name="robots" content="all">
+    <meta content="en_EN" property="og:locale">
+    <meta content="website" property="og:type">
+    <meta content="https://mehshlok.github.io/subspace-crystallization/" property="og:url">
+    <meta content="Subspace Crystallization in Grokking" property="og:title">
+    <meta content="Rank compression tracks the phase transition. It is a signature of grokking, not its cause." property="og:description">
+    <meta content="https://mehshlok.github.io/subspace-crystallization/static/social_card.png" property="og:image">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@lossfunk">
+    <meta name="twitter:title" content="Subspace Crystallization in Grokking">
+    <meta name="twitter:description" content="Rank compression tracks the phase transition. It is a signature of grokking, not its cause.">
+    <meta name="twitter:image" content="https://mehshlok.github.io/subspace-crystallization/static/social_card.png">
+
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='1' y='1' width='6' height='6' rx='1' fill='%232f4f7a'/%3E%3Crect x='9' y='1' width='6' height='6' rx='1' fill='%237c9cc6'/%3E%3Crect x='1' y='9' width='6' height='6' rx='1' fill='%23c9d3dd'/%3E%3Crect x='9' y='9' width='6' height='6' rx='1' fill='%23c9d3dd'/%3E%3C/svg%3E">
+
+    <link rel="stylesheet" type="text/css" media="all" href="assets/stylesheets/main_free.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="clarity/clarity.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="static/project.css" />
+    <link href="assets/fa/css/all.min.css" rel="stylesheet">
+    <script src="assets/scripts/navbar.js"></script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            "HTML-CSS": {
+              scale: 95,
+              fonts: ["Gyre-Pagella"],
+              imageFont: null,
+              undefinedFamily: "'Arial Unicode MS', cmbright"
+            },
+            tex2jax: {
+                inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                processEscapes: true
+              }
+          });
+    </script>
+    <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+</head>
+
+<body>
+    <!-- Title Page -->
+    <div class="container blog" id="first-content">
+        <div class="blog-title">
+            <div class="blog-intro">
+                <div>
+                    <img class="hero-logo" src="static/lossfunk.jpg" alt="Lossfunk">
+                    <p class="hero-tag">Preprint · 2026</p>
+                    <h1 class="title">Subspace Crystallization in Grokking: Rank Compression Tracks the Phase Transition</h1>
+                    <p class="author">
+                        <a href="https://mehshlok.github.io/">Shlok Mehendale</a> and
+                        <a href="https://x.com/paraschopra">Paras Chopra</a> · Lossfunk
+                    </p>
+                    <p class="abstract">
+                        When a network groks, the effective rank of its weights falls. Is that compression the cause of generalization, or a consequence of it? Training a mean-field MLP and a one-layer transformer on modular arithmetic, we find that compression follows the grokking onset rather than memorization, that the transformer's solution crystallizes into 8–13 directions per weight matrix during the transition, and that forcing low rank from the start does not make grokking come sooner. Compression is a <em>signature</em> of grokking, not its cause.
+                    </p>
+                </div>
+
+                <div class="info">
+                    <a href="static/paper.pdf" class="button icon primary">Paper <i class="fa-solid fa-file-pdf"></i></a>
+                    <!-- TODO: uncomment once the arXiv ID is live.
+                    <a href="https://arxiv.org/abs/XXXX.XXXXX" class="button icon">arXiv <i class="fa-solid fa-book-open"></i></a>
+                    -->
+                    <a href="https://github.com/Lossfunk/Causal-geometric-grokking" class="button icon">Code <i class="fa-brands fa-github"></i></a>
+                    <!-- TODO: uncomment with the thread URL after posting.
+                    <a href="https://x.com/lossfunk/status/XXXXXXXXXXXXXXXXXXX" class="button icon">Thread <i class="fa-brands fa-x-twitter"></i></a>
+                    -->
+                    <a href="#citation" class="button icon">BibTeX <i class="fa-solid fa-quote-right"></i></a>
+                </div>
+            </div>
+
+            <div class="blog-cover">
+                <img class="foreground" src="static/cover.svg" alt="Directions each transformer weight matrix needs to keep its outputs within 10%, 3,000 steps before and after the grokking onset">
+                <img class="background" src="static/cover.svg" alt="">
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Key findings -->
+    <div class="container blog main first" id="blog-main">
+        <h1>Key Findings</h1>
+        <p class="text">
+            Grokking networks memorize first and generalize much later, and their weight matrices lose effective rank as test accuracy jumps. That observation has fuelled the idea that a pressure toward low-rank, efficient circuits <em>causes</em> grokking. We separate the two events in time, count directions in a way the margin cannot inflate, and impose low rank directly.
+        </p>
+        <div class="findings">
+            <div class="finding">
+                <div class="num">01</div>
+                <div class="stat">~900 steps</div>
+                <h3>Compression follows the onset, not memorization</h3>
+                <p>Every transformer memorizes within 250 steps, while onsets range from 6,500 to 21,000. The steepest rank drop lands about 900 steps after the onset, however late it comes ($r = 0.99$).</p>
+            </div>
+            <div class="finding">
+                <div class="num">02</div>
+                <div class="stat">27–53 → 8–13</div>
+                <h3>Subspace crystallization</h3>
+                <p>Judged by the outputs, the directions each transformer weight matrix needs shrink from a quarter or more of those available to about a tenth, during the transition itself.</p>
+            </div>
+            <div class="finding">
+                <div class="num">03</div>
+                <div class="stat">15 of 20</div>
+                <h3>Imposing low rank does not speed grokking up</h3>
+                <p>Against a factorized full-rank control, rank caps never bring the onset forward. Capping the embedding's rank stops 15 of 20 runs from grokking at all.</p>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- The question -->
+    <div class="container blog main">
+        <h1>The Question</h1>
+        <p class="text">
+            Grokking, memorization followed by delayed generalization, is a rare clean window into how circuits emerge from gradient descent. We know a lot about <em>what</em> grokking networks compute: a sparse Fourier algorithm for modular arithmetic, formed through phases of memorization, circuit formation and cleanup. A recurring observation is that the effective rank of their weight matrices falls as test accuracy jumps. We ask two questions.
+        </p>
+        <div class="callout">
+            <p><span class="label">Q1</span><br>Does rank compression cause grokking, or follow it?</p>
+            <p><span class="label">Q2</span><br>Does the learned solution lie in the subspace spanned by a few leading directions of each weight matrix?</p>
+        </div>
+        <p class="text">
+            The usual evidence cannot settle these, for three reasons:
+        </p>
+        <ol class="text-list">
+            <li><b>Timing is ambiguous.</b> Compression is usually seen after both memorization and the rise in test accuracy, so it is unclear which of the two it follows.</li>
+            <li><b>Timing alone cannot show cause.</b> That needs interventions.</li>
+            <li><b>Accuracy hides the margin.</b> Truncating a weight matrix until test accuracy drops only checks which output is largest. As margins grow, more directions can be deleted before any prediction flips, so the count can fall even though the outputs still depend on those directions.</li>
+        </ol>
+
+        <h2>Setup</h2>
+        <p class="text">
+            We train two architectures on $(a+b) \bmod 97$ across many random seeds, and replicate on $ab \bmod 97$ and $(a+b) \bmod 113$. The <b>grokking onset</b> $t_g$ is the first step with test accuracy $\geq 95\%$; the <b>memorization step</b> $t_{\text{fit}}$ is the first step with training accuracy $\geq 99\%$.
+        </p>
+        <div class="table-wrapper">
+            <table class="compact">
+                <thead>
+                    <tr><th></th><th>Mean-field MLP</th><th>One-layer transformer</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><b>Architecture</b></td><td>128 hidden units, quadratic activation</td><td>4 heads, $d_{\text{model}} = 128$, $d_{\text{mlp}} = 512$, ReLU, no LayerNorm</td></tr>
+                    <tr><td><b>Loss</b></td><td>Mean-squared error to one-hot targets</td><td>Cross-entropy</td></tr>
+                    <tr><td><b>Optimizer</b></td><td>Full-batch AdamW, lr $10^{-3}$, wd $10^{-2}$</td><td>Full-batch AdamW, lr $10^{-3}$, wd $1.0$</td></tr>
+                    <tr><td><b>Training</b></td><td>35% train split, $10^5$ steps</td><td>30% train split, 25,000 steps, checkpoint every 250</td></tr>
+                    <tr><td><b>Runs</b></td><td>15 seeds per task, plus 5 random-label controls</td><td>30 seeds (15 held out), plus 7 runs that memorize but never grok</td></tr>
+                    <tr><td><b>Matrices</b></td><td>$W_1$, $W_2$</td><td>$W_E$, $W_{\text{in}}$, $W_{\text{out}}$, $W_U$ (and attention)</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2>Counting Directions</h2>
+        <p class="text">
+            Our primary geometric metric is the <b>effective rank</b>, the exponential of the entropy of the normalized singular values:
+            $$ \mathrm{ER}(W) = \exp\big(H(\hat\sigma)\big), \qquad \hat\sigma_i = \sigma_i \Big/ \textstyle\sum_j \sigma_j . $$
+            To ask how many directions the solution <em>needs</em>, we replace a weight matrix $W = U\Sigma V^\top$ by its top-$k$ truncation $W_{[k]} = U_{:k}\Sigma_{:k}V_{:k}^\top$ and leave the rest of the network unchanged. Two counts follow:
+        </p>
+        <ul class="text-list">
+            <li>$d_{0.99}$: the fewest directions that keep 99% of the test accuracy. Their span is the <b>sufficient subspace</b>.</li>
+            <li>$d_{\text{out}}$: the fewest directions that keep the network's outputs within 10%, i.e. $\lVert f_{[k]} - f \rVert_F \leq 0.1\,\lVert f \rVert_F$ over the test inputs.</li>
+        </ul>
+        <p class="text">
+            $d_{0.99}$ can fall simply because margins grow. $d_{\text{out}}$ cannot. We call a narrowing of $d_{\text{out}}$ <b>subspace crystallization</b>.
+        </p>
+    </div>
+
+
+    <!-- Finding 1 -->
+    <div class="container blog main">
+        <h1>Compression Follows the Onset</h1>
+        <p class="text">
+            The transformer pulls memorization and generalization apart. All 29 grokked seeds fit their training set within the first 250 steps, yet their onsets range from 6,500 to 21,000 steps. Weight decay first shrinks the random initialization, which by itself lowers the effective rank of $W_{\text{in}}$ to a plateau, so we measure compression only after step 4,000. A second, sharp drop follows, and the step $t_s$ at which it is steepest tracks the onset almost exactly: Pearson $r = 0.99$, slope 1.02 (95% CI 0.98–1.07). It scatters by 506 steps around $t_g$ but by 4,234 steps around the memorization step.
+        </p>
+    </div>
+    <div class="container blog main gray">
+        <img class="figure" src="static/figures/ts_vs_tg_tfit.png" alt="Steepest effective-rank decrease against grokking onset and memorization step">
+        <p class="caption">
+            <b>Compression tracks the grokking onset, not memorization.</b> Step of the steepest effective-rank decrease of $W_{\text{in}}$ against the grokking onset (left) and against the step at which training accuracy reaches 99% (right). Blue: seeds 0–14. Orange: held-out seeds 15–29. Dashed line: identity. If compression followed memorization, the points on the right would sit at a fixed step.
+        </p>
+    </div>
+    <div class="container blog main">
+        <p class="text">
+            Networks that memorize without grokking compress far less:
+        </p>
+        <div class="stats">
+            <div><div class="big">60 ± 5%</div><div class="small">fall in ER of $W_{\text{in}}$ in transformers that grok</div></div>
+            <div><div class="big">15–23%</div><div class="small">fall in the seven transformers that memorize but never grok</div></div>
+            <div><div class="big">1.1% vs 10.5%</div><div class="small">fall in random-label MLPs vs. grokked MLPs</div></div>
+        </div>
+
+        <h2>Compression Does Not Start Before Test Accuracy Rises</h2>
+        <p class="text">
+            In the MLP, compression starts after the onset in all 15 seeds, with a mean lag of 6,367 ± 3,248 steps (one-sided $t = 7.59$, $p = 1.3 \times 10^{-6}$). Granger tests agree: changes in test accuracy predict changes in effective rank in all 15 seeds, and the reverse holds in at most 6.
+        </p>
+        <p class="text">
+            In the transformer, compression is part of the transition itself. The second drop begins 1,888 ± 992 steps before the onset, but only after test accuracy has already reached 10% in 28 of 29 seeds. It is steepest 905 ± 506 steps after the onset, and 63% of it happens after.
+        </p>
+    </div>
+    <div class="container blog main gray">
+        <img class="figure" src="static/figures/tf_er_aligned.png" alt="Effective rank of W_in and test accuracy aligned at the grokking onset">
+        <p class="caption">
+            <b>Effective rank of $W_{\text{in}}$ (relative to step 0) and test accuracy of the 14 grokked transformer seeds, aligned at each seed's own onset.</b> The effective rank falls while the random initialization decays, plateaus at about 60% of its initial value, and drops again around $t_g$.
+        </p>
+    </div>
+    <div class="container blog main">
+        <h2>Replication on Held-Out Seeds and Tasks</h2>
+        <p class="text">
+            We fixed the timing measures on seeds 0–14 and then tested them on data they had not seen. On 15 held-out transformer seeds, the steepest decrease came 850 ± 524 steps after the onset (14 of 15 seeds, the fifteenth at the onset), close to the 964 ± 499 steps on the original seeds. On $ab \bmod 97$ and $(a+b) \bmod 113$, the MLP's compression followed the onset in all 30 runs. With a Bonferroni correction over all nine $t$-tests, every test but one remains significant.
+        </p>
+    </div>
+
+
+    <!-- Finding 2 -->
+    <div class="container blog main">
+        <h1>Subspace Crystallization</h1>
+        <p class="text">
+            With a checkpoint every 250 steps and each seed aligned at its own onset, we can watch $d_{\text{out}}$ narrow while test accuracy rises. Each square below is one singular direction of a transformer weight matrix, and the filled squares are the leading directions needed to keep the network's outputs within 10%. Drag the slider or press play.
+        </p>
+    </div>
+    <div class="container blog main gray" id="crystal-widget">
+        <div class="cw">
+            <div class="cw-top">
+                <div class="cw-readout">Steps from onset, $t - t_g$: <b class="cw-step">−3,000</b></div>
+                <a class="button icon cw-play">Play <i class="fa-solid fa-play"></i></a>
+            </div>
+            <div class="cw-grids"></div>
+            <div class="cw-slider">
+                <input type="range" min="0" max="6" step="1" value="0" aria-label="Steps from grokking onset">
+                <div class="cw-ticks">
+                    <span>−3k</span><span>−2k</span><span>−1k</span><span>−500</span><span>$t_g$</span><span>+1k</span><span>+3k</span>
+                </div>
+            </div>
+            <div class="cw-meters">
+                <div>
+                    <div class="m-label"><span>Test accuracy</span><b class="m-acc"></b></div>
+                    <div class="bar"><i class="b-acc"></i></div>
+                </div>
+                <div>
+                    <div class="m-label"><span>Restricted loss</span><b class="m-res"></b></div>
+                    <div class="bar"><i class="b-res"></i></div>
+                </div>
+                <div>
+                    <div class="m-label"><span>Excluded loss</span><b class="m-exc"></b></div>
+                    <div class="bar warm"><i class="b-exc"></i></div>
+                </div>
+            </div>
+        </div>
+        <p class="caption">
+            <b>The transformer crystallizes during the transition.</b> $d_{\text{out}}$ of each weight matrix (mean over 29 grokked seeds), test accuracy, and the restricted and excluded training losses of Nanda et al. (2023), from Table 5 of the paper. The restricted loss keeps only the key-frequency components of the logits; the excluded loss removes them.
+        </p>
+    </div>
+    <div class="container blog main">
+        <p class="text">
+            Three thousand steps before the onset, at 16% test accuracy, $d_{\text{out}}$ is 27–53 per matrix. At the onset it is 11–17, and 3,000 steps later 9–14. For $W_{\text{in}}$, $W_{\text{out}}$ and $W_U$ it is halfway down 740–960 steps before the onset, at about 60% test accuracy, in 28 or 29 of 29 seeds.
+        </p>
+
+        <h2>It Coincides With Cleanup</h2>
+        <p class="text">
+            The narrowing lines up with the cleanup phase of Nanda et al. (2023). Their restricted loss is halfway down 1,966 ± 647 steps before the onset, as the generalizing circuit forms. Their excluded loss is halfway <em>up</em> 1,026 ± 646 steps before the onset, as the memorizing components are removed, at the same time as $d_{\text{out}}$ narrows. $d_{\text{out}}$ adds that cleanup reduces the directions the <em>outputs</em> depend on, not only those the predictions depend on. Transformers that never grok narrow only slowly and stay two to nine times wider.
+        </p>
+    </div>
+    <div class="container blog main gray">
+        <img class="figure" src="static/figures/tf_crystallization.png" alt="Directions needed to keep outputs within 10% and test accuracy, aligned at the onset">
+        <p class="caption">
+            <b>Directions of each weight matrix needed to keep the outputs within 10% (left) and test accuracy (right),</b> with each seed aligned at its own onset $t_g$. The count falls during the rise in test accuracy and settles at 8–13 per matrix.
+        </p>
+    </div>
+    <div class="container blog main">
+        <h2>The Final Solution Uses Few Directions</h2>
+        <p class="text">
+            At the final checkpoint, $d_{0.99}$ is 7.7 of 97 directions for $W_E$, 8.7 of 128 for $W_{\text{out}}$ and 13.0 of 128 for $W_{\text{in}}$, and the MLP's post-activations need only 17 of 512 (3.4%). These counts are not inflated by the margin: $d_{\text{out}}$ is 8.1–13.0 for all four matrices. The leading directions really carry the solution: truncating to them keeps at least 99.26% of test accuracy, while random subspaces of the same rank keep at most 12.5%.
+        </p>
+
+        <h2>Accuracy Can Fake Crystallization</h2>
+        <p class="text">
+            The MLP trained with mean-squared error shows why the counting criterion matters. Its sufficient subspace narrows right after the onset, from $d_{0.99} = 109.5$ at step 12,500 to $64.9$ at step 20,000, then widens again to $89.1$. But over the same stretch the median margin grows more than fourfold, and $d_{\text{out}}$ does not fall at all. The apparent narrowing measured how far predictions were from flipping, not how many directions the function uses.
+        </p>
+    </div>
+    <div class="container blog main gray">
+        <div class="slide-menu">
+            <ul class="dots" id="slide-menu">
+                <li class="dot active"></li>
+                <li class="dot"></li>
+            </ul>
+        </div>
+        <div class="slide-content" style="display: block;">
+            <img class="figure narrow" src="static/figures/mlp_dc_over_training.png" alt="d_0.99 and d_0.9 of the MLP over training, with effective rank">
+            <p class="caption">
+                <b>The MLP's sufficient subspace over training (15 seeds).</b> $d_{0.9}$ and $d_{0.99}$ narrow sharply after the onset and widen again during late training, while effective rank falls. $d_{\text{out}}$ (table below) does not narrow.
+            </p>
+        </div>
+        <div class="slide-content" style="display: none;">
+            <img class="figure narrow" src="static/figures/mlp_truncation.png" alt="Test accuracy of the MLP against the rank of the truncated W1">
+            <p class="caption">
+                <b>Test accuracy against the rank $k$ of the truncated $W_1$</b> at the end of training (seed 0, and mean ± s.d. over 15 seeds).
+            </p>
+        </div>
+    </div>
+    <div class="container blog main">
+        <div class="table-wrapper">
+            <table class="compact">
+                <thead class="center">
+                    <tr><th>MLP (MSE), $W_1$ out of 128</th><th>$d_{\text{out}}$ (outputs within 10%)</th><th>$d_{0.99}$ (99% of accuracy)</th><th>Median margin</th></tr>
+                </thead>
+                <tbody class="center">
+                    <tr><td>Step 0 (untrained)</td><td>116.4</td><td>–</td><td>−0.004</td></tr>
+                    <tr><td>Step 11,000 (before onset)</td><td>122.4</td><td>119.3</td><td>0.025</td></tr>
+                    <tr><td>Step 20,000</td><td>122.3</td><td class="hl">64.9</td><td class="hl">0.470</td></tr>
+                    <tr><td>End ($10^5$)</td><td>127.3</td><td>89.1</td><td>0.611</td></tr>
+                    <tr><td>Random labels (end)</td><td>123.0</td><td>–</td><td>0.110</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <p class="text">
+            With cross-entropy, the MLP does crystallize, but late, and as part of a different process: $d_{\text{out}} \approx 120$ just before and after the onset, ending at 70–81 and tracking the late fall in effective rank rather than the transition.
+        </p>
+
+        <h2>Why the Transformer Crystallizes Further</h2>
+        <p class="text">
+            The gap comes from the architecture. The transformer's embedding uses about four frequencies (4.2 hold 90% of its Fourier power), and each frequency needs two directions, a cosine and a sine. That predicts about 8 directions, close to $d_{0.99}$ of $W_E$, $W_{\text{out}}$ and $W_U$ (7.7–8.8). The directions attention writes to nearly coincide with those $W_{\text{in}}$ reads from (mean principal-angle cosine 0.923, against 0.248 for random subspaces), so the MLP block receives an input already confined to a few directions. The MLP's first layer instead reads both one-hot operands directly, so each frequency costs it four directions, and it spreads its weights over most of the 48 frequencies.
+        </p>
+    </div>
+    <div class="container blog main gray">
+        <img class="figure narrow" src="static/figures/tf_logit_geometry.png" alt="Transformer logits projected on their first two principal components and on the dominant frequency">
+        <p class="caption">
+            <b>Representational geometry of the transformer's logits (seed 0).</b> First two principal components (left) and projection onto the dominant logit frequency (right), colored by $41(a+b) \bmod 97$. The answer is laid out on a circle.
+        </p>
+    </div>
+
+
+    <!-- Finding 3 -->
+    <div class="container blog main">
+        <h1>Forcing Low Rank</h1>
+        <p class="text">
+            If compression drove grokking, removing directions in advance should help. We write a weight matrix as $W = AB$ with inner dimension $r$ and train from initialization. The comparison that matters is with a <b>factorized control</b> at full rank ($r = 128$), because the factorization by itself changes when grokking happens.
+        </p>
+        <div class="table-wrapper">
+            <table class="compact">
+                <thead class="center">
+                    <tr><th>Matrix</th><th>Rank cap $r$</th><th>Grokked</th><th>Onset $t_g$ (steps)</th><th>Final test acc. (%)</th></tr>
+                </thead>
+                <tbody class="center">
+                    <tr><td>None (unfactorized)</td><td>–</td><td>5/5</td><td>10,500 ± 1,777</td><td>100.0</td></tr>
+                    <tr><td>$W_{\text{in}}$</td><td>128 (control)</td><td>5/5</td><td>14,100 ± 4,095</td><td>99.6</td></tr>
+                    <tr><td>$W_{\text{in}}$</td><td>32</td><td>5/5</td><td>14,350 ± 5,730</td><td>98.4</td></tr>
+                    <tr><td>$W_{\text{in}}$</td><td>24</td><td>4/5</td><td>16,312 ± 3,332</td><td>95.5</td></tr>
+                    <tr><td>$W_{\text{in}}$</td><td>16</td><td>3/5</td><td>16,417 ± 6,682</td><td>94.5</td></tr>
+                    <tr><td>$W_{\text{in}}$</td><td>8</td><td class="hl">1/5</td><td>12,500</td><td>50.6</td></tr>
+                    <tr><td>$W_E$</td><td>128 (control)</td><td>5/5</td><td>18,050 ± 5,917</td><td>100.0</td></tr>
+                    <tr><td>$W_E$</td><td>32</td><td class="hl">1/5</td><td>15,750</td><td>31.8</td></tr>
+                    <tr><td>$W_E$</td><td>24</td><td>4/5</td><td>16,312 ± 2,633</td><td>83.1</td></tr>
+                    <tr><td>$W_E$</td><td>16</td><td class="hl">0/5</td><td>–</td><td>11.9</td></tr>
+                    <tr><td>$W_E$</td><td>8</td><td class="hl">0/5</td><td>–</td><td>13.7</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <p class="caption">Rank caps in the transformer (5 seeds per arm; $t_g$ averaged over the seeds that grok).</p>
+        <p class="text">
+            The trained solution needs only about 13 directions of $W_{\text{in}}$ and 8 of $W_E$, so caps above these leave its capacity intact. Even so, capping $W_{\text{in}}$ at 32 leaves the onset where the control has it, capping it at 24 or 16 delays it and makes it less reliable, and capping it at 8 prevents grokking in four of five seeds. Capping $W_E$ is worse: only five of twenty capped runs grok.
+        </p>
+
+        <h2>Why the Control Matters</h2>
+        <p class="text">
+            In the MLP, factorizing $W_1 = AB$ at full rank speeds grokking up seven- to eight-fold on its own ($t_g$ = 1,667 against 12,483 steps), whereas in the transformer it slows grokking down. Both fit known mechanisms: factorization preconditions the updates of the product, and weight decay on $A$ and $B$ penalizes the nuclear norm of $W$, since $\lVert A\rVert_F^2 + \lVert B\rVert_F^2 \geq 2\lVert AB\rVert_*$, a penalty that is negligible at the MLP's weight decay and strong at the transformer's. Against the factorized control, MLP rank limits <em>delay</em> grokking. Compared with the unfactorized network alone, low rank would wrongly appear to accelerate it.
+        </p>
+        <p class="text">
+            A nuclear-norm penalty tells the same story. Applied to $W_1$ from step 0, it compresses the matrix well before grokking (effective rank 78.5 against 115.9 at step 11,500) and delays the onset from 12,700 to 16,200 steps.
+        </p>
+    </div>
+
+
+    <!-- Secondary results -->
+    <div class="container blog main">
+        <h1>More Findings</h1>
+        <h2>Four Stages of MLP Training</h2>
+        <p class="text">
+            The MLP passes through four stages: <b>memorization</b> (training accuracy 97.8% by step 8,000, test accuracy below 5%), the <b>grokking transition</b> (onset at 12,633 ± 297), <b>consolidation</b>, where effective rank stays near its maximum while the margin grows, and <b>late compression</b>, where 99% of the total fall in effective rank happens. Seeing that last stage requires training well past the point where test accuracy saturates.
+        </p>
+    </div>
+    <div class="container blog main gray">
+        <img class="figure narrow" src="static/figures/mlp_four_stages.png" alt="Rate of change of effective rank and test accuracy across four training stages">
+        <p class="caption">
+            <b>The four training stages of the MLP (seed 0).</b> Rate of change of the effective rank of $W_1$ (top) and of test accuracy (bottom). Effective rank grows during memorization and the transition, turns negative at $t_g$, and keeps falling.
+        </p>
+    </div>
+    <div class="container blog main">
+        <h2>Late Compression Is Set by AdamW's ε</h2>
+        <p class="text">
+            Late in training, the square root of Adam's second-moment estimate falls below $\epsilon$ for 87–100% of coordinates, so the update $m/(\sqrt{v}+\epsilon)$ becomes $m/\epsilon$: AdamW acts as gradient descent with learning rate $\mathrm{lr}/\epsilon = 10^5$. Continuing training with other optimizers confirms it is this effective learning rate, not Adam itself, that governs the late stage. SGD with momentum at the same effective rate reproduces all of it.
+        </p>
+
+        <h2>Same Solution, Different Coordinates</h2>
+        <p class="text">
+            Different MLP seeds favour different Fourier frequencies, and their top weight subspaces overlap no more than random ones. Yet after an orthogonal Procrustes rotation, one seed's readout decodes another seed's hidden activations with 95.8% accuracy, against 1.0% without the rotation. The rotation does not rescue a random network, a network trained on random labels, or one grokked on a different task (0.6–1.4%).
+        </p>
+
+        <h2>Fourier IPR Is Not an Early-Warning Signal</h2>
+        <p class="text">
+            The Fourier inverse participation ratio, which measures how periodic the hidden units are, rises before the onset. But it also rises in every network that never groks: all five random-label MLPs and all seven non-grokking transformers. It tracks the progress of training rather than an impending transition.
+        </p>
+    </div>
+
+
+    <!-- Takeaways -->
+    <div class="container blog main">
+        <h1>Takeaways</h1>
+        <p class="text">
+            Compression follows the grokking onset rather than memorization, and forcing low rank from initialization does not bring grokking forward. Compression is a signature of grokking, not its cause. Whether the solution crystallizes depends on how directions are counted. For anyone measuring how many directions a network uses, our results suggest four practices:
+        </p>
+        <ol class="text-list">
+            <li><b>Count with a margin-independent criterion</b> such as $d_{\text{out}}$, and compare against untrained or memorizing networks.</li>
+            <li><b>Report the training step with every count.</b> The MLP's $d_{0.99}$ grows from 65 to 89 after generalization, so it is not a fixed property of the trained model.</li>
+            <li><b>Compare imposed low rank with a control of the same parameterization.</b> Against the unfactorized MLP, rank caps would wrongly appear to accelerate grokking.</li>
+            <li><b>Read spectral statistics only next to negative controls.</b> IPR and effective rank also move in networks that never grok.</li>
+        </ol>
+        <h2>Limitations</h2>
+        <p class="text">
+            All our tasks are modular arithmetic on cyclic groups; non-abelian groups, and language or vision models, would test the results more broadly. The two architectures also differ in loss and training length, and while we varied weight decay separately, the cross-entropy MLPs need larger learning rates to grok. Granger tests capture only temporal order, so our causal conclusions rest on the rank interventions.
+        </p>
+    </div>
+
+
+    <!-- Citation -->
+    <div class="container blog main" id="citation">
+        <h1>Citation</h1>
+        <p class="text">If you find this work useful, please cite:</p>
+<!-- TODO: swap in the arXiv BibTeX entry once the paper is on arXiv. -->
+<pre><code class="plaintext">@misc{mehendale2026subspace,
+  title  = {Subspace Crystallization in Grokking: Rank Compression
+            Tracks the Phase Transition},
+  author = {Mehendale, Shlok and Chopra, Paras},
+  year   = {2026},
+  note   = {Preprint}
+}</code></pre>
+        <p class="text">
+            Code to reproduce every experiment is at <a href="https://github.com/Lossfunk/Causal-geometric-grokking">github.com/Lossfunk/Causal-geometric-grokking</a>. Correspondence: <a href="mailto:shlok.mehendale@lossfunk.com">shlok.mehendale@lossfunk.com</a>.
+        </p>
+    </div>
+
+
+    <!-- Footer Page -->
+    <footer>
+        <div class="container">
+            <div class="foot">
+                <a href="https://lossfunk.com"><img src="static/lossfunk.jpg" alt="Lossfunk"></a>
+                <p>
+                    <a href="https://mehshlok.github.io/">Shlok Mehendale</a> · This website is built on the <a href="https://shikun.io/projects/clarity">Clarity Template</a>, designed by <a href="https://shikun.io/">Shikun Liu</a>.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/scripts/main.js"></script>
+    <script src="static/project.js"></script>
+</body>
+</html>

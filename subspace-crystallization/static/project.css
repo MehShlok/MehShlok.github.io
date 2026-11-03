@@ -1,0 +1,334 @@
+/* Project-specific styles layered on top of the Clarity template. */
+
+:root {
+  --ink: #22324a;
+  --muted: #5b6b80;
+  --hero: #e4eaef;
+  --accent: #2f4f7a;
+  --accent-soft: #7c9cc6;
+  --dim: #c9d3dd;
+  --card: #ffffff;
+}
+
+/* ======================== Hero ===================== */
+div.container.blog#first-content {
+  background-color: var(--hero);
+}
+div.container.blog img.hero-logo {
+  display: block;
+  margin: 0 !important;
+  width: 120px;
+  mix-blend-mode: multiply;
+  padding: 0 0 1.5vh !important;
+}
+div.container.blog#first-content h1.title {
+  color: var(--ink);
+}
+div.container.blog#first-content .blog-intro p.author a {
+  color: inherit;
+  border-bottom: 1px solid rgba(34, 50, 74, 0.25);
+}
+div.container.blog#first-content .blog-intro .info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 1vh;
+}
+div.container.blog#first-content .blog-intro .info .button {
+  background-color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 0;
+}
+div.container.blog#first-content .blog-intro .info .button.primary {
+  background-color: var(--ink);
+  color: #f4f6f8;
+}
+div.container.blog#first-content .blog-cover img.background {
+  opacity: 0.35;
+}
+.hero-tag {
+  font-family: "Poppins", sans-serif;
+  font-size: 0.72em;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-bottom: 1vh;
+}
+
+/* ======================== Key findings ===================== */
+.findings {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  padding: 1.5vh 0 1vh;
+}
+.finding {
+  background: var(--card);
+  border: 1px solid #e3e7ec;
+  border-radius: 12px;
+  padding: 18px 18px 16px;
+}
+.finding .num {
+  font-family: "Poppins", sans-serif;
+  font-size: 0.7em;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+}
+.finding .stat {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.45em;
+  font-weight: 600;
+  color: var(--accent);
+  line-height: 1.2;
+  padding: 8px 0 4px;
+  white-space: nowrap;
+}
+.finding h3 {
+  font-family: "Poppins", sans-serif;
+  font-size: 0.95em !important;
+  padding: 4px 0 6px !important;
+  color: var(--ink);
+}
+.finding p {
+  font-family: "Charter", serif;
+  font-size: 0.88em !important;
+  line-height: 1.5;
+  color: #3d4a5c;
+}
+
+/* ======================== Callouts and stats ===================== */
+.callout {
+  border-left: 3px solid var(--accent-soft);
+  background: #f3f6f9;
+  border-radius: 0 10px 10px 0;
+  padding: 14px 18px;
+  margin: 1.5vh 0;
+}
+.callout p {
+  font-family: "Charter", serif;
+  padding: 4px 0 !important;
+}
+.callout .label {
+  font-family: "Poppins", sans-serif;
+  font-size: 0.7em;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  padding: 1.5vh 0;
+}
+.stats > div {
+  border-top: 2px solid var(--ink);
+  padding-top: 10px;
+}
+.stats .big {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.5em;
+  font-weight: 600;
+  color: var(--accent);
+  line-height: 1.2;
+}
+.stats .small {
+  font-family: "Poppins", sans-serif;
+  font-size: 0.78em;
+  color: var(--muted);
+  line-height: 1.4;
+  padding-top: 4px;
+}
+div.container.blog ol.text-list,
+div.container.blog ul.text-list {
+  font-family: "Charter", serif;
+  padding: 0.5vh 0 0.5vh 1.4em;
+}
+div.container.blog ol.text-list li,
+div.container.blog ul.text-list li {
+  font-family: "Charter", serif;
+  padding: 0.6vh 0;
+}
+div.container.blog ol.text-list li b,
+div.container.blog ul.text-list li b {
+  font-family: "Charter", serif;
+}
+div.container.blog img.figure {
+  width: 100%;
+  display: block;
+  margin: 0 auto;
+}
+div.container.blog img.figure.narrow {
+  width: 72%;
+}
+table.compact th, table.compact td {
+  padding: 6px 8px;
+}
+table td.hl {
+  color: #a24b22;
+  font-weight: 600;
+}
+
+/* ======================== Crystallization widget ===================== */
+.cw {
+  padding: 1vh 0 0.5vh;
+}
+.cw-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-bottom: 2vh;
+}
+.cw-top .button {
+  margin-bottom: 0;
+  background-color: #ffffff;
+}
+.cw-readout {
+  font-family: "Poppins", sans-serif;
+  font-size: 0.85em;
+  color: var(--muted);
+}
+.cw-readout b {
+  color: var(--ink);
+  font-weight: 600;
+}
+.cw-grids {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 5%;
+}
+.cw-mat .cw-label {
+  font-family: "Poppins", sans-serif;
+  font-size: 0.8em;
+  color: var(--ink);
+  padding-bottom: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.cw-mat .cw-label .count {
+  color: var(--muted);
+  font-size: 0.92em;
+}
+.cw-mat .cw-label .count b {
+  color: var(--accent);
+  font-weight: 600;
+}
+.cw-cells {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 3px;
+}
+.cw-cells span {
+  aspect-ratio: 1;
+  border-radius: 2px;
+  background: var(--dim);
+  opacity: 0.55;
+  transition: background-color 0.35s ease, opacity 0.35s ease;
+}
+.cw-cells span.on {
+  opacity: 1;
+}
+.cw-slider {
+  padding-top: 2.5vh;
+}
+.cw-slider input[type=range] {
+  width: 100%;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+.cw-ticks {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  font-family: "Poppins", sans-serif;
+  font-size: 0.68em;
+  color: var(--muted);
+  text-align: center;
+  margin: 2px -2.2% 0;
+}
+.cw-meters {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  padding-top: 2vh;
+}
+.cw-meters .m-label {
+  font-family: "Poppins", sans-serif;
+  font-size: 0.72em;
+  color: var(--muted);
+  display: flex;
+  justify-content: space-between;
+}
+.cw-meters .m-label b {
+  color: var(--ink);
+  font-weight: 600;
+}
+.cw-meters .bar {
+  height: 6px;
+  border-radius: 3px;
+  background: #dfe5eb;
+  margin-top: 5px;
+  overflow: hidden;
+}
+.cw-meters .bar i {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+  border-radius: 3px;
+  transition: width 0.35s ease;
+}
+.cw-meters .bar.warm i {
+  background: #c2703d;
+}
+
+/* ======================== Footer ===================== */
+footer .foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+footer .foot img {
+  height: 34px;
+  mix-blend-mode: multiply;
+  padding: 0;
+}
+footer .foot p {
+  font-size: 0.85em;
+}
+
+/* ======================== Small screens ===================== */
+@media screen and (max-width: 992px) {
+  .findings {
+    grid-template-columns: 1fr;
+  }
+}
+@media screen and (max-width: 769px) {
+  .stats {
+    grid-template-columns: 1fr;
+  }
+  .cw-grids {
+    gap: 4%;
+  }
+  .cw-cells {
+    gap: 2px;
+  }
+  .cw-mat .cw-label {
+    flex-direction: column;
+    font-size: 0.72em;
+  }
+  .cw-meters {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .cw-ticks {
+    font-size: 0.6em;
+  }
+  div.container.blog img.figure.narrow {
+    width: 100%;
+  }
+}
