@@ -63,7 +63,7 @@
             <div class="blog-intro">
                 <div>
                     <img class="hero-logo" src="static/lossfunk.jpg" alt="Lossfunk">
-                    <p class="hero-tag">Preprint · 2026</p>
+                    <p class="hero-tag">arXiv 2610.35112 · 2026</p>
                     <h1 class="title">Subspace Crystallization in Grokking: Rank Compression Tracks the Phase Transition</h1>
                     <p class="author">
                         <a href="https://mehshlok.github.io/">Shlok Mehendale</a> and
@@ -76,9 +76,8 @@
 
                 <div class="info">
                     <a href="static/paper.pdf" class="button icon primary">Paper <i class="fa-solid fa-file-pdf"></i></a>
-                    <!-- TODO: uncomment once the arXiv ID is live.
-                    <a href="https://arxiv.org/abs/XXXX.XXXXX" class="button icon">arXiv <i class="fa-solid fa-book-open"></i></a>
-                    -->
+                    <a href="https://arxiv.org/abs/2610.35112" class="button icon">arXiv <i class="fa-solid fa-book-open"></i></a>
+                    <a href="https://www.alphaxiv.org/abs/2610.35112" class="button icon">alphaXiv <i class="fa-solid fa-comments"></i></a>
                     <a href="https://github.com/Lossfunk/Causal-geometric-grokking" class="button icon">Code <i class="fa-brands fa-github"></i></a>
                     <!-- TODO: uncomment with the thread URL after posting.
                     <a href="https://x.com/lossfunk/status/XXXXXXXXXXXXXXXXXXX" class="button icon">Thread <i class="fa-brands fa-x-twitter"></i></a>
@@ -417,7 +416,7 @@
         <h1>More Findings</h1>
         <h2>The MLP's Late Compression Is Set by AdamW's ε</h2>
         <p class="text">
-            Late in training, the square root of Adam's second-moment estimate falls below $\epsilon$ for 87–100% of coordinates, so the update $m/(\sqrt{v}+\epsilon)$ becomes $m/\epsilon$: AdamW acts as gradient descent with momentum at learning rate $\mathrm{lr}/\epsilon = 10^5$. Continuing training with other optimizers confirms it is this effective learning rate, not Adam itself, that governs the late stage. SGD with momentum at the same effective rate reproduces all of it.
+            Late in training, the square root of Adam's second-moment estimate falls below $\epsilon$ for 87–100% of coordinates, so the update $m/(\sqrt{v}+\epsilon)$ becomes $m/\epsilon$: AdamW acts as gradient descent with momentum at learning rate $\mathrm{lr}/\epsilon = 10^5$. Continuing training with other optimizers confirms it is this effective learning rate, not Adam itself, that governs the late stage. SGD with momentum at the same effective rate reproduces all of it. Concurrent work by <a href="https://arxiv.org/abs/2610.31642">Barron et al. (2026)</a> reaches the same small-gradient regime from the cross-entropy side. There, the balance between Adam's $\epsilon$ and weight decay sets the margin, at roughly $\log(1/\epsilon)$.
         </p>
 
         <h2>Same Solution, Different Coordinates</h2>
@@ -455,13 +454,15 @@
     <div class="container blog main" id="citation">
         <h1>Citation</h1>
         <p class="text">If you find this work useful, please cite:</p>
-<!-- TODO: swap in the arXiv BibTeX entry once the paper is on arXiv. -->
 <pre><code class="plaintext">@misc{mehendale2026subspace,
-  title  = {Subspace Crystallization in Grokking: Rank Compression
-            Tracks the Phase Transition},
-  author = {Mehendale, Shlok and Chopra, Paras},
-  year   = {2026},
-  note   = {Preprint}
+  title         = {Subspace Crystallization in Grokking: Rank Compression
+                   Tracks the Phase Transition},
+  author        = {Mehendale, Shlok and Chopra, Paras},
+  year          = {2026},
+  eprint        = {2610.35112},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.LG},
+  url           = {https://arxiv.org/abs/2610.35112}
 }</code></pre>
         <p class="text">
             Code to reproduce every experiment is at <a href="https://github.com/Lossfunk/Causal-geometric-grokking">github.com/Lossfunk/Causal-geometric-grokking</a>. Correspondence: <a href="mailto:shlok.mehendale@lossfunk.com">shlok.mehendale@lossfunk.com</a>.
