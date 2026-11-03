@@ -170,6 +170,21 @@
     </div>
 
 
+    <!-- Training trajectory -->
+    <div class="container blog main">
+        <h1>Four Stages of Training</h1>
+        <p class="text">
+            Tracking the rates of change of effective rank and test accuracy splits the MLP's training into four stages: <b>memorization</b> (training accuracy 97.8% by step 8,000, test accuracy below 5%), the <b>grokking transition</b> (onset at 12,633 ± 297), <b>consolidation</b>, where effective rank stays near its maximum while the margin grows, and <b>late compression</b>, where 99% of the total fall in effective rank happens. Rank grows while the network memorizes and only starts to fall once test accuracy has risen. Seeing the last stage requires training well past the point where test accuracy saturates.
+        </p>
+    </div>
+    <div class="container blog main gray">
+        <img class="figure narrow" src="static/figures/mlp_four_stages.png" alt="Rate of change of effective rank and test accuracy across four training stages">
+        <p class="caption">
+            <b>The four training stages of the MLP (seed 0).</b> Rate of change of the effective rank of $W_1$ (top) and of test accuracy (bottom). Effective rank grows during memorization and the transition, turns negative at $t_g$, and keeps falling.
+        </p>
+    </div>
+
+
     <!-- Finding 1 -->
     <div class="container blog main">
         <h1>Compression Follows the Onset</h1>
@@ -377,18 +392,6 @@
     <!-- Secondary results -->
     <div class="container blog main">
         <h1>More Findings</h1>
-        <h2>Four Stages of MLP Training</h2>
-        <p class="text">
-            The MLP passes through four stages: <b>memorization</b> (training accuracy 97.8% by step 8,000, test accuracy below 5%), the <b>grokking transition</b> (onset at 12,633 ± 297), <b>consolidation</b>, where effective rank stays near its maximum while the margin grows, and <b>late compression</b>, where 99% of the total fall in effective rank happens. Seeing that last stage requires training well past the point where test accuracy saturates.
-        </p>
-    </div>
-    <div class="container blog main gray">
-        <img class="figure narrow" src="static/figures/mlp_four_stages.png" alt="Rate of change of effective rank and test accuracy across four training stages">
-        <p class="caption">
-            <b>The four training stages of the MLP (seed 0).</b> Rate of change of the effective rank of $W_1$ (top) and of test accuracy (bottom). Effective rank grows during memorization and the transition, turns negative at $t_g$, and keeps falling.
-        </p>
-    </div>
-    <div class="container blog main">
         <h2>Late Compression Is Set by AdamW's ε</h2>
         <p class="text">
             Late in training, the square root of Adam's second-moment estimate falls below $\epsilon$ for 87–100% of coordinates, so the update $m/(\sqrt{v}+\epsilon)$ becomes $m/\epsilon$: AdamW acts as gradient descent with learning rate $\mathrm{lr}/\epsilon = 10^5$. Continuing training with other optimizers confirms it is this effective learning rate, not Adam itself, that governs the late stage. SGD with momentum at the same effective rate reproduces all of it.
