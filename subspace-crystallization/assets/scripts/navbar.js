@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         /* Mobile styles */
-        @media (max-width: 767px) {
+        @media (max-width: 767.98px) {
             .nav-container {
                 position: fixed;
                 top: 0;

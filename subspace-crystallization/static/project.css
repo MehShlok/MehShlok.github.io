@@ -307,6 +307,20 @@ footer .foot p {
     grid-template-columns: 1fr;
   }
 }
+@media screen and (max-width: 768.98px) {
+  /* Single-column hero: keep the cover from stretching to the full width. */
+  div.container.blog#first-content div.blog-title .blog-cover {
+    justify-content: center;
+  }
+  div.container.blog#first-content div.blog-title .blog-cover img {
+    width: 100%;
+    max-width: 440px;
+  }
+  div.container.blog#first-content div.blog-title .blog-cover img.background {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
 @media screen and (max-width: 769px) {
   .stats {
     grid-template-columns: 1fr;
