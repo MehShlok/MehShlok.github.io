@@ -376,6 +376,14 @@
         <p class="text">
             If compression drove grokking, removing directions in advance should help. We write a weight matrix as $W = AB$ with inner dimension $r$ and train from initialization. The comparison that matters is with a <b>factorized control</b> at full rank ($r = 128$), because the factorization by itself changes when grokking happens.
         </p>
+    </div>
+    <div class="container blog main gray">
+        <img class="figure" src="static/figures/fig_rank_caps.png" alt="Grokking onset against rank cap for the MLP input weights and the embedding, with the number of runs that grok">
+        <p class="caption">
+            <b>No rank cap reliably brings grokking forward.</b> Each dot is the mean onset of the runs that grok at that cap, labelled with how many of five grokked. Hollow dots mark a single run.
+        </p>
+    </div>
+    <div class="container blog main">
         <div class="table-wrapper">
             <table class="compact">
                 <thead class="center">
@@ -405,6 +413,14 @@
         <p class="text">
             In the MLP, factorizing $W_1 = AB$ at full rank speeds grokking up seven- to eight-fold on its own ($t_g$ = 1,667 against 12,483 steps), whereas in the transformer it slows grokking down. Both fit known mechanisms: factorization preconditions the updates of the product, and weight decay on $A$ and $B$ penalizes the nuclear norm of $W$, since $\lVert A\rVert_F^2 + \lVert B\rVert_F^2 \geq 2\lVert AB\rVert_*$, a penalty that is negligible at the MLP's weight decay and strong at the transformer's. Against the factorized control, MLP rank limits <em>delay</em> grokking. Compared with the unfactorized network alone, low rank would wrongly appear to accelerate it.
         </p>
+    </div>
+    <div class="container blog main gray">
+        <img class="figure" src="static/figures/fig_factorization.png" alt="Grokking onset for the unfactorized MLP, the factorized control and rank caps">
+        <p class="caption">
+            <b>The baseline decides the answer.</b> Against the factorized control, rank caps delay grokking. Against the unfactorized network, the same caps look faster.
+        </p>
+    </div>
+    <div class="container blog main">
         <p class="text">
             A nuclear-norm penalty tells the same story. Applied to $W_1$ from step 0, it compresses the matrix well before grokking (effective rank 78.5 against 115.9 at step 11,500) and delays the onset from 12,700 to 16,200 steps.
         </p>
