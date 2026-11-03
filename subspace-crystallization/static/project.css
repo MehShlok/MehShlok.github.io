@@ -171,13 +171,40 @@ table td.hl {
 }
 
 /* ======================== Explainer video ===================== */
+.explainer-wrap {
+  position: relative;
+  max-width: 640px;
+  margin: 0 auto;
+}
 video.explainer {
   display: block;
   width: 100%;
-  max-width: 640px;
-  margin: 0 auto;
   border-radius: 10px;
   background: #ffffff;
+  cursor: pointer;
+}
+/* Sits below the video: every corner of the frame carries text or the logo. */
+button.explainer-toggle {
+  display: flex;
+  width: 36px;
+  height: 36px;
+  margin: 10px auto 0;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background-color: rgba(34, 50, 74, 0.72);
+  color: #ffffff;
+  font-size: 14px;
+  opacity: 0.85;
+}
+button.explainer-toggle:hover,
+button.explainer-toggle:focus-visible {
+  background-color: rgba(34, 50, 74, 0.9);
+  color: #ffffff;
+  opacity: 1;
+}
+button.explainer-toggle i {
+  padding: 0;
 }
 
 /* ======================== Crystallization widget ===================== */

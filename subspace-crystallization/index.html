@@ -32,11 +32,11 @@
 
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='1' y='1' width='6' height='6' rx='1' fill='%232f4f7a'/%3E%3Crect x='9' y='1' width='6' height='6' rx='1' fill='%237c9cc6'/%3E%3Crect x='1' y='9' width='6' height='6' rx='1' fill='%23c9d3dd'/%3E%3Crect x='9' y='9' width='6' height='6' rx='1' fill='%23c9d3dd'/%3E%3C/svg%3E">
 
-    <link rel="stylesheet" type="text/css" media="all" href="assets/stylesheets/main_free.css?v=5" />
-    <link rel="stylesheet" type="text/css" media="all" href="clarity/clarity.css?v=5" />
-    <link rel="stylesheet" type="text/css" media="all" href="static/project.css?v=5" />
+    <link rel="stylesheet" type="text/css" media="all" href="assets/stylesheets/main_free.css?v=7" />
+    <link rel="stylesheet" type="text/css" media="all" href="clarity/clarity.css?v=7" />
+    <link rel="stylesheet" type="text/css" media="all" href="static/project.css?v=7" />
     <link href="assets/fa/css/all.min.css" rel="stylesheet">
-    <script src="assets/scripts/navbar.js?v=5"></script>
+    <script src="assets/scripts/navbar.js?v=7"></script>
     <script type="text/x-mathjax-config">
         MathJax.Hub.Config({
             "HTML-CSS": {
@@ -88,8 +88,8 @@
             </div>
 
             <div class="blog-cover">
-                <img class="foreground" src="static/cover.svg?v=5" alt="Directions each transformer weight matrix needs to keep its outputs within 10%, 3,000 steps before and after the grokking onset">
-                <img class="background" src="static/cover.svg?v=5" alt="">
+                <img class="foreground" src="static/cover.svg?v=7" alt="Directions each transformer weight matrix needs to keep its outputs within 10%, 3,000 steps before and after the grokking onset">
+                <img class="background" src="static/cover.svg?v=7" alt="">
             </div>
         </div>
     </div>
@@ -123,9 +123,12 @@
         </div>
     </div>
     <div class="container blog main gray">
-        <video class="explainer" autoplay loop muted playsinline preload="metadata" poster="static/explainer_poster.jpg">
-            <source src="static/explainer.mp4" type="video/mp4">
-        </video>
+        <div class="explainer-wrap">
+            <video class="explainer" autoplay loop muted playsinline preload="metadata" poster="static/explainer_poster.jpg?v=2">
+                <source src="static/explainer.mp4?v=2" type="video/mp4">
+            </video>
+            <button class="explainer-toggle" type="button" aria-label="Pause video"><i class="fa-solid fa-pause"></i></button>
+        </div>
         <p class="caption">
             <b>Grokking, in one run.</b> A one-layer transformer learning $(a+b) \bmod 97$ (one seed). Each dot is one input pair, its logits projected onto frequency 41. As test accuracy jumps, the disc hollows into a ring, and the directions each weight matrix's outputs depend on collapse to a handful.
         </p>
@@ -475,7 +478,7 @@
         </div>
     </footer>
 
-    <script src="assets/scripts/main.js?v=5"></script>
-    <script src="static/project.js?v=5"></script>
+    <script src="assets/scripts/main.js?v=7"></script>
+    <script src="static/project.js?v=7"></script>
 </body>
 </html>

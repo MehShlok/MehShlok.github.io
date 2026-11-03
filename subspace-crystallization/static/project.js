@@ -1,22 +1,49 @@
 //* ======================== Explainer Video ===================== */
-// Play only while on screen, and not at all for readers who prefer reduced motion.
+// Autoplays while on screen; clicking the video or the button pauses and resumes.
+// A pause by the reader sticks, and reduced-motion readers start paused.
 (function () {
   var video = document.querySelector("video.explainer");
   if (!video) return;
+  var btn = document.querySelector(".explainer-toggle");
+  var userPaused = false;
+
+  function sync() {
+    var playing = !video.paused;
+    btn.innerHTML = playing ? '<i class="fa-solid fa-pause"></i>' : '<i class="fa-solid fa-play"></i>';
+    btn.setAttribute("aria-label", playing ? "Pause video" : "Play video");
+  }
+  function play() {
+    var p = video.play();
+    if (p && p.catch) p.catch(sync);
+  }
+  function toggle() {
+    if (video.paused) {
+      userPaused = false;
+      play();
+    } else {
+      userPaused = true;
+      video.pause();
+    }
+  }
+
+  video.addEventListener("play", sync);
+  video.addEventListener("pause", sync);
+  video.addEventListener("click", toggle);
+  btn.addEventListener("click", toggle);
 
   if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     video.removeAttribute("autoplay");
     video.pause();
-    video.controls = true;
-    return;
+    userPaused = true;
   }
+  sync();
+
   if (!("IntersectionObserver" in window)) return;
   new IntersectionObserver(function (entries) {
     entries.forEach(function (e) {
       if (e.isIntersecting) {
-        var p = video.play();
-        if (p && p.catch) p.catch(function () { video.controls = true; });
-      } else {
+        if (!userPaused) play();
+      } else if (!video.paused) {
         video.pause();
       }
     });
