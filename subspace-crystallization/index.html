@@ -456,7 +456,7 @@
         <ol class="text-list">
             <li><b>Judging truncation by accuracy can show compression that isn't there.</b> In the MSE-trained MLP, $d_{0.99}$ fell from 110 to 65 of 128 directions after the onset, while $d_{\text{out}}$ stayed at 122–127. The narrowing was the margin growing. $d_{0.99}$ later rose again to 89, so it is not even a fixed property of the trained model.</li>
             <li><b>A rank cap is also a reparameterization, and the baseline flips the conclusion.</b> Writing $W = AB$ at full rank made the MLP grok 7.5x sooner on its own. Against the unfactorized network, rank caps look 3–5x faster. Against the factorized control, they are 1.5–2.5x slower.</li>
-                        <li><b>Proposed grokking signals also move without grokking.</b> Fourier IPR rose in all 5 random-label MLPs and all 7 transformers that never grokked. Effective rank also falls 15–23% in transformers that never grok. Without these controls, both would look like signatures of grokking.</li>
+                        <li><b>Spectral signals need negative controls.</b> Fourier IPR rose in all 5 random-label MLPs and all 7 transformers that never grokked, so it cannot flag an upcoming onset. Effective rank falls in those runs too, by 15–23% against 60% in runs that grok, and it drops early in every run as weight decay shrinks the random initialization. Only the comparison with controls separates the grokking signal from these.</li>
         </ol>
         <h2>Limitations</h2>
         <p class="text">
