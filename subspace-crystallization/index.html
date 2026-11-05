@@ -313,7 +313,7 @@
             At the final checkpoint, $d_{0.99}$ is 7.9% of the directions of $W_E$ (7.7 of 97), 6.8% of $W_{\text{out}}$ (8.7 of 128) and 10.2% of $W_{\text{in}}$ (13.0 of 128), and the MLP's post-activations need only 3.4% (17 of 512). These counts are not inflated by the margin: $d_{\text{out}}$ is 8.1–13.0 directions for all four matrices, roughly 6–13% of each. The leading directions really carry the solution: truncating to them keeps at least 99.26% of test accuracy, while random subspaces of the same rank keep at most 12.5%.
         </p>
 
-        <h2>Accuracy Can Fake Crystallization</h2>
+        <h2>Judging Truncation by Accuracy Can Show Compression That Isn't There</h2>
         <p class="text">
             The MLP trained with mean-squared error shows why the counting criterion matters. Its sufficient subspace narrows right after the onset, from $d_{0.99} = 109.5$ at step 12,500 to $64.9$ at step 20,000, then widens again to $89.1$. But over the same stretch the median margin grows more than fourfold, and $d_{\text{out}}$ does not fall at all. The apparent narrowing measured how far predictions were from flipping, not how many directions the function uses.
         </p>
@@ -451,13 +451,12 @@
     <div class="container blog main">
         <h1>Takeaways</h1>
         <p class="text">
-            Compression tracks the grokking onset, not memorization. Forcing low rank from initialization does not reliably bring grokking forward. Compression is a signature of grokking, not a driver. Whether the solution crystallizes depends on how directions are counted. For anyone measuring how many directions a network uses, our results suggest four practices:
+            Compression tracks the grokking onset, not memorization. Forcing low rank from initialization does not reliably bring grokking forward. Compression is a signature of grokking, not a driver. Three results matter beyond grokking, for anyone who measures how many directions a network uses:
         </p>
         <ol class="text-list">
-            <li><b>Count with a margin-independent criterion</b> such as $d_{\text{out}}$, and compare against untrained or memorizing networks.</li>
-            <li><b>Report the training step with every count.</b> The MLP's $d_{0.99}$ grows from 65 to 89 after generalization, so it is not a fixed property of the trained model.</li>
-            <li><b>Compare imposed low rank with a control of the same parameterization.</b> Against the unfactorized MLP, rank caps would wrongly appear to accelerate grokking.</li>
-            <li><b>Read spectral statistics only next to negative controls.</b> IPR and effective rank also move in networks that never grok.</li>
+            <li><b>Judging truncation by accuracy can show compression that isn't there.</b> In the MSE-trained MLP, $d_{0.99}$ fell from 110 to 65 of 128 directions after the onset, while $d_{\text{out}}$ stayed at 122–127. The narrowing was the margin growing. $d_{0.99}$ later rose again to 89, so it is not even a fixed property of the trained model.</li>
+            <li><b>A rank cap is also a reparameterization, and the baseline flips the conclusion.</b> Writing $W = AB$ at full rank made the MLP grok 7.5x sooner on its own. Against the unfactorized network, rank caps look 3–5x faster. Against the factorized control, they are 1.5–2.5x slower.</li>
+                        <li><b>Proposed grokking signals also move without grokking.</b> Fourier IPR rose in all 5 random-label MLPs and all 7 transformers that never grokked. Effective rank also falls 15–23% in transformers that never grok. Without these controls, both would look like signatures of grokking.</li>
         </ol>
         <h2>Limitations</h2>
         <p class="text">
